@@ -5,7 +5,7 @@ import { DefaultLayout } from '~/components/Layout'
 
 function App() {
     return (
-        <h1 className="App">
+        <div className="App">
             <BrowserRouter>
                 <Routes>
                     {publicRoutes.map((route, index) => {
@@ -32,7 +32,7 @@ function App() {
                     })}
                 </Routes>
             </BrowserRouter>
-        </h1>
+        </div>
     )
 }
 
