@@ -11,11 +11,11 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
-                <Link to="/" style={{display: 'flex'}}>
+                <Link to="/" style={{ display: 'flex' }}>
                     <img src={images.logo} alt="Logo" className={cx('logo')} />
                 </Link>
                 <div className={cx('search')}>
-                    <input placeholder='Search accounts and videos' spellCheck={false} className={cx('search-input')} />
+                    <input placeholder="Search accounts and videos" spellCheck={false} className={cx('search-input')} />
                     {/* times icon */}
                     {/* Loading icon */}
                     {/* <button className={cx('search-btn')}>
