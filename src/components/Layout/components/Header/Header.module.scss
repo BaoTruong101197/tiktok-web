@@ -24,6 +24,20 @@
     width: 360px;
 }
 
+.search-result {
+    margin-top: -2px;
+}
+
+.search-title {
+    display: block;
+    height: 30px;
+    padding: 5px 12px;
+    font-size: 1.4rem;
+    line-height: 20px;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
+}
+
 .search {
     display: flex;
     align-items: center;
@@ -67,6 +81,7 @@
 }
 
 .search-btn {
+    display: flex;
     position: absolute;
     right: 0;
     width: var(--search-btn-width);
@@ -79,6 +94,7 @@
     img {
         width: 24px;
         height: 24px;
+        margin: auto;
     }
 
     &:hover {
@@ -95,4 +111,13 @@
         left: 0;
         background: rgba(22, 24, 35, 0.12);
     }
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.upload-btn {
+    border-radius: 0 !important;
 }

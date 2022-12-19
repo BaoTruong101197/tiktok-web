@@ -1,0 +1,48 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 9px 16px;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 12px;
+    border-radius: 50%;
+}
+
+.username {
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.name {
+    font-size: 1.3rem;
+    line-height: 2rem;
+    color: rgba(22, 24, 35, 0.5);
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.blue-tick {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+
+    img {
+        width: 14px;
+        height: 14px;
+    }
+}

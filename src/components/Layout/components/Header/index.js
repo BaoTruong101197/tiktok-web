@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './Header.module.scss'
 import images from '~/assets/images'
 import ProperWrapper from '~/components/Proper'
 import AccountItem from '~/components/AccountItem'
+import Button from '~/components/Button'
 
 const cx = classNames.bind(styles)
 
@@ -32,6 +34,8 @@ function Header() {
                             <ProperWrapper>
                                 <label className={cx('search-title')}>Accounts</label>
                                 <AccountItem />
+                                <AccountItem />
+                                <AccountItem />
                             </ProperWrapper>
                         </div>
                     )}
@@ -47,7 +51,12 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
-                <div className={cx('header-right')}></div>
+                <div className={cx('header-right')}>
+                    <Button className={cx('upload-btn')} leftIcon={faPlus}>
+                        Upload
+                    </Button>
+                    <Button primary>Log in</Button>
+                </div>
             </div>
         </header>
     )
