@@ -4,8 +4,6 @@
     justify-content: center;
     border: 1px solid rgba(22, 24, 35, 0.12);
     border-radius: 4px;
-    font-size: 1.6rem;
-    font-weight: 700;
     background-color: transparent;
     cursor: pointer;
     user-select: none;
@@ -24,8 +22,13 @@
     }
 }
 
+.title {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
 .icon {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 }
 
 // Styles
@@ -57,6 +60,7 @@
 .medium {
     padding: 8px 16px;
     min-width: 100px;
+    min-height: 36px;
 }
 
 .small {

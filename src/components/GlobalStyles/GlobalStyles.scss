@@ -1,5 +1,4 @@
 @import url('normalize.css');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500;600;800&family=Roboto:wght@300;400;500;700;900&display=swap');
 
 :root {
     --primary: #fe2c55;
@@ -21,10 +20,35 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'ProximaNova', sans-serif;
     line-height: 1.5;
     font-size: 1.6rem;
     color: var(--text-color);
+}
+
+// Font
+@font-face {
+    font-family: ProximaNova;
+    src: url('/assets/fonts/Proxima-Nova-Regular.woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: ProximaNova;
+    src: url('/assets/fonts/ProximaNova-Semibold.woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: ProximaNova;
+    src: url('/assets/fonts/Proxima-Nova-Bold.woff');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: SofiaPro;
+    src: url('/assets/fonts/sofiapro-bold.woff2');
+    font-weight: 700;
 }
 
 input,
@@ -36,4 +60,8 @@ button,
 
 a {
     text-decoration: none;
+}
+
+button {
+    background-color: transparent;
 }
