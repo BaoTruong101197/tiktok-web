@@ -11,8 +11,9 @@
 // MenuItem
 .menu-item {
     position: relative;
-    margin-left: 0 !important;
     height: 42px;
+    padding: 10px 16px;
+    margin-left: 0 !important;
     justify-content: flex-start;
     align-items: flex-start;
 }
@@ -20,4 +21,27 @@
 .switch-button {
     position: absolute;
     right: 8px;
+}
+
+// Header
+.header-wrapper {
+    margin-top: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 50px;
+}
+
+.back-icon {
+    position: absolute;
+    left: 28px;
+    cursor: pointer;
+}
+
+.header-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2.2rem;
+    text-align: center;
 }

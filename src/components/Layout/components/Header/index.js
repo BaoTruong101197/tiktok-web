@@ -13,6 +13,7 @@ import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
 import { Clear as ClearIcon, Loading as LoadingIcon, Search as SearchIcon } from '~/components/Icons'
 import {
+    SeeMore as SeeMoreIcon,
     Language as LanguageIcon,
     Question as QuestionIcon,
     Keyboard as KeyboardIcon,
@@ -25,7 +26,20 @@ const cx = classNames.bind(styles)
 const MENU_ITEMS = [
     {
         title: 'English',
-        icon: LanguageIcon
+        icon: LanguageIcon,
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt (Việt Nam)'
+                },
+            ]
+        }
     },
     {
         title: 'Feedback and help',
@@ -86,7 +100,7 @@ function Header() {
                     <Button primary>Log in</Button>
                     <SeeMoreMenu items={MENU_ITEMS}>
                         <button className={cx('see-more')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} className={cx('see-more-icon')} />
+                            <SeeMoreIcon className={cx('see-more-icon')} />
                         </button>
                     </SeeMoreMenu>
                 </div>
