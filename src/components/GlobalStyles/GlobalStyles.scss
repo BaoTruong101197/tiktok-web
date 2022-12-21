@@ -69,3 +69,22 @@ button {
     font-family: 'ProximaNova', sans-serif;
     background-color: transparent;
 }
+
+// Custom Tippy
+.tippy-box {
+    background-color: transparent;
+}
+.tippy-content {
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 22px;
+    background-color: rgba(84, 84, 84, 0.92);
+    color: rgb(255, 255, 255);
+    padding: 8px;
+}
+
+.tippy-arrow:before {
+    color: rgba(84, 84, 84, 0.92);
+    top: -7px !important;
+}

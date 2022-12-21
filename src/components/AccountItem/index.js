@@ -1,13 +1,14 @@
 import classNames from 'classnames/bind'
 import styles from './AccountItem.module.scss'
 import { BlueTick } from '~/components/Icons'
+import Image from '~/components/Image'
 
 const cx = classNames.bind(styles)
 
 function AccountItem() {
     return (
         <div className={cx('wrapper')}>
-            <img
+            <Image
                 className={cx('avatar')}
                 src="https://toigingiuvedep.vn/wp-content/uploads/2021/01/avatar-dep-cute.jpg"
                 alt="Hoaa"

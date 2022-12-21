@@ -1,23 +1,34 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
-import Tippy from '@tippyjs/react/headless'
+import HeadlessTippy from '@tippyjs/react/headless'
+import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './Header.module.scss'
 import images from '~/assets/images'
 import { Popper as PopperWrapper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
-import { Clear as ClearIcon, Loading as LoadingIcon, Search as SearchIcon } from '~/components/Icons'
+import Image from '~/components/Image'
+import {
+    Clear as ClearIcon,
+    Loading as LoadingIcon,
+    Search as SearchIcon,
+    Message as MessageIcon,
+    Inbox as InboxIcon
+} from '~/components/Icons'
 import {
     SeeMore as SeeMoreIcon,
     Language as LanguageIcon,
     Question as QuestionIcon,
     Keyboard as KeyboardIcon,
-    Theme as ThemeIcon
+    Theme as ThemeIcon,
+    Profile as ProfileIcon,
+    Live as LiveIcon,
+    Settings as SettingsIcon,
+    LogOut as LogOutIcon
 } from '~/components/Icons'
 import SeeMoreMenu from '~/components/Popper/Menu'
 
@@ -25,40 +36,114 @@ const cx = classNames.bind(styles)
 
 const MENU_ITEMS = [
     {
-        title: 'English',
+        name: 'English',
         icon: LanguageIcon,
         children: {
             title: 'Language',
             data: [
                 {
                     code: 'en',
-                    title: 'English'
+                    name: 'English'
                 },
                 {
                     code: 'vi',
-                    title: 'Tiếng Việt (Việt Nam)'
+                    name: 'Tiếng Việt (Việt Nam)'
                 },
+                {
+                    code: 'la-3',
+                    name: 'العربية'
+                },
+                {
+                    code: 'la-4',
+                    name: 'বাঙ্গালি (ভারত)'
+                },
+                {
+                    code: 'la-5',
+                    name: 'Cebuano (Pilipinas)'
+                },
+                {
+                    code: 'la-6',
+                    name: 'Čeština (Česká republika)'
+                },
+                {
+                    code: 'la-7',
+                    name: 'Deutsch'
+                },
+                {
+                    code: 'la-8',
+                    name: 'Ελληνικά (Ελλάδα)'
+                },
+                {
+                    code: 'la-9',
+                    name: 'Español'
+                },
+                {
+                    code: 'la-10',
+                    name: 'Suomi (Suomi)'
+                },
+                {
+                    code: 'la-11',
+                    name: 'Filipino (Pilipinas)'
+                },
+                {
+                    code: 'la-12',
+                    name: 'Français'
+                },
+                {
+                    code: 'la-13',
+                    name: 'עברית (ישראל)'
+                }
             ]
         }
     },
     {
-        title: 'Feedback and help',
+        name: 'Feedback and help',
         icon: QuestionIcon,
         to: '/feedback'
     },
     {
-        title: 'Keyboard shortcuts',
+        name: 'Keyboard shortcuts',
         icon: KeyboardIcon
     },
     {
-        title: 'Dark mode',
+        name: 'Dark mode',
         icon: ThemeIcon,
         toggle: true
     }
 ]
 
+const USER_MENU_ITEMS = [
+    {
+        name: 'View profile',
+        icon: ProfileIcon,
+        to: '/profile'
+    },
+    {
+        name: 'Get Coins',
+        icon: QuestionIcon,
+        to: '/coins'
+    },
+    {
+        name: 'LIVE Studio',
+        icon: LiveIcon,
+        to: '/live'
+    },
+    {
+        name: 'Settings',
+        icon: SettingsIcon,
+        to: '/setting'
+    },
+    ...MENU_ITEMS,
+    {
+        name: 'Log out',
+        icon: LogOutIcon,
+        separate: true
+    }
+]
+
 function Header() {
     const [searchResult, setSearchResult] = useState([])
+    const userSignIn = false
 
     useEffect(() => {
         setSearchResult([1, 2, 3])
@@ -68,9 +153,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
                 <Link to="/" style={{ display: 'flex' }}>
-                    <img src={images.logo} alt="Logo" className={cx('logo')} />
+                    <Image src={images.logo} alt="Logo" className={cx('logo')} />
                 </Link>
-                <Tippy
+                <HeadlessTippy
                     visible={searchResult.length > 0 ? true : false}
                     interactive={true}
                     render={attrs => (
@@ -92,17 +177,43 @@ function Header() {
                             <SearchIcon className={cx('search-icon')} />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
                 <div className={cx('header-right')}>
                     <Button className={cx('upload-btn')} leftIcon={faPlus}>
                         Upload
                     </Button>
-                    <Button primary>Log in</Button>
-                    <SeeMoreMenu items={MENU_ITEMS}>
-                        <button className={cx('see-more')}>
-                            <SeeMoreIcon className={cx('see-more-icon')} />
-                        </button>
-                    </SeeMoreMenu>
+                    {userSignIn ? (
+                        <>
+                            <Tippy content="Message">
+                                <span className={cx('message-icon')}>
+                                    <MessageIcon />
+                                </span>
+                            </Tippy>
+                            <Tippy content="Inbox">
+                                <span className={cx('inbox-icon')}>
+                                    <InboxIcon />
+                                </span>
+                            </Tippy>
+                            <SeeMoreMenu items={USER_MENU_ITEMS}>
+                                <span className={cx('avatar-wrapper')}>
+                                    <Image
+                                        className={cx('user-avatar')}
+                                        src="https://toigingiuvedep.vn/wp-content/uploads/2021/01/avatar-dep-cute.jpg"
+                                        alt="Avatar"
+                                    />
+                                </span>
+                            </SeeMoreMenu>
+                        </>
+                    ) : (
+                        <>
+                            <Button primary>Log in</Button>
+                            <SeeMoreMenu items={MENU_ITEMS}>
+                                <button className={cx('see-more')}>
+                                    <SeeMoreIcon className={cx('see-more-icon')} />
+                                </button>
+                            </SeeMoreMenu>
+                        </>
+                    )}
                 </div>
             </div>
         </header>

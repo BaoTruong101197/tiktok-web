@@ -11,6 +11,12 @@
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
 }
 
+.logo {
+    width: 118px;
+    height: 42px;
+    object-fit: cover;
+}
+
 .content {
     width: var(--default-layout-width);
     height: 100%;
@@ -133,4 +139,40 @@
     height: 28px;
     padding: 0 4px;
     cursor: pointer;
+}
+
+.message-icon {
+    width: 32px;
+    height: 32px;
+    padding: 3px 3px 0;
+    margin-left: 16px;
+    cursor: pointer;
+    position: relative;
+
+    svg {
+        display: block;
+    }
+}
+
+.inbox-icon {
+    margin-left: 16px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+
+.avatar-wrapper {
+    padding-left: 8px;
+    margin-left: 16px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    user-select: none;
 }
