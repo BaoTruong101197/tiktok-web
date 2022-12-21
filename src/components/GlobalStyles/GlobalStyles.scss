@@ -3,6 +3,8 @@
 :root {
     --primary: #fe2c55;
     --text-color: rgba(22, 24, 35, 1);
+    --black: #000;
+    --white: #fff;
 
     // Default Layout
     --default-layout-header-height: 60px;
@@ -59,9 +61,11 @@ button,
 }
 
 a {
+    color: var(--text-color);
     text-decoration: none;
 }
 
 button {
+    font-family: 'ProximaNova', sans-serif;
     background-color: transparent;
 }

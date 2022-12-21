@@ -21,6 +21,13 @@ function Button({
     ...restProps
 }) {
     let Comp = 'button'
+    let LeftIcon, RightIcon
+
+    if (typeof leftIcon === 'function') {
+        LeftIcon = leftIcon
+    } else if (typeof rightIcon === 'function') {
+        RightIcon = rightIcon
+    }
 
     const props = {
         onClick,
@@ -55,15 +62,11 @@ function Button({
     return (
         <Comp className={classes} {...props}>
             {leftIcon && (
-                <span className={cx('icon')}>
-                    <FontAwesomeIcon icon={leftIcon} />
-                </span>
+                <span className={cx('icon')}>{LeftIcon ? <LeftIcon /> : <FontAwesomeIcon icon={leftIcon} />}</span>
             )}
             <span className={cx('title')}>{children}</span>
             {rightIcon && (
-                <span className={cx('icon')}>
-                    <FontAwesomeIcon icon={rightIcon} />
-                </span>
+                <span className={cx('icon')}>{RightIcon ? <RightIcon /> : <FontAwesomeIcon icon={rightIcon} />}</span>
             )}
         </Comp>
     )

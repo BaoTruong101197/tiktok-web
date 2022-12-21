@@ -1,0 +1,23 @@
+// Menu
+.menu-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-wrapper {
+    padding-bottom: 8px;
+}
+
+// MenuItem
+.menu-item {
+    position: relative;
+    margin-left: 0 !important;
+    height: 42px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.switch-button {
+    position: absolute;
+    right: 8px;
+}

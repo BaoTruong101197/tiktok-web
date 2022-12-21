@@ -1,0 +1,28 @@
+.wrapper {
+    display: inline-block;
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background: #1618231f;
+    border-radius: 999px;
+    transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+
+    &:hover {
+        background: rgba(22, 24, 35, 0.16);
+        cursor: pointer;
+    }
+}
+
+.icon {
+    display: flex;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background-color: var(--white);
+    box-shadow: rgb(0 0 0 / 15%) 0px 1px 2px;
+    transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+}
