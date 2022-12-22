@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import styles from './AccountItem.module.scss'
 import { BlueTick } from '~/components/Icons'
@@ -5,25 +6,22 @@ import Image from '~/components/Image'
 
 const cx = classNames.bind(styles)
 
-function AccountItem() {
+function AccountItem({ data }) {
     return (
-        <div className={cx('wrapper')}>
-            <Image
-                className={cx('avatar')}
-                src="https://toigingiuvedep.vn/wp-content/uploads/2021/01/avatar-dep-cute.jpg"
-                alt="Hoaa"
-                loading="lazy"
-            />
+        <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
+            <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} loading="lazy" />
             <div className={cx('info')}>
                 <h4 className={cx('username')}>
-                    cciinnn
-                    <span className={cx('blue-tick')}>
-                        <BlueTick />
-                    </span>
+                    {data.nickname}
+                    {data.tick && (
+                        <span className={cx('blue-tick')}>
+                            <BlueTick />
+                        </span>
+                    )}
                 </h4>
-                <p className={cx('name')}>CiiN</p>
+                <p className={cx('name')}>{data.full_name}</p>
             </div>
-        </div>
+        </Link>
     )
 }
 

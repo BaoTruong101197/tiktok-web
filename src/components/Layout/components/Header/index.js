@@ -1,24 +1,14 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
-import HeadlessTippy from '@tippyjs/react/headless'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './Header.module.scss'
 import images from '~/assets/images'
-import { Popper as PopperWrapper } from '~/components/Popper'
-import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
 import Image from '~/components/Image'
-import {
-    Clear as ClearIcon,
-    Loading as LoadingIcon,
-    Search as SearchIcon,
-    Message as MessageIcon,
-    Inbox as InboxIcon
-} from '~/components/Icons'
+import { Message as MessageIcon, Inbox as InboxIcon } from '~/components/Icons'
 import {
     SeeMore as SeeMoreIcon,
     Language as LanguageIcon,
@@ -31,6 +21,7 @@ import {
     LogOut as LogOutIcon
 } from '~/components/Icons'
 import SeeMoreMenu from '~/components/Popper/Menu'
+import Search from './Search'
 
 const cx = classNames.bind(styles)
 
@@ -142,12 +133,7 @@ const USER_MENU_ITEMS = [
 ]
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([])
     const userSignIn = false
-
-    useEffect(() => {
-        setSearchResult([1, 2, 3])
-    }, [])
 
     return (
         <header className={cx('wrapper')}>
@@ -155,29 +141,7 @@ function Header() {
                 <Link to="/" style={{ display: 'flex' }}>
                     <Image src={images.logo} alt="Logo" className={cx('logo')} />
                 </Link>
-                <HeadlessTippy
-                    visible={searchResult.length > 0 ? true : false}
-                    interactive={true}
-                    render={attrs => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <label className={cx('search-title')}>Accounts</label>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search accounts and videos" name="text" className={cx('search-input')} />
-                        {<LoadingIcon className={cx('loading')} />}
-                        <button className={cx('clear')}>{<ClearIcon />}</button>
-                        <button className={cx('search-btn')}>
-                            <SearchIcon className={cx('search-icon')} />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                <Search />
                 <div className={cx('header-right')}>
                     <Button className={cx('upload-btn')} leftIcon={faPlus}>
                         Upload
