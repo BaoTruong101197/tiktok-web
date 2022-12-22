@@ -34,7 +34,7 @@ export const Loading = ({ className, width = '16px', height = '16px', color = 'r
     )
 }
 
-export const Search = ({ className, width = '24px', height = '24px', color = 'rgba(22, 24, 35, .75)' }) => {
+export const Search = ({ className, width = '24px', height = '24px', color = 'currentColor' }) => {
     return (
         <svg
             className={className}

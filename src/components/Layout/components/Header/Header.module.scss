@@ -57,6 +57,10 @@
     caret-color: rgba(254, 44, 85, 1);
     z-index: 1;
 
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+
     &:focus-within {
         border: 1px solid #aaa;
     }
@@ -98,6 +102,7 @@
     border-bottom-right-radius: 92px;
     z-index: 0;
     user-select: none;
+    color: rgba(22, 24, 35, 0.34);
 
     svg {
         margin: auto;
