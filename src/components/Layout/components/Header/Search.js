@@ -3,6 +3,7 @@ import classNames from 'classnames/bind'
 import HeadlessTippy from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
 
+import * as searchService from '~/services/searchService'
 import { useDebounce } from '~/hooks'
 import styles from './Header.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
@@ -26,17 +27,16 @@ function Search() {
             return
         }
 
-        setLoading(true)
+        const fetchApi = async () => {
+            setLoading(true)
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
-            .then(res => res.json())
-            .then(res => {
-                setSearchResult(res.data)
-                setLoading(false)
-            })
-            .catch(() => {
-                setLoading(false)
-            })
+            const result = await searchService.search(debounce)
+
+            setSearchResult(result)
+            setLoading(false)
+        }
+
+        fetchApi()
     }, [debounce])
 
     const handleClear = () => {
@@ -45,42 +45,53 @@ function Search() {
         setSearchResult([])
     }
 
+    const handleChange = e => {
+        const inputValue = e.target.value
+        if (inputValue.startsWith(' ')) {
+            return
+        }
+        setSearchValue(e.target.value)
+    }
+
     return (
-        <HeadlessTippy
-            visible={searchResult.length && showTippy > 0 ? true : false}
-            interactive={true}
-            render={attrs => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        <label className={cx('search-title')}>Accounts</label>
-                        {searchResult.map(account => (
-                            <AccountItem key={account.id} data={account} />
-                        ))}
-                    </PopperWrapper>
-                </div>
-            )}
-            onClickOutside={() => setShowTippy(false)}
-        >
-            <div className={cx('search')}>
-                <input
-                    placeholder="Search accounts and videos"
-                    className={cx('search-input')}
-                    value={searchValue}
-                    ref={inputRef}
-                    onChange={e => setSearchValue(e.target.value)}
-                    onFocus={() => setShowTippy(true)}
-                />
-                {loading && <LoadingIcon className={cx('loading')} />}
-                {!!searchValue && !loading && (
-                    <button className={cx('clear')} onClick={handleClear}>
-                        {<ClearIcon />}
-                    </button>
+        // Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context
+        <div>
+            <HeadlessTippy
+                visible={searchResult.length && showTippy > 0 ? true : false}
+                interactive={true}
+                render={attrs => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <label className={cx('search-title')}>Accounts</label>
+                            {searchResult.map(account => (
+                                <AccountItem key={account.id} data={account} />
+                            ))}
+                        </PopperWrapper>
+                    </div>
                 )}
-                <button className={cx('search-btn')}>
-                    <SearchIcon className={cx('search-icon')} />
-                </button>
-            </div>
-        </HeadlessTippy>
+                onClickOutside={() => setShowTippy(false)}
+            >
+                <div className={cx('search')}>
+                    <input
+                        placeholder="Search accounts and videos"
+                        className={cx('search-input')}
+                        value={searchValue}
+                        ref={inputRef}
+                        onChange={handleChange}
+                        onFocus={() => setShowTippy(true)}
+                    />
+                    {loading && <LoadingIcon className={cx('loading')} />}
+                    {!!searchValue && !loading && (
+                        <button className={cx('clear')} onClick={handleClear}>
+                            {<ClearIcon />}
+                        </button>
+                    )}
+                    <button className={cx('search-btn')} onMouseDown={e => e.preventDefault()}>
+                        <SearchIcon className={cx('search-icon')} />
+                    </button>
+                </div>
+            </HeadlessTippy>
+        </div>
     )
 }
 

@@ -4,6 +4,7 @@ import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
+import config from '~/config/routes'
 import styles from './Header.module.scss'
 import images from '~/assets/images'
 import Button from '~/components/Button'
@@ -133,12 +134,12 @@ const USER_MENU_ITEMS = [
 ]
 
 function Header() {
-    const userSignIn = false
+    const userSignIn = true
 
     return (
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
-                <Link to="/" style={{ display: 'flex' }}>
+                <Link to={config.home} style={{ display: 'flex' }}>
                     <Image src={images.logo} alt="Logo" className={cx('logo')} />
                 </Link>
                 <Search />
