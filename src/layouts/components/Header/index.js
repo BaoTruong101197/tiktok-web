@@ -4,7 +4,7 @@ import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-import config from '~/config/routes'
+import config from '~/config'
 import styles from './Header.module.scss'
 import images from '~/assets/images'
 import Button from '~/components/Button'
@@ -48,78 +48,6 @@ const MENU_ITEMS = [
                 {
                     code: 'la-4',
                     name: 'বাঙ্গালি (ভারত)'
-                },
-                {
-                    code: 'la-5',
-                    name: 'Cebuano (Pilipinas)'
-                },
-                {
-                    code: 'la-6',
-                    name: 'Čeština (Česká republika)'
-                },
-                {
-                    code: 'la-7',
-                    name: 'Deutsch'
-                },
-                {
-                    code: 'la-8',
-                    name: 'Ελληνικά (Ελλάδα)'
-                },
-                {
-                    code: 'la-9',
-                    name: 'Español'
-                },
-                {
-                    code: 'la-10',
-                    name: 'Suomi (Suomi)'
-                },
-                {
-                    code: 'la-11',
-                    name: 'Filipino (Pilipinas)'
-                },
-                {
-                    code: 'la-12',
-                    name: 'Français'
-                },
-                {
-                    code: 'la-13',
-                    name: 'עברית (ישראל)'
-                },
-                {
-                    code: 'la-5',
-                    name: 'Cebuano (Pilipinas)'
-                },
-                {
-                    code: 'la-6',
-                    name: 'Čeština (Česká republika)'
-                },
-                {
-                    code: 'la-7',
-                    name: 'Deutsch'
-                },
-                {
-                    code: 'la-8',
-                    name: 'Ελληνικά (Ελλάδα)'
-                },
-                {
-                    code: 'la-9',
-                    name: 'Español'
-                },
-                {
-                    code: 'la-10',
-                    name: 'Suomi (Suomi)'
-                },
-                {
-                    code: 'la-11',
-                    name: 'Filipino (Pilipinas)'
-                },
-                {
-                    code: 'la-12',
-                    name: 'Français'
-                },
-                {
-                    code: 'la-13',
-                    name: 'עברית (ישראל)'
                 },
                 {
                     code: 'la-5',
@@ -211,7 +139,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
-                <Link to={config.home} style={{ display: 'flex' }}>
+                <Link to={config.routes.home} style={{ display: 'flex' }}>
                     <Image src={images.logo} alt="Logo" className={cx('logo')} />
                 </Link>
                 <Search />
