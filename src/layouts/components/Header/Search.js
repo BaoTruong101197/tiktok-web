@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import HeadlessTippy from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
 
-import * as searchService from '~/services/searchService'
+import * as searchService from '~/services'
 import { useDebounce } from '~/hooks'
 import styles from './Header.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
