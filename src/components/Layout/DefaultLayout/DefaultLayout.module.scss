@@ -7,6 +7,8 @@
 .content {
     width: var(--default-layout-width);
     display: flex;
+    margin-top: var(--default-layout-header-height);
+    padding: 0 24px 0 20px;
 }
 
 .container {

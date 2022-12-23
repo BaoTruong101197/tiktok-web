@@ -61,7 +61,7 @@ function Search() {
                 interactive={true}
                 render={attrs => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                        <PopperWrapper>
+                        <PopperWrapper className={cx('scrollable')}>
                             <label className={cx('search-title')}>Accounts</label>
                             {searchResult.map(account => (
                                 <AccountItem key={account.id} data={account} />

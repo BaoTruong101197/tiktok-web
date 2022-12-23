@@ -8,6 +8,12 @@
     padding-bottom: 8px;
 }
 
+.menu-content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
 // MenuItem
 .menu-item {
     position: relative;
@@ -30,6 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     position: relative;
     height: 50px;
 }

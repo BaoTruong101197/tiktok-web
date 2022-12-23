@@ -84,6 +84,78 @@ const MENU_ITEMS = [
                 {
                     code: 'la-13',
                     name: 'עברית (ישראל)'
+                },
+                {
+                    code: 'la-5',
+                    name: 'Cebuano (Pilipinas)'
+                },
+                {
+                    code: 'la-6',
+                    name: 'Čeština (Česká republika)'
+                },
+                {
+                    code: 'la-7',
+                    name: 'Deutsch'
+                },
+                {
+                    code: 'la-8',
+                    name: 'Ελληνικά (Ελλάδα)'
+                },
+                {
+                    code: 'la-9',
+                    name: 'Español'
+                },
+                {
+                    code: 'la-10',
+                    name: 'Suomi (Suomi)'
+                },
+                {
+                    code: 'la-11',
+                    name: 'Filipino (Pilipinas)'
+                },
+                {
+                    code: 'la-12',
+                    name: 'Français'
+                },
+                {
+                    code: 'la-13',
+                    name: 'עברית (ישראל)'
+                },
+                {
+                    code: 'la-5',
+                    name: 'Cebuano (Pilipinas)'
+                },
+                {
+                    code: 'la-6',
+                    name: 'Čeština (Česká republika)'
+                },
+                {
+                    code: 'la-7',
+                    name: 'Deutsch'
+                },
+                {
+                    code: 'la-8',
+                    name: 'Ελληνικά (Ελλάδα)'
+                },
+                {
+                    code: 'la-9',
+                    name: 'Español'
+                },
+                {
+                    code: 'la-10',
+                    name: 'Suomi (Suomi)'
+                },
+                {
+                    code: 'la-11',
+                    name: 'Filipino (Pilipinas)'
+                },
+                {
+                    code: 'la-12',
+                    name: 'Français'
+                },
+                {
+                    code: 'la-13',
+                    name: 'עברית (ישראל)'
                 }
             ]
         }
