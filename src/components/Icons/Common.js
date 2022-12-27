@@ -1,5 +1,7 @@
-export const Clear = ({ className, width = '16px', height = '16px', color = 'rgba(22, 24, 35, 0.34)' }) => (
-    <svg
+import { memo } from 'react'
+
+export const Clear = memo(({ className, width = '16px', height = '16px', color = 'rgba(22, 24, 35, 0.34)' }) => {
+    return <svg
         viewBox="0 0 48 48"
         className={className}
         width={width}
@@ -13,9 +15,9 @@ export const Clear = ({ className, width = '16px', height = '16px', color = 'rgb
             d="M24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46ZM15.1466 30.7323L21.8788 24.0001L15.1466 17.2679C14.756 16.8774 14.756 16.2442 15.1466 15.8537L15.8537 15.1466C16.2442 14.756 16.8774 14.756 17.2679 15.1466L24.0001 21.8788L30.7323 15.1466C31.1229 14.756 31.756 14.756 32.1466 15.1466L32.8537 15.8537C33.2442 16.2442 33.2442 16.8774 32.8537 17.2679L26.1214 24.0001L32.8537 30.7323C33.2442 31.1229 33.2442 31.756 32.8537 32.1466L32.1466 32.8537C31.756 33.2442 31.1229 33.2442 30.7323 32.8537L24.0001 26.1214L17.2679 32.8537C16.8774 33.2442 16.2442 33.2442 15.8537 32.8537L15.1466 32.1466C14.756 31.756 14.756 31.1229 15.1466 30.7323Z"
         ></path>
     </svg>
-)
+})
 
-export const Loading = ({ className, width = '16px', height = '16px', color = 'rgba(22, 24, 35, 0.34)' }) => {
+export const Loading = memo(({ className, width = '16px', height = '16px', color = 'rgba(22, 24, 35, 0.34)' }) => {
     return (
         <svg
             className={className}
@@ -32,9 +34,9 @@ export const Loading = ({ className, width = '16px', height = '16px', color = 'r
             ></path>
         </svg>
     )
-}
+})
 
-export const Search = ({ className, width = '24px', height = '24px', color = 'currentColor' }) => {
+export const Search = memo(({ className, width = '24px', height = '24px', color = 'currentColor' }) => {
     return (
         <svg
             className={className}
@@ -51,9 +53,9 @@ export const Search = ({ className, width = '24px', height = '24px', color = 'cu
             ></path>
         </svg>
     )
-}
+})
 
-export const BlueTick = ({ className, width = '14px', height = '14px', color = '#20D5EC' }) => (
+export const BlueTick = memo(({ className, width = '14px', height = '14px', color = '#20D5EC' }) => (
     <svg
         className={className}
         width={width}
@@ -70,9 +72,9 @@ export const BlueTick = ({ className, width = '14px', height = '14px', color = '
             fill="white"
         ></path>
     </svg>
-)
+))
 
-export const BackButton = ({ className, width = '20px', height = '20px', color = 'currentColor' }) => {
+export const BackButton = memo(({ className, width = '20px', height = '20px', color = 'currentColor' }) => {
     return (
         <svg
             className={className}
@@ -88,4 +90,4 @@ export const BackButton = ({ className, width = '20px', height = '20px', color =
                 d="M4.58579 22.5858L20.8787 6.29289C21.2692 5.90237 21.9024 5.90237 22.2929 6.29289L23.7071 7.70711C24.0976 8.09763 24.0976 8.7308 23.7071 9.12132L8.82843 24L23.7071 38.8787C24.0976 39.2692 24.0976 39.9024 23.7071 40.2929L22.2929 41.7071C21.9024 42.0976 21.2692 42.0976 20.8787 41.7071L4.58579 25.4142C3.80474 24.6332 3.80474 23.3668 4.58579 22.5858Z"></path>
         </svg>
     )
-}
+})

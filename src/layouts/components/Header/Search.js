@@ -57,7 +57,7 @@ function Search() {
         // Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context
         <div>
             <HeadlessTippy
-                visible={searchResult.length && showTippy > 0 ? true : false}
+                visible={searchResult.length > 0 && showTippy ? true : false}
                 interactive={true}
                 render={attrs => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>

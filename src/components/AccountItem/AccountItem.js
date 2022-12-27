@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
@@ -9,7 +10,7 @@ const cx = classNames.bind(styles)
 
 function AccountItem({ data }) {
     return (
-        <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
+        <Link to={`@${data.nickname}`} className={cx('wrapper')}>
             <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} loading="lazy" />
             <div className={cx('info')}>
                 <h4 className={cx('username')}>
@@ -30,4 +31,4 @@ AccountItem.propTypes = {
     data: PropTypes.object.isRequired
 }
 
-export default AccountItem
+export default memo(AccountItem)
