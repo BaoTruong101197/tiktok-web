@@ -13,3 +13,5 @@ export {
     Settings,
     LogOut
 } from './Menu'
+
+export { HomeIcon, HomeActiveIcon, PeopleGroupIcon, PeopleGroupActiveIcon, LiveIcon, LiveActiveIcon } from './Sidebar'

@@ -3,12 +3,12 @@
     position: relative;
     width: 44px;
     height: 24px;
-    background: #1618231f;
+    background-color: #1618231f;
     border-radius: 999px;
     transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
 
     &:hover {
-        background: rgba(22, 24, 35, 0.16);
+        background-color: rgba(22, 24, 35, 0.16);
         cursor: pointer;
     }
 }
