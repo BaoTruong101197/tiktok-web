@@ -1,0 +1,69 @@
+.wrapper {
+    width: 320px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.username {
+    color: #161823;
+    font-family: SofiaPro;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 22px;
+}
+
+.blue-tick {
+    margin-left: 4px;
+}
+
+.name {
+    color: #161823;
+    font-size: 1.4rem;
+    line-height: 20px;
+}
+
+.account-status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 8px;
+
+    .status ~ .status {
+        margin-left: 12px;
+    }
+}
+
+.status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.number {
+    color: #161823;
+    font-weight: 700;
+    margin-right: 6px;
+    font-size: 1.7rem;
+    line-height: 20px;
+}
+
+.text {
+    color: #161823bf;
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: 400;
+}

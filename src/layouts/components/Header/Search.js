@@ -58,7 +58,7 @@ function Search() {
         <div>
             <HeadlessTippy
                 visible={searchResult.length > 0 && showTippy ? true : false}
-                interactive={true}
+                interactive
                 render={attrs => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper className={cx('scrollable')}>

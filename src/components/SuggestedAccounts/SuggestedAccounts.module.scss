@@ -1,0 +1,90 @@
+// Suggested Account
+.wrapper {
+    position: relative;
+    padding: 16px 0;
+    color: #161823bf;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 8px;
+        right: 8px;
+        height: 1px;
+        background-color: #1618231f;
+    }
+}
+
+.suggested-title {
+    padding: 0 8px;
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+}
+
+.see-all {
+    padding: 0px 8px;
+    margin-top: 8px;
+    color: #fe2c55;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+// AccountItem
+.account-item {
+    display: flex;
+    height: 48px;
+    padding: 8px;
+    align-items: center;
+    border-radius: 4px;
+    transition: background-color 200ms ease-in-out 0s;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+        cursor: pointer;
+    }
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    height: 100%;
+    margin-left: 12px;
+}
+
+.username {
+    display: inline-block;
+    margin-top: -2px;
+    color: #161823;
+    font-size: 1.6rem;
+    font-family: SofiaPro;
+    font-weight: 700;
+    line-height: 1;
+    height: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.blue-tick {
+    margin-left: 4px;
+}
+
+.name {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
