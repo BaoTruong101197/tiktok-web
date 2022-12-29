@@ -69,7 +69,7 @@ function Button({
             {leftIcon && (
                 <span className={cx('icon')}>{LeftIcon ? <LeftIcon /> : <FontAwesomeIcon icon={leftIcon} />}</span>
             )}
-            <span className={cx('title')}>{children}</span>
+            <div className={cx('title')}>{children}</div>
             {rightIcon && (
                 <span className={cx('icon')}>{RightIcon ? <RightIcon /> : <FontAwesomeIcon icon={rightIcon} />}</span>
             )}

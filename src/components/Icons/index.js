@@ -1,4 +1,4 @@
-export { Clear, Loading, Search, BlueTick, BackButton, HashTagIcon } from './Common'
+export { Clear, Loading, Search, BlueTick, BackButton, HashTagIcon, MusicIcon } from './Common'
 export {
     SeeMore,
     Language,

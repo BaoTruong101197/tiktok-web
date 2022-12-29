@@ -1,0 +1,34 @@
+.wrapper {
+    padding: 16px 0 0 8px;
+}
+
+.menu-list {
+    display: flex;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.menu-item {
+    display: inline-block;
+    color: #16182340;
+    font-size: 1.2rem;
+    line-height: 17px;
+    margin-right: 6px;
+    margin-top: 5px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.footer {
+    display: flex;
+}
+
+.footer-name {
+    color: rgba(22, 24, 35, 0.5);
+    font-weight: 600;
+    font-size: 12px;
+    margin-right: 6px;
+    margin-top: 5px;
+}
