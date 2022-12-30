@@ -146,13 +146,13 @@ export const Profile = ({ className, width = '20px', height = '20px', color = 'c
     </svg>
 )
 
-export const Coins = ({ className, width = '35px', height = '35px', color = 'currentColor' }) => (
+export const Coins = ({ className, width = '20px', height = '20px', color = 'currentColor' }) => (
     <svg
         className={className}
         width={width}
         height={height}
         fill={color}
-        viewBox="0 0 48 48"
+        viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
     >
         <path

@@ -12,7 +12,9 @@ function MenuItem({ data, level, onClick }) {
     return (
         <Button
             leftIcon={data.icon}
-            className={cx('menu-item')}
+            className={cx('menu-item', {
+                'menu-switch': data.toggle
+            })}
             to={data.to}
             separate={data.separate}
             onClick={onClick}

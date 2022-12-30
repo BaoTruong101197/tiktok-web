@@ -4,6 +4,7 @@ import {
     Keyboard as KeyboardIcon,
     Theme as ThemeIcon,
     Profile as ProfileIcon,
+    Coins as GetCoinsIcon,
     Live as LiveIcon,
     Settings as SettingsIcon,
     LogOut as LogOutIcon
@@ -95,7 +96,7 @@ export const USER_MENU_ITEMS = [
     },
     {
         name: 'Get Coins',
-        icon: QuestionIcon,
+        icon: GetCoinsIcon,
         to: '/coins'
     },
     {
