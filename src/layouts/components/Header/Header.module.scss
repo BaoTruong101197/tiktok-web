@@ -145,14 +145,14 @@
 .header-right {
     display: flex;
     align-items: center;
-}
 
-.upload-btn {
-    border: 1px solid rgba(22, 24, 35, 0.12);
-    border-radius: 0 !important;
+    .upload-btn {
+        border: 1px solid rgba(22, 24, 35, 0.12);
+        border-radius: 0;
 
-    &:hover {
-        background-color: rgba(22, 24, 35, 0.03);
+        &:hover {
+            background-color: rgba(22, 24, 35, 0.03);
+        }
     }
 }
 

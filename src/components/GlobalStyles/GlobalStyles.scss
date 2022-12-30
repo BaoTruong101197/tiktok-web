@@ -5,8 +5,8 @@
     --black: #000;
     --white: #fff;
 
-    --text-color: #161823;            // 1
-    --text-color-lighter: #161823bf;  // 0.75
+    --text-color: #161823; // 1
+    --text-color-lighter: #161823bf; // 0.75
     --text-color-lightest: #1618231f; // 0.12
     --font-family: 'ProximaNova', sans-serif;
 
@@ -91,7 +91,6 @@ button {
 }
 
 .tippy-arrow:before {
-    top: -7px !important;
     color: rgba(84, 84, 84, 0.92);
 }
 

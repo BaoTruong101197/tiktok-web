@@ -15,10 +15,11 @@ function Avatar({ className, width = '32px', height = '32px', src, alt, to, ...r
     if (to) {
         Comp = Link
         linkProps.to = to
+        linkProps.className = cx('image-link')
     }
 
     return (
-        <Comp {...linkProps} className={cx('image-link')}>
+        <Comp {...linkProps}>
             <Image src={src} alt={alt} className={cx('avatar', { [className]: className })} width={width} height={height} {...restProps} />
         </Comp>
     );

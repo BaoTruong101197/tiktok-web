@@ -17,7 +17,7 @@ import Search from './Search'
 const cx = classNames.bind(styles)
 
 function Header() {
-    const userSignIn = false
+    const userSignIn = true
 
     return (
         <header className={cx('wrapper')}>

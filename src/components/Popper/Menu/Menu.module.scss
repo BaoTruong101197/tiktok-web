@@ -12,18 +12,18 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+
+    .menu-item {
+        justify-content: flex-start;
+        align-items: flex-start;
+        position: relative;
+        height: 42px;
+        padding: 10px 16px;
+        margin-left: 0;
+    }
 }
 
 // MenuItem
-.menu-item {
-    justify-content: flex-start;
-    align-items: flex-start;
-    position: relative;
-    height: 42px;
-    padding: 10px 16px;
-    margin-left: 0 !important;
-}
-
 .menu-switch {
     height: 44px;
 }

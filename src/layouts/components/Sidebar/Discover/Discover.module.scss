@@ -16,6 +16,17 @@
 .discover-content {
     display: flex;
     flex-wrap: wrap;
+
+    .discover-item {
+        display: flex;
+        align-items: center;
+        height: 24px;
+        margin: 0 8px 12px 0;
+
+        > div {
+            max-width: calc(100% - 20px);
+        }
+    }
 }
 
 .discover-title {
@@ -23,17 +34,6 @@
     margin-bottom: 16px;
     font-size: 1.4rem;
     line-height: 20px;
-}
-
-.discover-item {
-    display: flex;
-    align-items: center;
-    height: 24px;
-    margin: 0 8px 12px 0 !important;
-
-    > div {
-        max-width: calc(100% - 20px);
-    }
 }
 
 .discover-text {

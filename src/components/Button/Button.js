@@ -65,7 +65,7 @@ function Button({
     })
 
     return (
-        <Comp className={classes} {...props}>
+        <Comp {...props} className={classes}>
             {leftIcon && (
                 <span className={cx('icon')}>{LeftIcon ? <LeftIcon /> : <FontAwesomeIcon icon={leftIcon} />}</span>
             )}
