@@ -5,14 +5,14 @@ import classNames from 'classnames/bind'
 
 import styles from './AccountItem.module.scss'
 import { BlueTick } from '~/components/Icons'
-import Image from '~/components/Image'
+import Avatar from '~/components/Avatar'
 
 const cx = classNames.bind(styles)
 
 function AccountItem({ data }) {
     return (
         <Link to={`@${data.nickname}`} className={cx('wrapper')}>
-            <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} loading="lazy" />
+            <Avatar className={cx('avatar')} width="40px" height="40px" src={data.avatar} alt={data.nickname} loading="lazy" />
             <div className={cx('info')}>
                 <h4 className={cx('username')}>
                     {data.nickname}

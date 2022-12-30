@@ -8,6 +8,7 @@ import config from '~/config'
 import images from '~/assets/images'
 import Button from '~/components/Button'
 import Image from '~/components/Image'
+import Avatar from '~/components/Avatar'
 import { Message as MessageIcon, Inbox as InboxIcon } from '~/components/Icons'
 import { SeeMore as SeeMoreIcon, Plus as PlusIcon } from '~/components/Icons'
 import SeeMoreMenu from '~/components/Popper/Menu'
@@ -16,7 +17,7 @@ import Search from './Search'
 const cx = classNames.bind(styles)
 
 function Header() {
-    const userSignIn = true
+    const userSignIn = false
 
     return (
         <header className={cx('wrapper')}>
@@ -39,11 +40,12 @@ function Header() {
                             <Tippy content="Inbox">
                                 <span className={cx('inbox-icon')}>
                                     <InboxIcon />
+                                    <span className={cx('inbox-number')}>12</span>
                                 </span>
                             </Tippy>
                             <SeeMoreMenu items={config.USER_MENU_ITEMS}>
                                 <span className={cx('avatar-wrapper')}>
-                                    <Image
+                                    <Avatar
                                         className={cx('user-avatar')}
                                         src="https://toigingiuvedep.vn/wp-content/uploads/2021/01/avatar-dep-cute.jpg"
                                         alt="Avatar"
