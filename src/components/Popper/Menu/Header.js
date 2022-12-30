@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
-import styles from './Menu.module.scss'
 import classNames from 'classnames/bind'
+
+import styles from './Menu.module.scss'
 import { BackButton as BackButtonIcon } from '~/components/Icons'
 
 const cx = classNames.bind(styles)

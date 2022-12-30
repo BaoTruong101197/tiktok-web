@@ -5,9 +5,9 @@
 }
 
 .content {
-    width: var(--default-layout-width);
     display: flex;
     justify-content: space-between;
+    width: var(--default-layout-width);
     margin-top: var(--default-layout-header-height);
 }
 

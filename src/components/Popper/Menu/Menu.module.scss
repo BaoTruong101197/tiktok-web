@@ -16,12 +16,12 @@
 
 // MenuItem
 .menu-item {
+    justify-content: flex-start;
+    align-items: flex-start;
     position: relative;
     height: 42px;
     padding: 10px 16px;
     margin-left: 0 !important;
-    justify-content: flex-start;
-    align-items: flex-start;
 }
 
 .switch-button {
@@ -32,13 +32,13 @@
 
 // Header
 .header-wrapper {
-    margin-top: -8px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     position: relative;
     height: 50px;
+    margin-top: -8px;
 }
 
 .back-icon {

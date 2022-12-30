@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import Tippy from '@tippyjs/react/headless'
-import styles from './Menu.module.scss'
 import classNames from 'classnames/bind'
+
+import styles from './Menu.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
 import MenuItem from './MenuItem'
 import Header from './Header'

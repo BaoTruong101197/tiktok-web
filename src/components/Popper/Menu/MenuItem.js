@@ -1,22 +1,13 @@
 import PropTypes from 'prop-types'
-import styles from './Menu.module.scss'
 import classNames from 'classnames/bind'
+
+import styles from './Menu.module.scss'
 import Button from '~/components/Button'
 import SwitchButton from '~/components/SwitchButton'
-import { useEffect, useRef } from 'react'
 
 const cx = classNames.bind(styles)
 
 function MenuItem({ data, level, onClick }) {
-    const nameRef = useRef()
-
-    useEffect(() => {
-        if (level > 1) {
-            nameRef.current.style.fontWeight = '400'
-        } else {
-            nameRef.current.style.fontWeight = '600'
-        }
-    }, [level])
 
     return (
         <Button
@@ -26,7 +17,7 @@ function MenuItem({ data, level, onClick }) {
             separate={data.separate}
             onClick={onClick}
         >
-            <span className={cx('menu-name')} ref={nameRef}>
+            <span className={cx('menu-name')} style={level > 1 ? { fontWeight: '400' } : { fontWeight: '600' }}>
                 {data.name}
             </span>
             {data.toggle && (

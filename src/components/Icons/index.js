@@ -1,6 +1,7 @@
 export { Clear, Loading, Search, BlueTick, BackButton, HashTagIcon, MusicIcon } from './Common'
 export {
     SeeMore,
+    Plus,
     Language,
     Question,
     Keyboard,

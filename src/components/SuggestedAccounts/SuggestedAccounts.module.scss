@@ -2,7 +2,7 @@
 .wrapper {
     position: relative;
     padding: 16px 0;
-    color: #161823bf;
+    color: (--text-color-lighter);
 
     &::before {
         content: '';
@@ -11,7 +11,7 @@
         left: 8px;
         right: 8px;
         height: 1px;
-        background-color: #1618231f;
+        background-color: var(--text-color-lightest);
     }
 }
 
@@ -34,9 +34,9 @@
 // AccountItem
 .account-item {
     display: flex;
+    align-items: center;
     height: 48px;
     padding: 8px;
-    align-items: center;
     border-radius: 4px;
     transition: background-color 200ms ease-in-out 0s;
 
@@ -49,8 +49,8 @@
 .avatar {
     width: 32px;
     height: 32px;
-    object-fit: cover;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .content {
@@ -65,7 +65,7 @@
 .username {
     display: inline-block;
     margin-top: -2px;
-    color: #161823;
+    color: var(--text-color);
     font-size: 1.6rem;
     font-family: SofiaPro;
     font-weight: 700;

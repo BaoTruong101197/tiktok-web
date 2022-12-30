@@ -3,9 +3,9 @@ import classNames from 'classnames/bind'
 import HeadlessTippy from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
 
+import styles from './Header.module.scss'
 import * as searchService from '~/services'
 import { useDebounce } from '~/hooks'
-import styles from './Header.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem'
 import { Clear as ClearIcon, Loading as LoadingIcon, Search as SearchIcon } from '~/components/Icons'
@@ -76,6 +76,7 @@ function Search() {
                         placeholder="Search accounts and videos"
                         className={cx('search-input')}
                         value={searchValue}
+                        spellCheck={false}
                         ref={inputRef}
                         onChange={handleChange}
                         onFocus={() => setShowTippy(true)}

@@ -4,17 +4,17 @@
 
 .menu-list {
     display: flex;
-    margin-bottom: 8px;
     flex-wrap: wrap;
+    margin-bottom: 8px;
 }
 
 .menu-item {
     display: inline-block;
+    margin-right: 6px;
+    margin-top: 5px;
     color: #16182340;
     font-size: 1.2rem;
     line-height: 17px;
-    margin-right: 6px;
-    margin-top: 5px;
 
     &:hover {
         text-decoration: underline;

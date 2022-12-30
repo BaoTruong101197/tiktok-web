@@ -85,6 +85,7 @@ Button.prototype = {
     rounded: PropTypes.bool,
     disabled: PropTypes.bool,
     separate: PropTypes.bool,
+    discover: PropTypes.bool,
     type: PropTypes.string.isRequired,
     leftIcon: PropTypes.node,
     rightIcon: PropTypes.node,
