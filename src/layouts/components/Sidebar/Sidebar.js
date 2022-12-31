@@ -15,12 +15,16 @@ import Login from './Login'
 import SuggestedAccounts from '~/components/SuggestedAccounts'
 import Discover from './Discover'
 import FooterSidebar from '~/layouts/components/Sidebar/FooterSidebar'
+import { useContextProvider } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
 function Sidebar() {
+    const [state] = useContextProvider()
+    const { userSignIn } = state
+
     return (
-        <aside className={cx('wrapper')} style={{ height: '2000px', display: 'block' }}>
+        <aside className={cx('wrapper')}>
             <Menu>
                 <MenuItem to={config.routes.home} icon={<HomeIcon />} iconActive={<HomeActiveIcon />} title="For You" />
                 <MenuItem
@@ -36,9 +40,9 @@ function Sidebar() {
                     title="LIVE"
                 />
             </Menu>
-            <Login />
+            {!userSignIn && <Login />}
             <SuggestedAccounts title="Suggested accounts" />
-            <SuggestedAccounts title="Following accounts" />
+            {userSignIn && <SuggestedAccounts title="Following accounts" />}
             <Discover />
             <FooterSidebar />
         </aside>

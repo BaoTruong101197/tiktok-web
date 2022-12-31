@@ -7,16 +7,20 @@ import styles from './Menu.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
 import MenuItem from './MenuItem'
 import Header from './Header'
+import { useContextProvider } from '~/hooks'
+import { actions } from '~/store'
 
 const cx = classNames.bind(styles)
 
 function Menu({ children, items = [] }) {
+    const [, dispatch] = useContextProvider()
     const [history, setHistory] = useState([{ data: items }])
     const currentTab = history[history.length - 1]
 
     const renderItem = () => {
         return currentTab.data.map((item, index) => {
             const isChildren = !!item.children
+            const isUserSignIn = !!item.logout
             return (
                 <MenuItem
                     key={index}
@@ -25,6 +29,8 @@ function Menu({ children, items = [] }) {
                     onClick={() => {
                         if (isChildren) {
                             setHistory([...history, item.children])
+                        } else if (isUserSignIn) {
+                            dispatch(actions.setUserSignIn(false))
                         }
                     }}
                 />

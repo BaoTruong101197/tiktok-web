@@ -13,12 +13,14 @@ import { Message as MessageIcon, Inbox as InboxIcon } from '~/components/Icons'
 import { SeeMore as SeeMoreIcon, Plus as PlusIcon } from '~/components/Icons'
 import SeeMoreMenu from '~/components/Popper/Menu'
 import Search from './Search'
+import { useContextProvider } from '~/hooks'
+import { actions } from '~/store'
 
 const cx = classNames.bind(styles)
 
 function Header() {
-    const userSignIn = true
-
+    const [state, dispatch] = useContextProvider()
+    const { userSignIn } = state
     return (
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
@@ -55,7 +57,9 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <Button primary>Log in</Button>
+                            <Button primary onClick={() => dispatch(actions.setUserSignIn(true))}>
+                                Log in
+                            </Button>
                             <SeeMoreMenu items={config.MENU_ITEMS}>
                                 <button className={cx('see-more')}>
                                     <SeeMoreIcon className={cx('see-more-icon')} />

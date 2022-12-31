@@ -113,6 +113,7 @@ export const USER_MENU_ITEMS = [
     {
         name: 'Log out',
         icon: LogOutIcon,
-        separate: true
+        separate: true,
+        logout: true
     }
 ]
