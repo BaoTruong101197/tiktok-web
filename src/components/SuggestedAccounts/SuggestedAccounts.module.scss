@@ -2,7 +2,7 @@
 .wrapper {
     position: relative;
     padding: 16px 0;
-    color: (--text-color-lighter);
+    color: var(--text-color-lighter);
 
     &::before {
         content: '';

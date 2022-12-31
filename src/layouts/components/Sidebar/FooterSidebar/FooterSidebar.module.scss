@@ -1,5 +1,16 @@
 .wrapper {
     padding: 16px 0 0 8px;
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        height: 1px;
+        top: 0;
+        left: 8px;
+        right: 8px;
+        background-color: var(--text-color-lightest);
+    }
 }
 
 .menu-list {
@@ -12,9 +23,10 @@
     display: inline-block;
     margin-right: 6px;
     margin-top: 5px;
-    color: #16182340;
+    color: #16182380;
     font-size: 1.2rem;
     line-height: 17px;
+    font-weight: 400;
 
     &:hover {
         text-decoration: underline;
@@ -26,9 +38,9 @@
 }
 
 .footer-name {
-    color: rgba(22, 24, 35, 0.5);
-    font-weight: 600;
-    font-size: 12px;
     margin-right: 6px;
     margin-top: 5px;
+    color: #16182380;
+    font-size: 12px;
+    font-weight: 400;
 }

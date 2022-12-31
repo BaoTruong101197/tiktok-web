@@ -37,7 +37,8 @@ function Sidebar() {
                 />
             </Menu>
             <Login />
-            <SuggestedAccounts />
+            <SuggestedAccounts title="Suggested accounts" />
+            <SuggestedAccounts title="Following accounts" />
             <Discover />
             <FooterSidebar />
         </aside>
