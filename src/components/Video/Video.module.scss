@@ -1,0 +1,38 @@
+.wrapper {
+    position: relative;
+    width: 336px;
+    height: 600px;
+
+    &:hover {
+        .start-video,
+        .volume-on {
+            opacity: 1;
+        }
+    }
+}
+
+.video {
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.start-video,
+.volume-on {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 38px;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    cursor: pointer;
+}
+
+.start-video {
+    left: 12px;
+}
+
+.volume-on {
+    right: 12px;
+}

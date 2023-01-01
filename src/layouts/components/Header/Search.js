@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import HeadlessTippy from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
@@ -65,7 +66,7 @@ function Search() {
                             <label className={cx('search-title')}>Accounts</label>
                             {searchResult &&
                                 searchResult.map(account => <AccountItem key={account.id} data={account} />)}
-                            <p className={cx('view-all')}>{`View all results for "${debounce}"`}</p>
+                            <Link className={cx('view-all')}>{`View all results for "${debounce}"`}</Link>
                         </PopperWrapper>
                     </div>
                 )}

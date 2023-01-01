@@ -29,7 +29,7 @@ function AccountItem({ suggested }) {
                 <div className={cx('account-item')}>
                     <Avatar
                         className={cx('avatar')}
-                        src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-aiso/65d3c6b1d1e205c75536ccf1f26d552d~c5_100x100.jpeg?x-expires=1672542000&x-signature=Wes9Gj9GBFCBvvYPWFr6fEzRGME%3D"
+                        src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/18c8ee61fed13b9a13d4e5154f047a60~c5_100x100.jpeg?x-expires=1672754400&x-signature=DaFb9MjZZlyyoYAPjvFfxqlPMf8%3D"
                         alt="avatar"
                     />
                     <div className={cx('content')}>

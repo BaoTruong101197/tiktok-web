@@ -1,4 +1,16 @@
-export { Clear, Loading, Search, BlueTick, BackButton, HashTagIcon, MusicIcon } from './Common'
+export {
+    Clear,
+    Loading,
+    Search,
+    BlueTick,
+    BackButton,
+    HashTagIcon,
+    MusicIcon,
+    HeartIcon,
+    CommentIcon,
+    SharedIcon
+} from './Common'
+
 export {
     SeeMore,
     Plus,
@@ -14,5 +26,7 @@ export {
     Settings,
     LogOut
 } from './Menu'
+
+export { StartVideoIcon, PauseVideoIcon, VolumeOn, VolumeOff } from './Video'
 
 export { HomeIcon, HomeActiveIcon, PeopleGroupIcon, PeopleGroupActiveIcon, LiveIcon, LiveActiveIcon } from './Sidebar'
