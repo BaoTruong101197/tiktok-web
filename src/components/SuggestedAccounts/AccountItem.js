@@ -1,20 +1,21 @@
 import classNames from 'classnames/bind'
-import styles from './SuggestedAccounts.module.scss'
 import Tippy from '@tippyjs/react/headless'
 
+import styles from './SuggestedAccounts.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
-import { BlueTick } from '~/components/Icons';
-import RecommendAccount from '~/components/RecommendAccount';
-import Avatar from '~/components/Avatar';
+import { BlueTick } from '~/components/Icons'
+import RecommendAccount from '~/components/RecommendAccount'
+import Avatar from '~/components/Avatar'
 
 const cx = classNames.bind(styles)
 
-function AccountItem() {
+function AccountItem({ suggested }) {
     return (
         <div>
             <Tippy
+                disabled={!suggested}
                 interactive
-                offset={[-10, 5]}
+                offset={[-100, 5]}
                 placement="bottom-start"
                 delay={[800, 0]}
                 render={attrs => (
@@ -26,7 +27,11 @@ function AccountItem() {
                 )}
             >
                 <div className={cx('account-item')}>
-                    <Avatar className={cx('avatar')} src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-aiso/65d3c6b1d1e205c75536ccf1f26d552d~c5_100x100.jpeg?x-expires=1672542000&x-signature=Wes9Gj9GBFCBvvYPWFr6fEzRGME%3D" alt="avatar" />
+                    <Avatar
+                        className={cx('avatar')}
+                        src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-aiso/65d3c6b1d1e205c75536ccf1f26d552d~c5_100x100.jpeg?x-expires=1672542000&x-signature=Wes9Gj9GBFCBvvYPWFr6fEzRGME%3D"
+                        alt="avatar"
+                    />
                     <div className={cx('content')}>
                         <h4 className={cx('username')}>
                             theanh28entertainment
@@ -39,7 +44,7 @@ function AccountItem() {
                 </div>
             </Tippy>
         </div>
-    );
+    )
 }
 
-export default AccountItem;
+export default AccountItem

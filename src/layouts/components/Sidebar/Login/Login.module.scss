@@ -1,17 +1,6 @@
 .wrapper {
     position: relative;
     padding: 20px 8px;
-
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 8px;
-        right: 8px;
-        height: 1px;
-        background-color: var(--text-color-lightest);
-        transform: scaleY(0.5);
-    }
 }
 
 .login-title {

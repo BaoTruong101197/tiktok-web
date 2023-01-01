@@ -3,6 +3,7 @@ import Button from '~/components/Button'
 import styles from './Login.module.scss'
 import { useContextProvider } from '~/hooks'
 import { setUserSignIn } from '~/store/actions'
+import SeparateLine from '~/components/SeparateLine'
 
 const cx = classNames.bind(styles)
 
@@ -11,6 +12,7 @@ function Login() {
 
     return (
         <div className={cx('wrapper')}>
+            <SeparateLine />
             <p className={cx('login-title')}>Log in to follow creators, like videos, and view comments.</p>
             <Button
                 primary

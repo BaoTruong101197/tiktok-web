@@ -29,7 +29,7 @@ function Sidebar() {
                 ))}
             </Menu>
             {!userSignIn && <Login />}
-            <SuggestedAccounts title="Suggested accounts" />
+            <SuggestedAccounts suggested title="Suggested accounts" />
             {userSignIn && <SuggestedAccounts title="Following accounts" />}
             <Discover />
             <FooterSidebar />
