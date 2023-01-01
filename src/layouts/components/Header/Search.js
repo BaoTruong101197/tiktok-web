@@ -57,15 +57,15 @@ function Search() {
         // Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context
         <div>
             <HeadlessTippy
-                visible={searchResult.length > 0 && showTippy ? true : false}
+                visible={searchResult && searchResult.length > 0 && showTippy ? true : false}
                 interactive
                 render={attrs => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper className={cx('scrollable')}>
                             <label className={cx('search-title')}>Accounts</label>
-                            {searchResult.map(account => (
-                                <AccountItem key={account.id} data={account} />
-                            ))}
+                            {searchResult &&
+                                searchResult.map(account => <AccountItem key={account.id} data={account} />)}
+                            <p className={cx('view-all')}>{`View all results for "${debounce}"`}</p>
                         </PopperWrapper>
                     </div>
                 )}

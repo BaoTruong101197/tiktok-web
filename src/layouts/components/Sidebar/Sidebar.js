@@ -3,14 +3,6 @@ import classNames from 'classnames/bind'
 import styles from './Sidebar.module.scss'
 import config from '~/config'
 import Menu, { MenuItem } from './Menu'
-import {
-    HomeIcon,
-    HomeActiveIcon,
-    PeopleGroupIcon,
-    PeopleGroupActiveIcon,
-    LiveIcon,
-    LiveActiveIcon
-} from '~/components/Icons'
 import Login from './Login'
 import SuggestedAccounts from '~/components/SuggestedAccounts'
 import Discover from './Discover'
@@ -26,19 +18,15 @@ function Sidebar() {
     return (
         <aside className={cx('wrapper')}>
             <Menu>
-                <MenuItem to={config.routes.home} icon={<HomeIcon />} iconActive={<HomeActiveIcon />} title="For You" />
-                <MenuItem
-                    to={`/${config.routes.following}`}
-                    icon={<PeopleGroupIcon />}
-                    iconActive={<PeopleGroupActiveIcon />}
-                    title="Following"
-                />
-                <MenuItem
-                    to={`/${config.routes.live}`}
-                    icon={<LiveIcon />}
-                    iconActive={<LiveActiveIcon />}
-                    title="LIVE"
-                />
+                {config.sidebarMenuData.map(menuItem => (
+                    <MenuItem
+                        key={menuItem.id}
+                        to={menuItem.to}
+                        icon={menuItem.icon}
+                        iconActive={menuItem.iconActive}
+                        title={menuItem.title}
+                    />
+                ))}
             </Menu>
             {!userSignIn && <Login />}
             <SuggestedAccounts title="Suggested accounts" />

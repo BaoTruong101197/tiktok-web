@@ -12,7 +12,14 @@ const cx = classNames.bind(styles)
 function AccountItem({ data }) {
     return (
         <Link to={`@${data.nickname}`} className={cx('wrapper')}>
-            <Avatar className={cx('avatar')} width="40px" height="40px" src={data.avatar} alt={data.nickname} loading="lazy" />
+            <Avatar
+                className={cx('avatar')}
+                width="40px"
+                height="40px"
+                src={data.avatar}
+                alt={data.nickname}
+                loading="lazy"
+            />
             <div className={cx('info')}>
                 <h4 className={cx('username')}>
                     {data.nickname}
@@ -29,7 +36,7 @@ function AccountItem({ data }) {
 }
 
 AccountItem.propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object
 }
 
 export default memo(AccountItem)

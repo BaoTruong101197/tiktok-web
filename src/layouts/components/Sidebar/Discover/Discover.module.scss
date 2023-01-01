@@ -1,6 +1,6 @@
 .wrapper {
     position: relative;
-    padding: 16px 8px;
+    padding: 16px 8px 8px;
 
     &:before {
         content: '';
@@ -30,7 +30,7 @@
 }
 
 .discover-title {
-    color: rgb(22 24 35 / 55%);
+    color: var(--text-color-lighter);
     margin-bottom: 16px;
     font-size: 1.4rem;
     line-height: 20px;

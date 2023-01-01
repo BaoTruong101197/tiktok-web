@@ -57,13 +57,13 @@
 
 .username {
     display: inline-block;
+    height: 20px;
     margin-top: -2px;
     color: var(--text-color);
     font-size: 1.6rem;
     font-family: SofiaPro;
     font-weight: 700;
     line-height: 1;
-    height: 20px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

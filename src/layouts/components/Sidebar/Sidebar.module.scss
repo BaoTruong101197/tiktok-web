@@ -1,4 +1,35 @@
 .wrapper {
+    position: relative;
     width: 348px;
+    max-height: calc(100vh - var(--default-layout-header-height));
     padding: 20px 0 26px 8px;
+    overflow-y: auto;
+    transition: background-color 2s ease-in-out;
+
+    &::-webkit-scrollbar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 5px;
+        transition: background-color 2s ease-in-out;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        width: 6px;
+        border-radius: 3px;
+        visibility: hidden;
+        background-color: #1618230f;
+        transition: background-color 2s ease-in-out;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            visibility: visible;
+        }
+    }
 }
