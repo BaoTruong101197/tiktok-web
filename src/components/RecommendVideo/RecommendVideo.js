@@ -21,21 +21,25 @@ function RecommendVideo() {
                     loading="lazy"
                 />
                 <div className={cx('content')}>
-                    <header className={cx('header')}>
-                        <h3 className={cx('username')}>
-                            duongkelly96
-                            <span className={cx('blue-tick')}>
-                                <BlueTick />
-                            </span>
-                        </h3>
-                        <h4 className={cx('name')}>kelly </h4>
-                        <span className={cx('point')}>.</span>
-                        <p className={cx('time')}>2022-12-29</p>
-                    </header>
+                    <div className={cx('wrapper-header')}>
+                        <header className={cx('header')}>
+                            <h3 className={cx('username')}>
+                                duongkelly96
+                                <span className={cx('blue-tick')}>
+                                    <BlueTick />
+                                </span>
+                            </h3>
+                            <h4 className={cx('name')}>kelly </h4>
+                            <span className={cx('point')}>.</span>
+                            <p className={cx('time')}>2022-12-29</p>
+                        </header>
+                    </div>
                     <p className={cx('description')}>Cute xỉu</p>
-                    <div className={cx('music')}>
-                        <MusicIcon />
-                        <p className={cx('music-name')}>nhạc nền - Tình yêu 💞💞 - ⓛⓞⓥⓔ♡💞</p>
+                    <div className={cx('music-wrapper')}>
+                        <div className={cx('music')}>
+                            <MusicIcon />
+                            <p className={cx('music-name')}>nhạc nền - Tình yêu 💞💞 - ⓛⓞⓥⓔ♡💞</p>
+                        </div>
                     </div>
                     <div className={cx('video-wrapper')}>
                         <Video className={cx('video')} src={video} height="600px" />

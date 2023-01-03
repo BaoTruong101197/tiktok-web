@@ -27,6 +27,6 @@ export {
     LogOut
 } from './Menu'
 
-export { StartVideoIcon, PauseVideoIcon, VolumeOn, VolumeOff } from './Video'
+export { StartVideoIcon, PauseVideoIcon, VolumeOn, VolumeOff, FlagIcon } from './Video'
 
 export { HomeIcon, HomeActiveIcon, PeopleGroupIcon, PeopleGroupActiveIcon, LiveIcon, LiveActiveIcon } from './Sidebar'

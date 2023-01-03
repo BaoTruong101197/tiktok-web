@@ -21,9 +21,30 @@
     margin-left: 12px;
 }
 
-.header {
+.avatar {
+    &:hover {
+        + .content {
+            .username {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.wrapper-header {
     display: flex;
     align-items: flex-start;
+}
+
+.header {
+    display: inline-flex;
+    &:hover {
+        cursor: pointer;
+
+        .username {
+            text-decoration: underline;
+        }
+    }
 }
 
 .username {
@@ -58,10 +79,23 @@
     font-weight: 400;
 }
 
-.music {
+.music-wrapper {
     display: flex;
     align-items: center;
     margin: 4px 0 12px;
+}
+
+.music {
+    display: inline-flex;
+    align-items: center;
+
+    &:hover {
+        cursor: pointer;
+
+        .music-name {
+            text-decoration: underline;
+        }
+    }
 }
 
 .music-name {

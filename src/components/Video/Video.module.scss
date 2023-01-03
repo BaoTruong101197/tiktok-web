@@ -4,35 +4,165 @@
     height: 600px;
 
     &:hover {
-        .start-video,
-        .volume-on {
+        .toggle-video,
+        .toggle-volume,
+        .flag-video,
+        .progress-wrapper {
             opacity: 1;
         }
     }
 }
 
 .video {
+    border-radius: 8px;
     object-fit: cover;
     cursor: pointer;
 }
 
-.start-video,
-.volume-on {
+.flag-video {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 24px;
+    right: 16px;
+    font-size: 1.6rem;
+    line-height: 22px;
+    color: var(--white);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.flag-icon {
+    margin-right: 4px;
+}
+
+.toggle-video,
+.toggle-volume {
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    bottom: 38px;
+    width: 40px;
     padding: 10px;
     opacity: 0;
     transition: opacity 0.3s;
     cursor: pointer;
 }
 
-.start-video {
+.toggle-video {
     left: 12px;
+    bottom: 38px;
 }
 
-.volume-on {
+.toggle-volume {
+    bottom: 38px;
+}
+
+.volume-wrapper {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+
     right: 12px;
+    bottom: 0;
+
+    &:hover {
+        .volume-input {
+            opacity: 1;
+        }
+    }
+}
+
+.volume-input {
+    position: absolute;
+    bottom: 80px;
+    background-color: #16182357;
+    border-radius: 32px;
+    width: 24px;
+    height: 64px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.volume-bar {
+    position: absolute;
+    -webkit-appearance: none;
+    margin-right: 15px;
+    transform: rotate(-90deg);
+    width: 48px;
+    height: 2px;
+    right: -111%;
+    top: 50%;
+    background-color: #ffffff57;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background-color: var(--white);
+        cursor: initial;
+        transition: background-color 0.3s ease-in-out;
+    }
+}
+
+.progress-wrapper {
+    position: absolute;
+    left: 0px;
+    bottom: 20px;
+    width: 312px;
+    height: 16px;
+    padding: 7px 0;
+    margin: 0 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+        .progress {
+            height: 4px;
+        }
+
+        .current-position {
+            opacity: 1;
+        }
+    }
+}
+
+.progress {
+    position: absolute;
+    width: 312px;
+    height: 2px;
+    border-radius: 0px;
+}
+
+.progress::-webkit-progress-bar {
+    background-color: #ffffff57;
+}
+.progress::-webkit-progress-value {
+    background-color: #fff;
+}
+
+.current-position {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    opacity: 0;
+    background-color: var(--white);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.no-focus {
+    width: 100%;
+    height: 20px;
+    position: absolute;
+    bottom: 0;
+    cursor: initial;
 }
