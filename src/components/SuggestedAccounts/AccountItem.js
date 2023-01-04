@@ -9,7 +9,8 @@ import Avatar from '~/components/Avatar'
 
 const cx = classNames.bind(styles)
 
-function AccountItem({ suggested }) {
+function AccountItem({ suggested, data }) {
+
     return (
         <div>
             <Tippy
@@ -21,7 +22,7 @@ function AccountItem({ suggested }) {
                 render={attrs => (
                     <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                         <PopperWrapper className={cx('menu-wrapper')}>
-                            <RecommendAccount />
+                            <RecommendAccount data={data} />
                         </PopperWrapper>
                     </div>
                 )}
@@ -29,17 +30,17 @@ function AccountItem({ suggested }) {
                 <div className={cx('account-item')}>
                     <Avatar
                         className={cx('avatar')}
-                        src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/18c8ee61fed13b9a13d4e5154f047a60~c5_100x100.jpeg?x-expires=1672754400&x-signature=DaFb9MjZZlyyoYAPjvFfxqlPMf8%3D"
-                        alt="avatar"
+                        src={data.avatar}
+                        alt={data.nickname}
                     />
                     <div className={cx('content')}>
                         <h4 className={cx('username')}>
-                            theanh28entertainment
+                            {data.nickname}
                             <span className={cx('blue-tick')}>
-                                <BlueTick />
+                                {data.tick && <BlueTick />}
                             </span>
                         </h4>
-                        <p className={cx('name')}>Theanh28 Entertainment</p>
+                        <p className={cx('name')}>{`${data.first_name} ${data.last_name}`}</p>
                     </div>
                 </div>
             </Tippy>

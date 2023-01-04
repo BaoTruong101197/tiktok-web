@@ -1,6 +1,11 @@
 .wrapper {
     position: relative;
-    width: 348px;
+}
+
+.sidebar {
+    position: fixed;
+    z-index: 1;
+    width: 356px;
     max-height: calc(100vh - var(--default-layout-header-height));
     padding: 20px 0 26px 8px;
     overflow-y: auto;

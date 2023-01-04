@@ -16,24 +16,26 @@ function Sidebar() {
     const { userSignIn } = state
 
     return (
-        <aside className={cx('wrapper')}>
-            <Menu>
-                {config.sidebarMenuData.map(menuItem => (
-                    <MenuItem
-                        key={menuItem.id}
-                        to={menuItem.to}
-                        icon={menuItem.icon}
-                        iconActive={menuItem.iconActive}
-                        title={menuItem.title}
-                    />
-                ))}
-            </Menu>
-            {!userSignIn && <Login />}
-            <SuggestedAccounts suggested title="Suggested accounts" />
-            {userSignIn && <SuggestedAccounts title="Following accounts" />}
-            <Discover />
-            <FooterSidebar />
-        </aside>
+        <div className={cx('wrapper')}>
+            <aside className={cx('sidebar')}>
+                <Menu>
+                    {config.sidebarMenuData.map(menuItem => (
+                        <MenuItem
+                            key={menuItem.id}
+                            to={menuItem.to}
+                            icon={menuItem.icon}
+                            iconActive={menuItem.iconActive}
+                            title={menuItem.title}
+                        />
+                    ))}
+                </Menu>
+                {!userSignIn && <Login />}
+                <SuggestedAccounts suggested title="Suggested accounts" />
+                {userSignIn && <SuggestedAccounts title="Following accounts" />}
+                <Discover />
+                <FooterSidebar />
+            </aside>
+        </div>
     )
 }
 
