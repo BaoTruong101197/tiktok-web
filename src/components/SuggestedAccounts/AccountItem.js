@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
 
@@ -10,7 +11,6 @@ import Avatar from '~/components/Avatar'
 const cx = classNames.bind(styles)
 
 function AccountItem({ suggested, data }) {
-
     return (
         <div>
             <Tippy
@@ -27,22 +27,16 @@ function AccountItem({ suggested, data }) {
                     </div>
                 )}
             >
-                <div className={cx('account-item')}>
-                    <Avatar
-                        className={cx('avatar')}
-                        src={data.avatar}
-                        alt={data.nickname}
-                    />
+                <Link className={cx('account-item')} to={`/@${data.nickname}`}>
+                    <Avatar className={cx('avatar')} src={data.avatar} alt={data.nickname} />
                     <div className={cx('content')}>
                         <h4 className={cx('username')}>
                             {data.nickname}
-                            <span className={cx('blue-tick')}>
-                                {data.tick && <BlueTick />}
-                            </span>
+                            <span className={cx('blue-tick')}>{data.tick && <BlueTick />}</span>
                         </h4>
                         <p className={cx('name')}>{`${data.first_name} ${data.last_name}`}</p>
                     </div>
-                </div>
+                </Link>
             </Tippy>
         </div>
     )

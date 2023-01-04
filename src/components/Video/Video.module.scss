@@ -2,6 +2,7 @@
     position: relative;
     width: 336px;
     height: 600px;
+    user-select: none;
 
     &:hover {
         .toggle-video,
@@ -78,23 +79,23 @@
 .volume-input {
     position: absolute;
     bottom: 80px;
-    background-color: #16182357;
     border-radius: 32px;
     width: 24px;
     height: 64px;
+    background-color: #16182357;
     opacity: 0;
     transition: opacity 0.3s;
 }
 
 .volume-bar {
-    position: absolute;
     -webkit-appearance: none;
-    margin-right: 15px;
-    transform: rotate(-90deg);
-    width: 48px;
-    height: 2px;
+    position: absolute;
     right: -111%;
     top: 50%;
+    width: 48px;
+    height: 2px;
+    margin-right: 15px;
+    transform: rotate(-90deg);
     background-color: #ffffff57;
 
     &::-webkit-slider-thumb {
@@ -149,20 +150,20 @@
 .current-position {
     position: absolute;
     top: 50%;
-    transform: translate(-50%, -50%);
     width: 12px;
     height: 12px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
     opacity: 0;
     background-color: var(--white);
-    border-radius: 50%;
     cursor: pointer;
     z-index: 1;
 }
 
 .no-focus {
+    position: absolute;
     width: 100%;
     height: 20px;
-    position: absolute;
     bottom: 0;
     cursor: initial;
 }

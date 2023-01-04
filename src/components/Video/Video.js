@@ -5,7 +5,7 @@ import { StartVideoIcon, PauseVideoIcon, VolumeOn, VolumeOff, FlagIcon } from '~
 
 const cx = classNames.bind(styles)
 
-function Video({ className, src, width = '360px', height }) {
+function Video({ className, src }) {
     const [playVideo, setPlayVideo] = useState(true)
     const [volumeOn, setVolumeOn] = useState(false)
 
@@ -13,7 +13,7 @@ function Video({ className, src, width = '360px', height }) {
     const progressRef = useRef()
     const currentPosition = useRef()
     const volumeRef = useRef()
-    const volumeValue = useRef(0)
+    const previousVolume = useRef(0)
     const volumeInput = useRef()
 
     useEffect(() => {
@@ -23,23 +23,20 @@ function Video({ className, src, width = '360px', height }) {
     const handlePlay = () => {
         if (!playVideo) {
             videoRef.current.play()
-            setPlayVideo(true)
         } else {
             videoRef.current.pause()
-            setPlayVideo(false)
         }
     }
 
     const handleTurnVolume = () => {
         if (!volumeOn) {
-            console.log(volumeValue.current)
             videoRef.current.muted = false
             setVolumeOn(true)
-            if (volumeValue.current === 0) {
-                volumeValue.current = 1
+            if (previousVolume.current === 0) {
+                previousVolume.current = 1
                 volumeRef.current.value = 1
             } else {
-                volumeRef.current.value = volumeValue.current
+                volumeRef.current.value = previousVolume.current
             }
         } else {
             videoRef.current.muted = true
@@ -57,7 +54,6 @@ function Video({ className, src, width = '360px', height }) {
     const handleSeeked = e => {
         var percent = e.nativeEvent.offsetX / progressRef.current.offsetWidth
         videoRef.current.currentTime = percent * videoRef.current.duration
-        e.target.value = percent / 100
     }
 
     const onPlay = () => {
@@ -69,14 +65,13 @@ function Video({ className, src, width = '360px', height }) {
     }
 
     const changeVolume = e => {
-        console.log(e.target.value)
         videoRef.current.volume = e.target.value
         if (videoRef.current.volume > 0) {
-            volumeValue.current = e.target.value
+            previousVolume.current = e.target.value
             setVolumeOn(true)
             videoRef.current.muted = false
         } else {
-            volumeValue.current = 1
+            previousVolume.current = 1
             videoRef.current.volume = 1
             setVolumeOn(false)
             videoRef.current.muted = true
@@ -89,8 +84,6 @@ function Video({ className, src, width = '360px', height }) {
                 className={cx('video', { [className]: className })}
                 ref={videoRef}
                 src={src}
-                width={width}
-                height={height}
                 loop
                 muted
                 onTimeUpdate={updateProgressBar}
@@ -116,7 +109,7 @@ function Video({ className, src, width = '360px', height }) {
                         min="0"
                         max="1"
                         step="0.01"
-                        defaultValue={volumeValue.current}
+                        defaultValue={previousVolume.current}
                         onChange={changeVolume}
                     />
                 </div>

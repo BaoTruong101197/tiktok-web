@@ -1,6 +1,6 @@
 import * as httpRequest from '~/utils'
 
-export const getSuggested = async (page = 1, perPage = 5) => {
+export const getSuggested = async (page = 1, perPage = 20) => {
     try {
         const response = await httpRequest.get('users/suggested', {
             params: {
