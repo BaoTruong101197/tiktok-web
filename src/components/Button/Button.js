@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import styles from './Button.module.scss'
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const cx = classNames.bind(styles)
 
@@ -16,21 +15,14 @@ function Button({
     separate = false,
     discover = false,
     type = 'medium',
-    leftIcon,
-    rightIcon,
+    LeftIcon,
+    RightIcon,
     className,
     children,
     onClick,
     ...restProps
 }) {
     let Comp = 'button'
-    let LeftIcon, RightIcon
-
-    if (typeof leftIcon === 'function') {
-        LeftIcon = leftIcon
-    } else if (typeof rightIcon === 'function') {
-        RightIcon = rightIcon
-    }
 
     const props = {
         onClick,
@@ -59,20 +51,14 @@ function Button({
         separate,
         discover,
         [type]: type,
-        leftIcon,
-        rightIcon,
         [className]: className
     })
 
     return (
         <Comp {...props} className={classes}>
-            {leftIcon && (
-                <span className={cx('icon')}>{LeftIcon ? <LeftIcon /> : <FontAwesomeIcon icon={leftIcon} />}</span>
-            )}
+            {LeftIcon && <span className={cx('icon')}>{LeftIcon}</span>}
             <div className={cx('title')}>{children}</div>
-            {rightIcon && (
-                <span className={cx('icon')}>{RightIcon ? <RightIcon /> : <FontAwesomeIcon icon={rightIcon} />}</span>
-            )}
+            {RightIcon && <span className={cx('icon')}>{RightIcon}</span>}
         </Comp>
     )
 }
@@ -87,8 +73,8 @@ Button.prototype = {
     separate: PropTypes.bool,
     discover: PropTypes.bool,
     type: PropTypes.string.isRequired,
-    leftIcon: PropTypes.node,
-    rightIcon: PropTypes.node,
+    LeftIcon: PropTypes.node,
+    RightIcon: PropTypes.node,
     className: PropTypes.string,
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func

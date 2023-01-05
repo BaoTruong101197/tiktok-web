@@ -29,7 +29,7 @@ function Header() {
                 </Link>
                 <Search />
                 <div className={cx('header-right')}>
-                    <Button className={cx('upload-btn')} leftIcon={PlusIcon}>
+                    <Button className={cx('upload-btn')} LeftIcon={<PlusIcon />}>
                         Upload
                     </Button>
                     {userSignIn ? (

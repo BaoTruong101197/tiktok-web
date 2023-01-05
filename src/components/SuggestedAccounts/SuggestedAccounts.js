@@ -9,7 +9,7 @@ import { getSuggested } from '~/services'
 
 const cx = classNames.bind(styles)
 
-function SuggestedAccounts({ suggested, title }) {
+function SuggestedAccounts({ title }) {
     const suggestedUser = useRef([])
     const [seeMore, setSeeMore] = useState(false)
     const [data, setData] = useState([])
@@ -37,7 +37,7 @@ function SuggestedAccounts({ suggested, title }) {
             <SeparateLine />
             <p className={cx('suggested-title')}>{title}</p>
             {data.map(user => (
-                <AccountItem key={user.id} suggested={suggested} data={user} />
+                <AccountItem key={user.id} suggested data={user} />
             ))}
             <div className={cx('see-all')} onClick={handleGetMoreUser}>
                 {seeMore ? 'See less' : 'See more'}
@@ -47,7 +47,6 @@ function SuggestedAccounts({ suggested, title }) {
 }
 
 SuggestedAccounts.propTypes = {
-    suggested: PropTypes.bool,
     title: PropTypes.string
 }
 

@@ -8,10 +8,11 @@ import SwitchButton from '~/components/SwitchButton'
 const cx = classNames.bind(styles)
 
 function MenuItem({ data, level, onClick }) {
+    let Icon = data.icon
 
     return (
         <Button
-            leftIcon={data.icon}
+            LeftIcon={<Icon />}
             className={cx('menu-item', {
                 'menu-switch': data.toggle
             })}

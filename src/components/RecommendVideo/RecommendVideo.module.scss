@@ -119,3 +119,58 @@
 .action {
     margin-left: 20px;
 }
+
+.heart-video {
+    animation: scaleInOut 0.4s ease-in;
+}
+
+@keyframes scaleInOut {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
+.menu-list {
+    position: relative;
+}
+
+.menu-wrapper {
+    font-size: 1.6rem;
+    line-height: 22px;
+    width: 280px;
+    padding: 8px 0px;
+    max-height: 448px;
+    overflow-y: auto;
+
+    .menu-item {
+        justify-content: flex-start;
+        margin: 0;
+        padding: 11px 16px;
+    }
+
+    .item-icon {
+        margin-right: 4px;
+    }
+
+    .down-arrow {
+        margin: 0;
+        padding: 0 16px;
+        min-height: 24px;
+    }
+}
+
+.menu-list {
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -23px;
+        left: 11%;
+        border-top: 12px solid #fff;
+        border-right: 12px solid transparent;
+        border-left: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+    }
+}

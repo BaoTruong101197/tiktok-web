@@ -8,7 +8,8 @@ export {
     MusicIcon,
     HeartIcon,
     CommentIcon,
-    SharedIcon
+    SharedIcon,
+    DownArrow
 } from './Common'
 
 export {
@@ -27,6 +28,17 @@ export {
     LogOut
 } from './Menu'
 
-export { StartVideoIcon, PauseVideoIcon, VolumeOn, VolumeOff, FlagIcon } from './Video'
+export {
+    StartVideoIcon,
+    PauseVideoIcon,
+    VolumeOn,
+    VolumeOff,
+    FlagIcon,
+    EmbedIcon,
+    SendIcon,
+    FacebookIcon,
+    WhatsAppIcon,
+    CopyLinkIcon
+} from './Video'
 
 export { HomeIcon, HomeActiveIcon, PeopleGroupIcon, PeopleGroupActiveIcon, LiveIcon, LiveActiveIcon } from './Sidebar'

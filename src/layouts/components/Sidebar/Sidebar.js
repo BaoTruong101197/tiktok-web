@@ -4,7 +4,7 @@ import styles from './Sidebar.module.scss'
 import config from '~/config'
 import Menu, { MenuItem } from './Menu'
 import Login from './Login'
-import SuggestedAccounts from '~/components/SuggestedAccounts'
+import SuggestedAccounts, { FollowingAccounts } from '~/components/SuggestedAccounts'
 import Discover from './Discover'
 import FooterSidebar from '~/layouts/components/Sidebar/FooterSidebar'
 import { useContextProvider } from '~/hooks'
@@ -30,8 +30,8 @@ function Sidebar() {
                     ))}
                 </Menu>
                 {!userSignIn && <Login />}
-                <SuggestedAccounts suggested title="Suggested accounts" />
-                {userSignIn && <SuggestedAccounts title="Following accounts" />}
+                <SuggestedAccounts title="Suggested accounts" />
+                {userSignIn && <FollowingAccounts title="Following accounts" />}
                 <Discover />
                 <FooterSidebar />
             </aside>

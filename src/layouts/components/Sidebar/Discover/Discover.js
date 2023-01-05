@@ -13,18 +13,21 @@ function Discover() {
             <SeparateLine />
             <p className={cx('discover-title')}>Discover</p>
             <div className={cx('discover-content')}>
-                {config.sidebarDiscoverData.map(discoverItem => (
-                    <Button
-                        key={discoverItem.id}
-                        discover
-                        rounded
-                        type="small"
-                        leftIcon={discoverItem.leftIcon}
-                        className={cx('discover-item')}
-                    >
-                        <p className={cx('discover-text')}>{discoverItem.title}</p>
-                    </Button>
-                ))}
+                {config.sidebarDiscoverData.map(discoverItem => {
+                    let Icon = discoverItem.leftIcon
+                    return (
+                        <Button
+                            key={discoverItem.id}
+                            discover
+                            rounded
+                            type="small"
+                            LeftIcon={<Icon />}
+                            className={cx('discover-item')}
+                        >
+                            <p className={cx('discover-text')}>{discoverItem.title}</p>
+                        </Button>
+                    )
+                })}
             </div>
         </div>
     )
