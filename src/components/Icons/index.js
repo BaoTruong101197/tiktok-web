@@ -9,7 +9,8 @@ export {
     HeartIcon,
     CommentIcon,
     SharedIcon,
-    DownArrow
+    DownArrow,
+    ClearForm
 } from './Common'
 
 export {
