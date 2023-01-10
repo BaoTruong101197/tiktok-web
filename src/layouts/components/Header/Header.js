@@ -11,16 +11,16 @@ import Button from '~/components/Button'
 import Image from '~/components/Image'
 import Avatar from '~/components/Avatar'
 import Modal from '~/components/Modal'
-import { Message as MessageIcon, Inbox as InboxIcon } from '~/components/Icons'
 import {
+    Message as MessageIcon,
+    Inbox as InboxIcon,
     SeeMore as SeeMoreIcon,
-    Plus as PlusIcon,
-    ClearForm as ClearFormIcon,
-    BackButton as BackButtonIcon
+    Plus as PlusIcon
 } from '~/components/Icons'
 import SeeMoreMenu from '~/components/Popper/Menu'
 import Search from './Search'
 import { useContextProvider } from '~/hooks'
+import LoginForm from '~/components/LoginForm'
 
 const cx = classNames.bind(styles)
 
@@ -73,39 +73,7 @@ function Header() {
                                 Log in
                             </Button>
                             <Modal showModal={showModal} className={cx('modal')}>
-                                <div className={cx('login-form')}>
-                                    <div className={cx('login-content')}>
-                                        <h2 className={cx('login-title')}>Log in</h2>
-                                        <div className={cx('login-desc')}>
-                                            <p className={cx('email-username')}>Email or username</p>
-                                            <a href="#!" className={cx('login-link')}>
-                                                Log in with phone
-                                            </a>
-                                        </div>
-                                        <input className={cx('login-input')} placeholder="Email or username" />
-                                        <input type="password" className={cx('login-input')} placeholder="Password" />
-                                        <a href="#!" className={cx('login-link')}>
-                                            Forgot password
-                                        </a>
-                                        <Button className={cx('login-btn')} type="large">
-                                            Log in
-                                        </Button>
-                                    </div>
-                                    <div className={cx('login-footer')}>
-                                        <p className="login-sign-up">
-                                            Don’t have an account?{' '}
-                                            <a href="#!" className={cx('sign-up')}>
-                                                Sign up
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <div className={cx('back-btn-login')}>
-                                        <BackButtonIcon width="24px" height="24px" />
-                                    </div>
-                                    <div className={cx('clear-login')} onClick={handleCloseOverlay}>
-                                        <ClearFormIcon />
-                                    </div>
-                                </div>
+                                <LoginForm handleCloseOverlay={handleCloseOverlay} />
                             </Modal>
                             <SeeMoreMenu items={config.MENU_ITEMS}>
                                 <button className={cx('see-more')}>
