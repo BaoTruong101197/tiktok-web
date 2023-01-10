@@ -3,6 +3,7 @@ import classNames from 'classnames/bind'
 import styles from './LoginForm.module.scss'
 import Button from '~/components/Button'
 import { ClearForm as ClearFormIcon, BackButton as BackButtonIcon } from '~/components/Icons'
+import * as authService from '~/services'
 
 const cx = classNames.bind(styles)
 
@@ -22,25 +23,16 @@ function LoginForm({ handleCloseOverlay }) {
     const handleLogin = () => {
         const data = { email: nameValue, password: pwValue }
 
-        fetch('https://tiktok.fullstack.edu.vn/api/auth/login', {
-            method: 'POST', // or 'PUT'
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data.data)
-                if (data.data) {
-                    console.log('Success:', data)
-                } else {
-                    console.error('Error:')
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error)
-            })
+        const fetchApi = async () => {
+            const result = await authService.login(data)
+            if (result) {
+                console.log(result)
+            } else {
+                console.log('Fail')
+            }
+        }
+
+        fetchApi()
     }
 
     return (
