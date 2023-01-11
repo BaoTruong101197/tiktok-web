@@ -1,13 +1,16 @@
 import { SET_USER_SIGN_IN } from './constants'
 
 const initValue = {
-    userSignIn: false
+    user: {
+        signIn: false,
+        data: []
+    }
 }
 
 const reducer = (state, action) => {
     switch (action.type) {
         case SET_USER_SIGN_IN:
-            return { userSignIn: action.payload }
+            return { user: { signIn: action.payload.signIn, data: action.payload.data } }
         default:
             throw new Error('Invalid Action')
     }

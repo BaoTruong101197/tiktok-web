@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './LoginForm.module.scss'
 import Button from '~/components/Button'
-import { ClearForm as ClearFormIcon, BackButton as BackButtonIcon } from '~/components/Icons'
+import { ClearForm as ClearFormIcon, BackButton as BackButtonIcon, Loading as LoadingIcon } from '~/components/Icons'
 import * as authService from '~/services'
+import { useContextProvider } from '~/hooks'
+import { actions } from '~/store'
 
 const cx = classNames.bind(styles)
 
@@ -11,6 +13,9 @@ function LoginForm({ handleCloseOverlay }) {
     const [nameValue, setNameValue] = useState('')
     const [pwValue, setPwValue] = useState('')
     const [readyLogin, setReadyLogin] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [loginError, setLoginError] = useState(false)
+    const [, dispatch] = useContextProvider()
 
     useEffect(() => {
         if (!nameValue || !pwValue) {
@@ -23,13 +28,20 @@ function LoginForm({ handleCloseOverlay }) {
     const handleLogin = () => {
         const data = { email: nameValue, password: pwValue }
 
+        setLoading(true)
+
         const fetchApi = async () => {
             const result = await authService.login(data)
             if (result) {
-                console.log(result)
+                setLoginError(false)
+                dispatch(actions.setUserSignIn({ signIn: true, data: result }))
+                // handleCloseOverlay()
+                window.location.reload();
             } else {
-                console.log('Fail')
+                setLoginError(true)
             }
+
+            setLoading(false)
         }
 
         fetchApi()
@@ -61,13 +73,15 @@ function LoginForm({ handleCloseOverlay }) {
                 <a href="#!" className={cx('login-link')}>
                     Forgot password
                 </a>
+                {loginError ? <p className={cx('error-text')}>The username or password you entered is incorrect</p> : <div style={{ height: '23px' }}></div>}
+
                 <Button
                     className={cx('login-btn', { 'active-btn': readyLogin })}
                     disabled={!readyLogin}
                     type="large"
                     onClick={handleLogin}
                 >
-                    Log in
+                    {loading ? <LoadingIcon className={cx('loading')} color="#fff" /> : 'Log in'}
                 </Button>
             </div>
             <div className={cx('login-footer')}>

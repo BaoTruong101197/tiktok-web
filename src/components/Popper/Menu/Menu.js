@@ -35,7 +35,7 @@ function Menu({ children, items = [] }) {
                         if (isChildren) {
                             setHistory([...history, item.children])
                         } else if (isUserSignIn) {
-                            dispatch(actions.setUserSignIn(false))
+                            // dispatch(actions.setUserSignIn(false))
                         }
                     }}
                 />

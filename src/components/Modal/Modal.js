@@ -7,11 +7,9 @@ function ModalOverlay({ showModal, className, children }) {
     const renderBackdrop = props => <div className={cx('backdrop')} {...props} />
 
     return (
-        <div>
-            <Modal className={cx('modal', { [className]: className })} show={showModal} renderBackdrop={renderBackdrop}>
-                {children}
-            </Modal>
-        </div>
+        <Modal className={cx('modal', { [className]: className })} show={showModal} renderBackdrop={renderBackdrop}>
+            {children}
+        </Modal>
     )
 }
 

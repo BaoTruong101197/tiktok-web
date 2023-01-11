@@ -26,12 +26,15 @@ const cx = classNames.bind(styles)
 
 function Header() {
     const [state] = useContextProvider()
-    const { userSignIn } = state
+    const { user } = state
+    const { signIn, data } = user.signIn
     const [showModal, setShowModal] = useState(false)
 
     const handleCloseOverlay = () => {
         setShowModal(false)
     }
+
+    console.log(signIn, data);
 
     return (
         <header className={cx('wrapper')}>
@@ -44,7 +47,7 @@ function Header() {
                     <Button className={cx('upload-btn')} LeftIcon={<PlusIcon />}>
                         Upload
                     </Button>
-                    {userSignIn ? (
+                    {signIn ? (
                         <>
                             <Tippy content="Message">
                                 <span className={cx('message-icon')}>
