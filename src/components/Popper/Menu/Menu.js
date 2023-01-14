@@ -17,6 +17,7 @@ function Menu({ children, items = [] }) {
     const [, dispatch] = useContextProvider()
     const [history, setHistory] = useState([{ data: items }])
     const currentTab = history[history.length - 1]
+    const [show, setShow] = useState(false)
 
     // Animation
     const springConfig = { damping: 15, stiffness: 150 }
@@ -48,17 +49,21 @@ function Menu({ children, items = [] }) {
     }
 
     function onMount() {
+        setShow(true)
         opacity.set(1)
     }
 
     function onHide({ unmount }) {
         opacity.set(0)
+        setShow(false)
         setHistory(history.slice(0, 1))
     }
 
+    console.log(show)
+
     return (
         <Tippy
-            interactive
+            interactive={show}
             offset={[13, 8]}
             placement="bottom-end"
             animation={true}

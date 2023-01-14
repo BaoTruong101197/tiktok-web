@@ -1,3 +1,3 @@
 export { search } from './searchService'
-export { getSuggested } from './userService'
+export { getSuggested, getUser } from './userService'
 export { login } from './authService'

@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
 
@@ -8,7 +9,12 @@ import SwitchButton from '~/components/SwitchButton'
 const cx = classNames.bind(styles)
 
 function MenuItem({ data, level, onClick }) {
-    let Icon = data.icon
+    let Icon
+    if (data.icon) {
+        Icon = data.icon
+    } else {
+        Icon = Fragment
+    }
 
     return (
         <Button

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react'
@@ -21,20 +21,32 @@ import SeeMoreMenu from '~/components/Popper/Menu'
 import Search from './Search'
 import { useContextProvider } from '~/hooks'
 import LoginForm from '~/components/LoginForm'
+import { getUser } from '~/services'
+
 
 const cx = classNames.bind(styles)
 
 function Header() {
-    const [state] = useContextProvider()
-    const { user } = state
-    const { signIn, data } = user.signIn
+    // const [state] = useContextProvider()
+    // const { user } = state
+    // const data = user.data
     const [showModal, setShowModal] = useState(false)
+    const [user, setUser] = useState({})
+
+    const userData = localStorage.getItem('user-sign-in')
+    const { signIn, nickname } = JSON.parse(userData)
+
+    useEffect(() => {
+        getUser(nickname)
+            .then(data => {
+                setUser(data)
+            })
+            .catch(error => console.log(error))
+    }, [])
 
     const handleCloseOverlay = () => {
         setShowModal(false)
     }
-
-    console.log(signIn, data);
 
     return (
         <header className={cx('wrapper')}>
@@ -64,7 +76,7 @@ function Header() {
                                 <span className={cx('avatar-wrapper')}>
                                     <Avatar
                                         className={cx('user-avatar')}
-                                        src="https://toigingiuvedep.vn/wp-content/uploads/2021/01/avatar-dep-cute.jpg"
+                                        src={user.avatar}
                                         alt="Avatar"
                                     />
                                 </span>

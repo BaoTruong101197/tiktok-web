@@ -1,15 +1,14 @@
-import Modal from 'react-overlays/Modal'
 import classNames from 'classnames/bind'
 import styles from './Modal.module.scss'
 const cx = classNames.bind(styles)
 
 function ModalOverlay({ showModal, className, children }) {
-    const renderBackdrop = props => <div className={cx('backdrop')} {...props} />
 
     return (
-        <Modal className={cx('modal', { [className]: className })} show={showModal} renderBackdrop={renderBackdrop}>
-            {children}
-        </Modal>
+        <div className={cx('modal', { 'show-modal': showModal })}>
+            <div className={cx('overlay')}></div>
+            <div className={cx('content', { [className]: className })}>{children}</div>
+        </div >
     )
 }
 

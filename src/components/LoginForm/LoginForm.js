@@ -35,7 +35,6 @@ function LoginForm({ handleCloseOverlay }) {
             if (result) {
                 setLoginError(false)
                 dispatch(actions.setUserSignIn({ signIn: true, data: result }))
-                // handleCloseOverlay()
                 window.location.reload();
             } else {
                 setLoginError(true)
