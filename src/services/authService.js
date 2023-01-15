@@ -9,7 +9,7 @@ export const login = async data => {
                 'Content-Type': 'application/json'
             }
         })
-        return response.data
+        return response
     } catch (error) {
         console.error('Error: ', error)
     }

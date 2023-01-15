@@ -8,16 +8,14 @@ import styles from './Menu.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
 import MenuItem from './MenuItem'
 import Header from './Header'
-import { useContextProvider } from '~/hooks'
-import { actions } from '~/store'
 
 const cx = classNames.bind(styles)
 
 function Menu({ children, items = [] }) {
-    const [, dispatch] = useContextProvider()
     const [history, setHistory] = useState([{ data: items }])
     const currentTab = history[history.length - 1]
     const [show, setShow] = useState(false)
+    const userData = JSON.parse(localStorage.getItem('user-sign-in'))
 
     // Animation
     const springConfig = { damping: 15, stiffness: 150 }
@@ -36,7 +34,28 @@ function Menu({ children, items = [] }) {
                         if (isChildren) {
                             setHistory([...history, item.children])
                         } else if (isUserSignIn) {
-                            // dispatch(actions.setUserSignIn(false))
+                            if (userData) {
+                                fetch('https://tiktok.fullstack.edu.vn/api/auth/logout', {
+                                    method: 'POST',
+                                    headers: {
+                                        Authorization: 'Bearer' + userData.token,
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify('')
+                                })
+                                    .then(response => {
+                                        const userData = {
+                                            signIn: false,
+                                            nickname: '',
+                                            token: ''
+                                        }
+                                        localStorage.setItem('user-sign-in', JSON.stringify(userData))
+                                        window.location.reload()
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error)
+                                    })
+                            }
                         }
                     }}
                 />
@@ -59,10 +78,9 @@ function Menu({ children, items = [] }) {
         setHistory(history.slice(0, 1))
     }
 
-    console.log(show)
-
     return (
         <Tippy
+            visible
             interactive={show}
             offset={[13, 8]}
             placement="bottom-end"
@@ -71,6 +89,7 @@ function Menu({ children, items = [] }) {
             onHide={onHide}
             delay={[0, 800]}
             hideOnClick={false}
+            zIndex={100}
             render={attrs => (
                 <motion.div className={cx('menu-list')} tabIndex="-1" style={{ opacity }} {...attrs}>
                     <PopperWrapper className={cx('menu-wrapper')}>

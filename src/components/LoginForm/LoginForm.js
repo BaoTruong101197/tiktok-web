@@ -4,8 +4,6 @@ import styles from './LoginForm.module.scss'
 import Button from '~/components/Button'
 import { ClearForm as ClearFormIcon, BackButton as BackButtonIcon, Loading as LoadingIcon } from '~/components/Icons'
 import * as authService from '~/services'
-import { useContextProvider } from '~/hooks'
-import { actions } from '~/store'
 
 const cx = classNames.bind(styles)
 
@@ -15,7 +13,6 @@ function LoginForm({ handleCloseOverlay }) {
     const [readyLogin, setReadyLogin] = useState(false)
     const [loading, setLoading] = useState(false)
     const [loginError, setLoginError] = useState(false)
-    const [, dispatch] = useContextProvider()
 
     useEffect(() => {
         if (!nameValue || !pwValue) {
@@ -34,8 +31,13 @@ function LoginForm({ handleCloseOverlay }) {
             const result = await authService.login(data)
             if (result) {
                 setLoginError(false)
-                dispatch(actions.setUserSignIn({ signIn: true, data: result }))
-                window.location.reload();
+                const userData = {
+                    signIn: true,
+                    nickname: result.data.nickname,
+                    token: result.meta.token
+                }
+                localStorage.setItem('user-sign-in', JSON.stringify(userData))
+                window.location.reload()
             } else {
                 setLoginError(true)
             }
@@ -72,7 +74,11 @@ function LoginForm({ handleCloseOverlay }) {
                 <a href="#!" className={cx('login-link')}>
                     Forgot password
                 </a>
-                {loginError ? <p className={cx('error-text')}>The username or password you entered is incorrect</p> : <div style={{ height: '23px' }}></div>}
+                {loginError ? (
+                    <p className={cx('error-text')}>The username or password you entered is incorrect</p>
+                ) : (
+                    <div style={{ height: '23px' }}></div>
+                )}
 
                 <Button
                     className={cx('login-btn', { 'active-btn': readyLogin })}

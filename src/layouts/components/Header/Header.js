@@ -19,30 +19,33 @@ import {
 } from '~/components/Icons'
 import SeeMoreMenu from '~/components/Popper/Menu'
 import Search from './Search'
-import { useContextProvider } from '~/hooks'
 import LoginForm from '~/components/LoginForm'
 import { getUser } from '~/services'
-
 
 const cx = classNames.bind(styles)
 
 function Header() {
-    // const [state] = useContextProvider()
-    // const { user } = state
-    // const data = user.data
     const [showModal, setShowModal] = useState(false)
     const [user, setUser] = useState({})
 
+    let signIn = false
+    let nickname = ''
+
     const userData = localStorage.getItem('user-sign-in')
-    const { signIn, nickname } = JSON.parse(userData)
+    if (userData) {
+        signIn = JSON.parse(userData).signIn
+        nickname = JSON.parse(userData).nickname
+    }
 
     useEffect(() => {
-        getUser(nickname)
-            .then(data => {
-                setUser(data)
-            })
-            .catch(error => console.log(error))
-    }, [])
+        if (signIn) {
+            getUser(nickname)
+                .then(data => {
+                    setUser(data)
+                })
+                .catch(error => console.log(error))
+        }
+    }, [nickname, signIn])
 
     const handleCloseOverlay = () => {
         setShowModal(false)
@@ -74,11 +77,7 @@ function Header() {
                             </Tippy>
                             <SeeMoreMenu items={config.USER_MENU_ITEMS}>
                                 <span className={cx('avatar-wrapper')}>
-                                    <Avatar
-                                        className={cx('user-avatar')}
-                                        src={user.avatar}
-                                        alt="Avatar"
-                                    />
+                                    <Avatar className={cx('user-avatar')} src={user.avatar} alt="Avatar" />
                                 </span>
                             </SeeMoreMenu>
                         </>
