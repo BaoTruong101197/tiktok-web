@@ -48,6 +48,12 @@ function LoginForm({ handleCloseOverlay }) {
         fetchApi()
     }
 
+    const handleKeyPass = e => {
+        if (e.keyCode === 13) {
+            handleLogin()
+        }
+    }
+
     return (
         <div className={cx('login-form')}>
             <div className={cx('login-content')}>
@@ -62,6 +68,7 @@ function LoginForm({ handleCloseOverlay }) {
                     className={cx('login-input')}
                     placeholder="Email or username"
                     value={nameValue}
+                    onKeyDown={handleKeyPass}
                     onChange={e => setNameValue(e.target.value)}
                 />
                 <input
@@ -69,6 +76,7 @@ function LoginForm({ handleCloseOverlay }) {
                     className={cx('login-input')}
                     placeholder="Password"
                     value={pwValue}
+                    onKeyDown={handleKeyPass}
                     onChange={e => setPwValue(e.target.value)}
                 />
                 <a href="#!" className={cx('login-link')}>

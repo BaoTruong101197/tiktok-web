@@ -8,6 +8,10 @@ import { BlueTick } from '~/components/Icons'
 const cx = classNames.bind(styles)
 
 function RecommendAccount({ data }) {
+    const handleFollowUser = () => {
+
+    }
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
@@ -18,7 +22,7 @@ function RecommendAccount({ data }) {
                     src={data.avatar}
                     alt={data.nickname}
                 />
-                <Button primary>Follow</Button>
+                <Button primary onClick={handleFollowUser}>Follow</Button>
             </div>
             <h4 className={cx('username')}>
                 {data.nickname}

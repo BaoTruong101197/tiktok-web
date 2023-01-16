@@ -7,13 +7,16 @@ import Login from './Login'
 import SuggestedAccounts, { FollowingAccounts } from '~/components/SuggestedAccounts'
 import Discover from './Discover'
 import FooterSidebar from '~/layouts/components/Sidebar/FooterSidebar'
-import { useContextProvider } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
 function Sidebar() {
-    const [state] = useContextProvider()
-    const { userSignIn } = state
+    let signIn = false
+
+    const userData = localStorage.getItem('user-sign-in')
+    if (userData) {
+        signIn = JSON.parse(userData).signIn
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -29,9 +32,9 @@ function Sidebar() {
                         />
                     ))}
                 </Menu>
-                {!userSignIn && <Login />}
+                {!signIn && <Login />}
                 <SuggestedAccounts title="Suggested accounts" />
-                {userSignIn && <FollowingAccounts title="Following accounts" />}
+                {signIn && <FollowingAccounts title="Following accounts" />}
                 <Discover />
                 <FooterSidebar />
             </aside>
