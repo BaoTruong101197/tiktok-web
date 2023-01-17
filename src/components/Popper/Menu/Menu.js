@@ -12,9 +12,10 @@ import Header from './Header'
 const cx = classNames.bind(styles)
 
 function Menu({ children, items = [] }) {
-    const [history, setHistory] = useState([{ data: items }])
-    const currentTab = history[history.length - 1]
     const [show, setShow] = useState(false)
+    const [history, setHistory] = useState([{ data: items }])
+    
+    const currentTab = history[history.length - 1]
     const userData = JSON.parse(localStorage.getItem('user-sign-in'))
 
     // Animation

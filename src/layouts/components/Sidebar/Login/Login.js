@@ -1,14 +1,18 @@
+import { useState } from 'react'
 import classNames from 'classnames/bind'
 import Button from '~/components/Button'
 import styles from './Login.module.scss'
-import { useContextProvider } from '~/hooks'
-import { setUserSignIn } from '~/store/actions'
 import SeparateLine from '~/components/SeparateLine'
+import LoginForm from '~/components/LoginForm'
+import ModalOverlay from '~/components/Modal'
 
 const cx = classNames.bind(styles)
 
 function Login() {
-    const [, dispatch] = useContextProvider()
+    const [showModal, setShowModal] = useState(false)
+    const handleCloseOverlay = () => {
+        setShowModal(false)
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -19,10 +23,13 @@ function Login() {
                 outline
                 type="large"
                 className={cx('login-btn')}
-                onClick={() => dispatch(setUserSignIn(true))}
+                onClick={() => setShowModal(true)}
             >
                 Log in
             </Button>
+            <ModalOverlay showModal={showModal} className={cx('modal')}>
+                <LoginForm handleCloseOverlay={handleCloseOverlay} />
+            </ModalOverlay>
         </div>
     )
 }

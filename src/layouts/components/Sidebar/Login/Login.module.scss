@@ -4,10 +4,10 @@
 }
 
 .login-title {
-    color: rgba(22, 24, 35, 0.5);
     font-size: 16px;
     font-weight: 300;
     line-height: 22px;
+    color: rgba(22, 24, 35, 0.5);
 }
 
 .login-btn {
@@ -17,4 +17,10 @@
     span {
         font-size: 1.8rem;
     }
+}
+
+.modal {
+    width: 483px;
+    height: 100%;
+    min-height: 60%;
 }

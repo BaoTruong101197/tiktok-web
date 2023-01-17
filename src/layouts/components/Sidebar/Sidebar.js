@@ -4,7 +4,7 @@ import styles from './Sidebar.module.scss'
 import config from '~/config'
 import Menu, { MenuItem } from './Menu'
 import Login from './Login'
-import SuggestedAccounts, { FollowingAccounts } from '~/components/SuggestedAccounts'
+import { SuggestedAccounts, FollowingAccounts } from '~/components/SuggestedAccounts'
 import Discover from './Discover'
 import FooterSidebar from '~/layouts/components/Sidebar/FooterSidebar'
 

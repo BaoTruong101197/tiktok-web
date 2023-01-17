@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
+import PropTypes from 'prop-types'
 
 import styles from './SuggestedAccounts.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
@@ -40,6 +41,11 @@ function AccountItem({ suggested, data }) {
             </Tippy>
         </div>
     )
+}
+
+AccountItem.propTypes = {
+    suggested: PropTypes.bool,
+    data: PropTypes.object
 }
 
 export default AccountItem

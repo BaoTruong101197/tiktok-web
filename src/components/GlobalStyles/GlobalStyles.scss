@@ -26,9 +26,9 @@ html {
 }
 
 body {
+    font-size: 1.6rem;
     font-family: var(--font-family);
     line-height: 1.5;
-    font-size: 1.6rem;
     color: var(--text-color);
     text-rendering: optimizeSpeed;
     overflow-y: overlay;
@@ -77,18 +77,14 @@ button {
 }
 
 // Custom Tippy
-#tippy-5 {
-    // z-index: 11 !important;
-}
-
 .tippy-box {
     background-color: transparent;
 }
 .tippy-content {
     padding: 8px;
     border-radius: 8px;
-    font-weight: 600;
     font-size: 1.6rem;
+    font-weight: 600;
     line-height: 22px;
     background-color: rgba(84, 84, 84, 0.92);
     color: rgb(255, 255, 255);

@@ -10,7 +10,7 @@ import images from '~/assets/images'
 import Button from '~/components/Button'
 import Image from '~/components/Image'
 import Avatar from '~/components/Avatar'
-import Modal from '~/components/Modal'
+import ModalOverlay from '~/components/Modal'
 import {
     Message as MessageIcon,
     Inbox as InboxIcon,
@@ -86,9 +86,9 @@ function Header() {
                             <Button primary onClick={() => setShowModal(true)}>
                                 Log in
                             </Button>
-                            <Modal showModal={showModal} className={cx('modal')}>
+                            <ModalOverlay showModal={showModal} className={cx('modal')}>
                                 <LoginForm handleCloseOverlay={handleCloseOverlay} />
-                            </Modal>
+                            </ModalOverlay>
                             <SeeMoreMenu items={config.MENU_ITEMS}>
                                 <button className={cx('see-more')}>
                                     <SeeMoreIcon className={cx('see-more-icon')} />

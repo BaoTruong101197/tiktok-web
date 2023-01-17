@@ -9,12 +9,10 @@ import SwitchButton from '~/components/SwitchButton'
 const cx = classNames.bind(styles)
 
 function MenuItem({ data, level, onClick }) {
-    let Icon
+    let Icon = Fragment
     if (data.icon) {
         Icon = data.icon
-    } else {
-        Icon = Fragment
-    }
+    } 
 
     return (
         <Button

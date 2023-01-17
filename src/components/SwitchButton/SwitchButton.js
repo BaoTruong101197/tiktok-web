@@ -6,7 +6,7 @@ import classNames from 'classnames/bind'
 const cx = classNames.bind(styles)
 
 function SwitchButton({ className }) {
-    const [lightTheme, setLightTheme] = useState(true)
+    const [lightTheme, setLightTheme] = useState(false)
 
     return (
         <div className={cx('wrapper', className)} onClick={() => setLightTheme(!lightTheme)} style={lightTheme ? { backgroundColor: '#0be09b' } : { backgroundColor: '#1618231f' }}>

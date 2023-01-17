@@ -27,8 +27,8 @@ Image.prototype = {
     src: PropTypes.string,
     alt: PropTypes.string,
     className: PropTypes.string,
-    height: PropTypes.string,
     width: PropTypes.string,
+    height: PropTypes.string,
 }
 
 export default forwardRef(Image)

@@ -11,11 +11,11 @@
 }
 
 .username {
-    color: var(--text-color);
     font-family: SofiaPro;
-    font-weight: 700;
     font-size: 1.8rem;
+    font-weight: 700;
     line-height: 22px;
+    color: var(--text-color);
 }
 
 .blue-tick {
@@ -47,15 +47,15 @@
 
 .number {
     margin-right: 6px;
-    color: var(--text-color);
-    font-weight: 700;
     font-size: 1.7rem;
+    font-weight: 700;
     line-height: 20px;
+    color: var(--text-color);
 }
 
 .text {
-    color: var(--text-color-lighter);
     font-size: 17px;
     line-height: 20px;
     font-weight: 400;
+    color: var(--text-color-lighter);
 }

@@ -20,16 +20,16 @@
 }
 
 .discover-title {
-    color: var(--text-color-lighter);
     margin-bottom: 16px;
     font-size: 1.4rem;
     line-height: 20px;
+    color: var(--text-color-lighter);
 }
 
 .discover-text {
-    color: var(--text-color-lighter);
     font-weight: 400;
     font-size: 1.4rem;
+    color: var(--text-color-lighter);
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

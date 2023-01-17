@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 import styles from './RecommendAccount.module.scss'
+import PropTypes from 'prop-types'
 
 import Button from '~/components/Button'
 import Avatar from '~/components/Avatar'
@@ -9,7 +10,7 @@ const cx = classNames.bind(styles)
 
 function RecommendAccount({ data }) {
     const handleFollowUser = () => {
-
+        // handle in the next time
     }
 
     return (
@@ -43,6 +44,10 @@ function RecommendAccount({ data }) {
             </div>
         </div>
     )
+}
+
+RecommendAccount.propTypes = {
+    data: PropTypes.object.isRequired
 }
 
 export default RecommendAccount

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import classNames from 'classnames/bind'
+import PropTypes from 'prop-types'
 import styles from './Video.module.scss'
 import { StartVideoIcon, PauseVideoIcon, VolumeOn, VolumeOff, FlagIcon } from '~/components/Icons'
 
@@ -121,6 +122,11 @@ function Video({ className, src }) {
             <div className={cx('no-focus')}></div>
         </div>
     )
+}
+
+Video.propTypes = {
+    className: PropTypes.string,
+    src: PropTypes.string.isRequired
 }
 
 export default Video

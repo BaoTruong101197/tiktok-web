@@ -72,7 +72,7 @@ Button.prototype = {
     disabled: PropTypes.bool,
     separate: PropTypes.bool,
     discover: PropTypes.bool,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string,
     LeftIcon: PropTypes.node,
     RightIcon: PropTypes.node,
     className: PropTypes.string,

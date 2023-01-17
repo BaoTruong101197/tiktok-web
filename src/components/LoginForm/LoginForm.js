@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
+import PropTypes from 'prop-types'
 import styles from './LoginForm.module.scss'
 import Button from '~/components/Button'
 import { ClearForm as ClearFormIcon, BackButton as BackButtonIcon, Loading as LoadingIcon } from '~/components/Icons'
@@ -113,6 +114,10 @@ function LoginForm({ handleCloseOverlay }) {
             </div>
         </div>
     )
+}
+
+LoginForm.propTypes = {
+    handleCloseOverlay: PropTypes.func.isRequired
 }
 
 export default LoginForm
