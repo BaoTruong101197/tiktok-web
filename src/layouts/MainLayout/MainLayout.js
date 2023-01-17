@@ -3,11 +3,24 @@ import PropTypes from 'prop-types'
 
 import styles from './MainLayout.module.scss'
 import Header from '~/layouts/components/Header'
+import LoginForm from '~/components/LoginForm'
+import ModalOverlay from '~/components/Modal'
 import Sidebar from '~/layouts/components/Sidebar'
+import { useContextProvider } from '~/hooks'
+import { actions } from '~/store'
 
 const cx = classNames.bind(styles)
 
 function MainLayout({ children }) {
+    const [state, dispatch] = useContextProvider()
+    const { showModal } = state
+
+    const handleCloseOverlay = () => {
+        dispatch(actions.setShowModal(false))
+    }
+
+    console.log(showModal);
+
     return (
         <div className={cx('wrapper')}>
             <Header />
@@ -15,6 +28,9 @@ function MainLayout({ children }) {
                 <Sidebar />
                 <div className={cx('container')}>{children}</div>
             </div>
+            <ModalOverlay showModal={showModal} className={cx('modal')}>
+                <LoginForm handleCloseOverlay={handleCloseOverlay} />
+            </ModalOverlay>
         </div>
     )
 }

@@ -10,7 +10,6 @@ import images from '~/assets/images'
 import Button from '~/components/Button'
 import Image from '~/components/Image'
 import Avatar from '~/components/Avatar'
-import ModalOverlay from '~/components/Modal'
 import {
     Message as MessageIcon,
     Inbox as InboxIcon,
@@ -19,14 +18,15 @@ import {
 } from '~/components/Icons'
 import SeeMoreMenu from '~/components/Popper/Menu'
 import Search from './Search'
-import LoginForm from '~/components/LoginForm'
 import { getUser } from '~/services'
+import { actions } from '~/store'
+import { useContextProvider } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
 function Header() {
-    const [showModal, setShowModal] = useState(false)
     const [user, setUser] = useState({})
+    const [, dispatch] = useContextProvider()
 
     let signIn = false
     let nickname = ''
@@ -46,10 +46,6 @@ function Header() {
                 .catch(error => console.log(error))
         }
     }, [nickname, signIn])
-
-    const handleCloseOverlay = () => {
-        setShowModal(false)
-    }
 
     return (
         <header className={cx('wrapper')}>
@@ -83,12 +79,9 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <Button primary onClick={() => setShowModal(true)}>
+                            <Button primary onClick={() => dispatch(actions.setShowModal(true))}>
                                 Log in
                             </Button>
-                            <ModalOverlay showModal={showModal} className={cx('modal')}>
-                                <LoginForm handleCloseOverlay={handleCloseOverlay} />
-                            </ModalOverlay>
                             <SeeMoreMenu items={config.MENU_ITEMS}>
                                 <button className={cx('see-more')}>
                                     <SeeMoreIcon className={cx('see-more-icon')} />

@@ -1,13 +1,13 @@
-import { SET_USER_SIGN_IN } from './constants'
+import { SET_SHOW_MODAL } from './constants'
 
 const initValue = {
-    user: {}
+    showModal: false
 }
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case SET_USER_SIGN_IN: {
-            return { user: {} }
+        case SET_SHOW_MODAL: {
+            return { ...state, showModal: action.payload }
         }
         default:
             throw new Error('Invalid Action')

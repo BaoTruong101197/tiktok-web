@@ -1,10 +1,10 @@
-import { SET_USER_SIGN_IN } from './constants'
+import { SET_SHOW_MODAL } from './constants'
 
-const setUserSignIn = payload => {
+const setShowModal = payload => {
     return {
-        type: SET_USER_SIGN_IN,
+        type: SET_SHOW_MODAL,
         payload
     }
 }
 
-export { setUserSignIn }
+export { setShowModal }
