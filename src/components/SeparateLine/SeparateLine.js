@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames/bind'
 import styles from './SeparateLine.module.scss'
 
@@ -7,4 +8,4 @@ function SeparateLine() {
     return <div className={cx('separate-line')}></div>
 }
 
-export default SeparateLine
+export default memo(SeparateLine)

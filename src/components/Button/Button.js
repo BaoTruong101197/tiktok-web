@@ -25,8 +25,6 @@ function Button({
 }) {
     let Comp = 'button'
 
-    console.log('re-render')
-
     const props = {
         onClick,
         ...restProps

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
@@ -48,4 +49,4 @@ AccountItem.propTypes = {
     data: PropTypes.object
 }
 
-export default AccountItem
+export default memo(AccountItem)

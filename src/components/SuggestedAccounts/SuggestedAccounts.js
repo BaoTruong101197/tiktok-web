@@ -10,9 +10,9 @@ import { getSuggested } from '~/services'
 const cx = classNames.bind(styles)
 
 function SuggestedAccounts({ title }) {
-    const suggestedUser = useRef([])
     const [seeMore, setSeeMore] = useState(false)
     const [data, setData] = useState([])
+    const suggestedUser = useRef([])
 
     useEffect(() => {
         getSuggested()
