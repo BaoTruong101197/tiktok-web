@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types'
-import styles from './Button.module.scss'
-import classNames from 'classnames/bind'
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import classNames from 'classnames/bind'
+import styles from './Button.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -23,6 +24,8 @@ function Button({
     ...restProps
 }) {
     let Comp = 'button'
+
+    console.log('re-render')
 
     const props = {
         onClick,
@@ -80,4 +83,4 @@ Button.prototype = {
     onClick: PropTypes.func
 }
 
-export default Button
+export default memo(Button)

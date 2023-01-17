@@ -16,7 +16,7 @@ import {
     SeeMore as SeeMoreIcon,
     Plus as PlusIcon
 } from '~/components/Icons'
-import SeeMoreMenu from '~/components/Popper/Menu'
+import SeeMoreMenu from '~/components/SeeMoreMenu'
 import Search from './Search'
 import { getUser } from '~/services'
 import { actions } from '~/store'

@@ -4,11 +4,11 @@ import images from '~/assets/images'
 
 function Image({ src = images.noImage, alt, className, width, height, ...restProps }, ref) {
     const [imgSrc, setImgSrc] = useState(src)
-    
+
     useEffect(() => {
         setImgSrc(src);
     }, [src])
-    
+
     return (
         <img
             src={imgSrc}

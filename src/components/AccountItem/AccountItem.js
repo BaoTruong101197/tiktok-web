@@ -10,6 +10,7 @@ import Avatar from '~/components/Avatar'
 const cx = classNames.bind(styles)
 
 function AccountItem({ data }) {
+    console.log('re-render');
     return (
         <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
             <Avatar

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, memo } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import HeadlessTippy from '@tippyjs/react/headless'
@@ -97,4 +97,4 @@ function Search() {
     )
 }
 
-export default Search
+export default memo(Search)

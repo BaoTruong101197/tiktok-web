@@ -19,8 +19,6 @@ function MainLayout({ children }) {
         dispatch(actions.setShowModal(false))
     }
 
-    console.log(showModal);
-
     return (
         <div className={cx('wrapper')}>
             <Header />

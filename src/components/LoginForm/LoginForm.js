@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
 import styles from './LoginForm.module.scss'
@@ -23,8 +23,9 @@ function LoginForm({ handleCloseOverlay }) {
         setReadyLogin(true)
     }, [nameValue, pwValue])
 
-    const handleLogin = () => {
+    const handleLogin = useCallback(() => {
         const data = { email: nameValue, password: pwValue }
+        console.log(data);
 
         setLoading(true)
 
@@ -47,7 +48,7 @@ function LoginForm({ handleCloseOverlay }) {
         }
 
         fetchApi()
-    }
+    }, [nameValue, pwValue])
 
     const handleKeyPass = e => {
         if (e.keyCode === 13) {
