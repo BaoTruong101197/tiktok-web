@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
+import PropTypes from 'prop-types'
 import { useSpring, motion } from 'framer-motion'
 
 import styles from './RecommendVideo.module.scss'
@@ -26,7 +27,7 @@ import {
 
 const cx = classNames.bind(styles)
 
-function RecommendVideo() {
+function RecommendVideo({ data }) {
     const [heartVideo, setHeartVideo] = useState(false)
     const springConfig = { damping: 15, stiffness: 150 }
     const opacity = useSpring(0, springConfig)
@@ -42,12 +43,16 @@ function RecommendVideo() {
         setHeartVideo(!heartVideo)
     }
 
+    const getTime = () => {
+        return data.created_at.split(' ')[0]
+    }
+
     return (
         <div className={cx('wrapper')}>
             <Avatar
                 className={cx('avatar')}
-                src={require('./kelly.jpeg')}
-                alt="kelly"
+                src={data.user.avatar}
+                alt={data.description}
                 width="56px"
                 height="56px"
                 loading="lazy"
@@ -56,14 +61,14 @@ function RecommendVideo() {
                 <div className={cx('wrapper-header')}>
                     <header className={cx('header')}>
                         <h3 className={cx('username')}>
-                            duongkelly96
-                            <span className={cx('blue-tick')}>
+                            {data.user.nickname}
+                            {data.tick && <span className={cx('blue-tick')}>
                                 <BlueTick />
-                            </span>
+                            </span>}
                         </h3>
-                        <h4 className={cx('name')}>kelly </h4>
+                        <h4 className={cx('name')}>{`${data.user.first_name} ${data.user.last_name}`} </h4>
                         <span className={cx('point')}>.</span>
-                        <p className={cx('time')}>2022-12-29</p>
+                        <p className={cx('time')}>{getTime()}</p>
                     </header>
                 </div>
                 <p className={cx('description')}>Cute xỉu</p>
@@ -140,6 +145,10 @@ function RecommendVideo() {
             </div>
         </div>
     )
+}
+
+RecommendVideo.propTypes = {
+    data: PropTypes.object
 }
 
 export default RecommendVideo
