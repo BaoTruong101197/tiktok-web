@@ -22,10 +22,10 @@ function MainLayout({ children }) {
     return (
         <div className={cx('wrapper')}>
             <Header />
-            <div className={cx('content')}>
+            <main className={cx('content')}>
                 <Sidebar />
                 <div className={cx('container')}>{children}</div>
-            </div>
+            </main>
             <ModalOverlay showModal={showModal} className={cx('modal')}>
                 <LoginForm handleCloseOverlay={handleCloseOverlay} />
             </ModalOverlay>

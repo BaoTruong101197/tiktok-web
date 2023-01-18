@@ -94,7 +94,7 @@ function Menu({ children, items = [] }) {
                 <motion.div className={cx('menu-list')} tabIndex="-1" style={{ opacity }} {...attrs}>
                     <PopperWrapper className={cx('menu-wrapper')}>
                         {history.length > 1 && <Header onBack={onBack} title={currentTab.title} />}
-                        <div className={cx('menu-content')}>{renderItem()}</div>
+                        <nav className={cx('menu-content')}>{renderItem()}</nav>
                     </PopperWrapper>
                 </motion.div>
             )}

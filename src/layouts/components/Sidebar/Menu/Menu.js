@@ -6,9 +6,9 @@ const cx = classNames.bind(styles)
 
 function Menu({ children }) {
     return (
-        <div className={cx('menu')}>
+        <nav className={cx('menu')}>
             {children}
-        </div>
+        </nav>
     );
 }
 
