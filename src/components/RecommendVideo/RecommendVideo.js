@@ -9,7 +9,6 @@ import Avatar from '~/components/Avatar'
 import Video from '~/components/Video'
 import ActionItem from '~/components/ActionItem'
 import Button from '~/components/Button'
-import video from './tiktok.mp4'
 import { Popper as PopperWrapper } from '~/components/Popper'
 import {
     HeartIcon,
@@ -62,24 +61,29 @@ function RecommendVideo({ data }) {
                     <header className={cx('header')}>
                         <h3 className={cx('username')}>
                             {data.user.nickname}
-                            {data.tick && <span className={cx('blue-tick')}>
-                                <BlueTick />
-                            </span>}
+                            {data.tick && (
+                                <span className={cx('blue-tick')}>
+                                    <BlueTick />
+                                </span>
+                            )}
                         </h3>
                         <h4 className={cx('name')}>{`${data.user.first_name} ${data.user.last_name}`} </h4>
                         <span className={cx('point')}>.</span>
                         <p className={cx('time')}>{getTime()}</p>
                     </header>
                 </div>
-                <p className={cx('description')}>Cute xỉu</p>
+                <Button primary outline type="small" className={cx('follow-btn')}>
+                    Follow
+                </Button>
+                <p className={cx('description')}>{data.description}</p>
                 <div className={cx('music-wrapper')}>
                     <div className={cx('music')}>
                         <MusicIcon />
-                        <p className={cx('music-name')}>nhạc nền - Tình yêu 💞💞 - ⓛⓞⓥⓔ♡💞</p>
+                        <p className={cx('music-name')}>{data.music === '' ? `Nhạc nền` : data.music}</p>
                     </div>
                 </div>
                 <div className={cx('video-wrapper')}>
-                    <Video className={cx('video')} src={video} />
+                    <Video className={cx('video')} src={data.file_url} />
                     <div className={cx('action')}>
                         <ActionItem
                             icon={
@@ -88,10 +92,10 @@ function RecommendVideo({ data }) {
                                     className={heartVideo ? cx('heart-video') : cx('unheart-video')}
                                 />
                             }
-                            number="6869"
+                            number={data.likes_count}
                             onClick={handleHeartVideo}
                         />
-                        <ActionItem icon={<CommentIcon />} number="103" />
+                        <ActionItem icon={<CommentIcon />} number={data.comments_count} />
                         <Tippy
                             interactive
                             offset={[-25, 5]}
@@ -138,7 +142,7 @@ function RecommendVideo({ data }) {
                                 </motion.div>
                             )}
                         >
-                            <ActionItem icon={<SharedIcon />} number="102" />
+                            <ActionItem icon={<SharedIcon />} number={data.shares_count} />
                         </Tippy>
                     </div>
                 </div>

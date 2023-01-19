@@ -25,7 +25,6 @@ function LoginForm({ handleCloseOverlay }) {
 
     const handleLogin = useCallback(() => {
         const data = { email: nameValue, password: pwValue }
-        console.log(data);
 
         setLoading(true)
 
@@ -35,6 +34,7 @@ function LoginForm({ handleCloseOverlay }) {
                 setLoginError(false)
                 const userData = {
                     signIn: true,
+                    id: result.data.id,
                     nickname: result.data.nickname,
                     token: result.meta.token
                 }

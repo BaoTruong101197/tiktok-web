@@ -19,6 +19,14 @@
 .content {
     flex: 1;
     margin-left: 12px;
+
+    .follow-btn {
+        position: absolute;
+        right: 0;
+        top: 28px;
+        min-height: 28px;
+        font-weight: 700;
+    }
 }
 
 .avatar {

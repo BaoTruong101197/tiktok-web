@@ -73,7 +73,7 @@ function Header() {
                             </Tippy>
                             <SeeMoreMenu items={config.USER_MENU_ITEMS}>
                                 <span className={cx('avatar-wrapper')}>
-                                    <Avatar className={cx('user-avatar')} src={user.avatar} alt="Avatar" />
+                                    {user && <Avatar className={cx('user-avatar')} src={user.avatar} alt="Avatar" />}
                                 </span>
                             </SeeMoreMenu>
                         </>
