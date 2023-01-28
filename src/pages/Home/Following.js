@@ -5,7 +5,7 @@ import styles from './Home.module.scss'
 
 const cx = classNames.bind(styles)
 
-function Home() {
+function Following() {
     const [index, setIndex] = useState(1)
     const [videoData, setVideoData] = useState([])
     const navRef = useRef()
@@ -20,7 +20,7 @@ function Home() {
     localStorage.removeItem('volume')
 
     useEffect(() => {
-        fetch(`https://tiktok.fullstack.edu.vn/api/videos?type=for-you&page=${index}`, {
+        fetch(`https://tiktok.fullstack.edu.vn/api/videos?type=following&page=${index}`, {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer' + JSON.parse(localStorage.getItem('user-sign-in')).token,
@@ -29,7 +29,6 @@ function Home() {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setVideoData([...videoData, ...data.data.filter(video => video.user_id !== userId)])
             })
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,4 +53,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Following

@@ -4,7 +4,7 @@ import config from '~/config'
 import { HeaderOnly } from '~/layouts'
 
 import Home from '~/pages/Home'
-import Following from '~/pages/Following'
+import Following from '~/pages/Home/Following'
 import Upload from '~/pages/Upload'
 import Profile from '~/pages/Profile'
 import Live from '~/pages/Live'

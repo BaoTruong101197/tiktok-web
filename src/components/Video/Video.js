@@ -6,7 +6,7 @@ import { StartVideoIcon, PauseVideoIcon, VolumeOn, VolumeOff, FlagIcon } from '~
 
 const cx = classNames.bind(styles)
 
-function Video({ className, src }) {
+function Video({ className, src, index, length, getMoreVideo }) {
     const [playVideo, setPlayVideo] = useState(true)
     const [volumeOn, setVolumeOn] = useState(false)
 
@@ -16,16 +16,61 @@ function Video({ className, src }) {
     const volumeRef = useRef()
     const previousVolume = useRef(0)
     const volumeInput = useRef()
+    const handlePause = useRef(false)
+
+    const movePosition = 400
+    const defaultVolume = localStorage.getItem('volume') ? localStorage.getItem('volume') : 0
 
     useEffect(() => {
-        videoRef.current.play()
+        if (index === 0) {
+            videoRef.current.play()
+        }
+
+        const handleScroll = () => {
+            if (
+                movePosition >= videoRef.current.getBoundingClientRect().top &&
+                movePosition <= videoRef.current.getBoundingClientRect().bottom
+            ) {
+                if (!handlePause.current) {
+                    videoRef.current.play()
+                    setPlayVideo(true)
+                    if (index + 1 === length) {
+                        getMoreVideo()
+                    }
+                }
+            } else {
+                videoRef.current.currentTime = 0
+                videoRef.current.pause()
+                setPlayVideo(false)
+                handlePause.current = false
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
     }, [])
+
+    useEffect(() => {
+        volumeRef.current.value = defaultVolume
+        videoRef.current.volume = defaultVolume
+        if (defaultVolume > 0) {
+            setVolumeOn(true)
+            videoRef.current.muted = false
+        } else {
+            setVolumeOn(false)
+            videoRef.current.muted = true
+        }
+    }, [defaultVolume])
 
     const handlePlay = () => {
         if (!playVideo) {
             videoRef.current.play()
         } else {
             videoRef.current.pause()
+            handlePause.current = true
         }
     }
 
@@ -44,6 +89,8 @@ function Video({ className, src }) {
             setVolumeOn(false)
             volumeRef.current.value = 0
         }
+
+        localStorage.setItem('volume', volumeRef.current.value)
     }
 
     const updateProgressBar = () => {
@@ -77,6 +124,8 @@ function Video({ className, src }) {
             setVolumeOn(false)
             videoRef.current.muted = true
         }
+
+        localStorage.setItem('volume', e.target.value)
     }
 
     return (
@@ -110,7 +159,7 @@ function Video({ className, src }) {
                         min="0"
                         max="1"
                         step="0.01"
-                        defaultValue={previousVolume.current}
+                        defaultValue={0}
                         onChange={changeVolume}
                     />
                 </div>

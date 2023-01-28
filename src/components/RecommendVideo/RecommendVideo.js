@@ -26,7 +26,7 @@ import {
 
 const cx = classNames.bind(styles)
 
-function RecommendVideo({ data }) {
+function RecommendVideo({ data, index, length, getMoreVideo }) {
     const [heartVideo, setHeartVideo] = useState(false)
     const springConfig = { damping: 15, stiffness: 150 }
     const opacity = useSpring(0, springConfig)
@@ -83,7 +83,13 @@ function RecommendVideo({ data }) {
                     </div>
                 </div>
                 <div className={cx('video-wrapper')}>
-                    <Video className={cx('video')} src={data.file_url} />
+                    <Video
+                        className={cx('video')}
+                        src={data.file_url}
+                        index={index}
+                        length={length}
+                        getMoreVideo={getMoreVideo}
+                    />
                     <div className={cx('action')}>
                         <ActionItem
                             icon={
