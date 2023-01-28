@@ -4,14 +4,13 @@ import config from '~/config'
 import { HeaderOnly } from '~/layouts'
 
 import Home from '~/pages/Home'
-import Following from '~/pages/Home/Following'
 import Upload from '~/pages/Upload'
 import Profile from '~/pages/Profile'
 import Live from '~/pages/Live'
 
 const publicRoutes = [
-    { path: config.routes.home, component: Home },
-    { path: config.routes.following, component: Following },
+    { path: config.routes.home, component: Home, title: 'for-you' },
+    { path: config.routes.following, component: Home, title: 'following' },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.live, component: Live },
     { path: config.routes.upload, component: Upload, layout: HeaderOnly }

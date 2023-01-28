@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { publicRoutes } from '~/routes'
 import { MainLayout } from '~/layouts'
+import Home from './pages/Home'
 
 function App() {
     return (
@@ -11,11 +12,16 @@ function App() {
                     {publicRoutes.map((route, index) => {
                         const Page = route.component
                         let Layout = MainLayout
+                        const props = {}
 
                         if (route.layout) {
                             Layout = route.layout
                         } else if (route.layout === null) {
                             Layout = Fragment
+                        }
+
+                        if (Page === Home) {
+                            props.title = route.title
                         }
 
                         return (
@@ -24,7 +30,7 @@ function App() {
                                 path={route.path}
                                 element={
                                     <Layout>
-                                        <Page />
+                                        <Page {...props} />
                                     </Layout>
                                 }
                             />
