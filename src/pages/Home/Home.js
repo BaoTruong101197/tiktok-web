@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import classNames from 'classnames/bind'
 import RecommendVideo from '~/components/RecommendVideo'
 import styles from './Home.module.scss'
+import { useLocalStorage } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
@@ -10,12 +11,7 @@ function Home({ title }) {
     const [videoData, setVideoData] = useState([])
     const navRef = useRef()
 
-    let userId
-
-    const userData = localStorage.getItem('user-sign-in')
-    if (userData) {
-        userId = JSON.parse(userData).id
-    }
+    const userData = useLocalStorage()
 
     localStorage.removeItem('volume')
 
@@ -24,14 +20,13 @@ function Home({ title }) {
             fetch(`https://tiktok.fullstack.edu.vn/api/videos?type=${title}&page=${index}`, {
                 method: 'GET',
                 headers: {
-                    Authorization: 'Bearer' + JSON.parse(localStorage.getItem('user-sign-in')).token,
+                    Authorization: 'Bearer' + userData.token,
                     'Content-Type': 'application/json'
                 }
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
-                    setVideoData([...videoData, ...data.data.filter(video => video.user_id !== userId)])
+                    setVideoData([...videoData, ...data.data.filter(video => video.user_id !== userData.id)])
                 })
         }
 
@@ -43,14 +38,13 @@ function Home({ title }) {
         fetch(`https://tiktok.fullstack.edu.vn/api/videos?type=${title}&page=1`, {
             method: 'GET',
             headers: {
-                Authorization: 'Bearer' + JSON.parse(localStorage.getItem('user-sign-in')).token,
+                Authorization: 'Bearer' + userData.token,
                 'Content-Type': 'application/json'
             }
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                setVideoData(data.data.filter(video => video.user_id !== userId))
+                setVideoData(data.data.filter(video => video.user_id !== userData.id))
             })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [title])

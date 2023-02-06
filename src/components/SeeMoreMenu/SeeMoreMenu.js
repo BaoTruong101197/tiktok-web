@@ -8,6 +8,7 @@ import styles from './Menu.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
 import MenuItem from './MenuItem'
 import Header from './Header'
+import { useLocalStorage } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
@@ -16,7 +17,7 @@ function Menu({ children, items = [] }) {
     const [history, setHistory] = useState([{ data: items }])
 
     const currentTab = history[history.length - 1]
-    const userData = JSON.parse(localStorage.getItem('user-sign-in'))
+    const userData = useLocalStorage()
 
     // Animation
     const springConfig = { damping: 15, stiffness: 150 }
@@ -35,28 +36,26 @@ function Menu({ children, items = [] }) {
                         if (isChildren) {
                             setHistory([...history, item.children])
                         } else if (isUserSignIn) {
-                            if (userData) {
-                                fetch('https://tiktok.fullstack.edu.vn/api/auth/logout', {
-                                    method: 'POST',
-                                    headers: {
-                                        Authorization: 'Bearer' + userData.token,
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify('')
+                            fetch('https://tiktok.fullstack.edu.vn/api/auth/logout', {
+                                method: 'POST',
+                                headers: {
+                                    Authorization: 'Bearer' + userData.token,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify('')
+                            })
+                                .then(response => {
+                                    const userData = {
+                                        signIn: false,
+                                        nickname: '',
+                                        token: ''
+                                    }
+                                    localStorage.setItem('user-sign-in', JSON.stringify(userData))
+                                    window.location.reload()
                                 })
-                                    .then(response => {
-                                        const userData = {
-                                            signIn: false,
-                                            nickname: '',
-                                            token: ''
-                                        }
-                                        localStorage.setItem('user-sign-in', JSON.stringify(userData))
-                                        window.location.reload()
-                                    })
-                                    .catch(error => {
-                                        console.error('Error:', error)
-                                    })
-                            }
+                                .catch(error => {
+                                    console.error('Error:', error)
+                                })
                         }
                     }}
                 />

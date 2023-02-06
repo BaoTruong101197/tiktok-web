@@ -20,7 +20,7 @@ import SeeMoreMenu from '~/components/SeeMoreMenu'
 import Search from './Search'
 import { getUser } from '~/services'
 import { actions } from '~/store'
-import { useContextProvider } from '~/hooks'
+import { useContextProvider, useLocalStorage } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
@@ -28,14 +28,10 @@ function Header() {
     const [user, setUser] = useState({})
     const [, dispatch] = useContextProvider()
 
-    let signIn = false
-    let nickname = ''
+    const userData = useLocalStorage()
 
-    const userData = localStorage.getItem('user-sign-in')
-    if (userData) {
-        signIn = JSON.parse(userData).signIn
-        nickname = JSON.parse(userData).nickname
-    }
+    const signIn = userData.signIn
+    const nickname = userData.nickname
 
     useEffect(() => {
         if (signIn) {

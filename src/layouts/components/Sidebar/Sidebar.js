@@ -7,17 +7,11 @@ import Login from './Login'
 import { SuggestedAccounts, FollowingAccounts } from '~/components/SuggestedAccounts'
 import Discover from './Discover'
 import FooterSidebar from '~/layouts/components/Sidebar/FooterSidebar'
+import { useLocalStorage } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
 function Sidebar() {
-    let signIn = false
-
-    const userData = localStorage.getItem('user-sign-in')
-    if (userData) {
-        signIn = JSON.parse(userData).signIn
-    }
-
     return (
         <div className={cx('wrapper')}>
             <aside className={cx('sidebar')}>
@@ -32,9 +26,9 @@ function Sidebar() {
                         />
                     ))}
                 </Menu>
-                {!signIn && <Login />}
+                {!useLocalStorage().signIn && <Login />}
                 <SuggestedAccounts title="Suggested accounts" />
-                {signIn && <FollowingAccounts title="Following accounts" />}
+                {useLocalStorage().signIn && <FollowingAccounts title="Following accounts" />}
                 <Discover />
                 <FooterSidebar />
             </aside>
