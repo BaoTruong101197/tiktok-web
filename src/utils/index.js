@@ -1,1 +1,1 @@
-export { default, get, post } from './httpRequest'
+export { default, get, post, post2 } from './httpRequest'

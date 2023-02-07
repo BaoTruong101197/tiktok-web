@@ -17,7 +17,7 @@ function SuggestedAccounts({ title }) {
     useEffect(() => {
         getSuggested()
             .then(data => {
-                suggestedUser.current = data
+                suggestedUser.current = data.filter(item => item.is_followed !== true)
                 setData(suggestedUser.current.slice(0, 5))
             })
             .catch(error => console.log(error))

@@ -22,6 +22,12 @@
     cursor: pointer;
 }
 
+.menu-list {
+    .menu-wrapper {
+        padding: 0;
+    }
+}
+
 // AccountItem
 .account-item {
     display: flex;

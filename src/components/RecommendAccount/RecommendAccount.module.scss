@@ -10,12 +10,22 @@
     margin-bottom: 12px;
 }
 
+.following-btn {
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    border-radius: 4px;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
 .username {
     font-family: SofiaPro;
     font-size: 1.8rem;
     font-weight: 700;
     line-height: 22px;
     color: var(--text-color);
+    cursor: pointer;
 }
 
 .blue-tick {
@@ -26,6 +36,7 @@
     color: var(--text-color);
     font-size: 1.4rem;
     line-height: 20px;
+    cursor: pointer;
 }
 
 .account-status {
