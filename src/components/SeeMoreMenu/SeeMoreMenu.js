@@ -9,6 +9,7 @@ import { Popper as PopperWrapper } from '~/components/Popper'
 import MenuItem from './MenuItem'
 import Header from './Header'
 import { useLocalStorage } from '~/hooks'
+import { logout } from '~/services'
 
 const cx = classNames.bind(styles)
 
@@ -36,14 +37,7 @@ function Menu({ children, items = [] }) {
                         if (isChildren) {
                             setHistory([...history, item.children])
                         } else if (isUserSignIn) {
-                            fetch('https://tiktok.fullstack.edu.vn/api/auth/logout', {
-                                method: 'POST',
-                                headers: {
-                                    Authorization: 'Bearer' + userData.token,
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify('')
-                            })
+                            logout(userData.token)
                                 .then(response => {
                                     const userData = {
                                         signIn: false,

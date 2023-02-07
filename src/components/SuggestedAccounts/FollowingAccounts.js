@@ -6,6 +6,7 @@ import styles from './SuggestedAccounts.module.scss'
 import AccountItem from './AccountItem'
 import SeparateLine from '~/components/SeparateLine'
 import { useLocalStorage } from '~/hooks'
+import { getFollowingsList } from '~/services/followService'
 
 const cx = classNames.bind(styles)
 
@@ -18,25 +19,19 @@ function FollowingAccounts({ title }) {
     const userData = useLocalStorage()
 
     const getData = () => {
-        fetch(`https://tiktok.fullstack.edu.vn/api/me/followings?page=${index.current}`, {
-            headers: {
-                Authorization: 'Bearer' + userData.token
+        getFollowingsList(index.current, userData.token).then(data => {
+            if (index.current === 1) {
+                if (data.meta.pagination.total % data.meta.pagination.count === 0) {
+                    maxIndex.current = parseInt(data.meta.pagination.total / data.meta.pagination.count)
+                } else {
+                    maxIndex.current = parseInt(data.meta.pagination.total / data.meta.pagination.count + 1)
+                }
+            }
+            if (index.current <= maxIndex.current) {
+                currentData.current = [...followingUser, ...data.data]
+                setFollowingUser([...followingUser, ...data.data])
             }
         })
-            .then(response => response.json())
-            .then(data => {
-                if (index.current === 1) {
-                    if (data.meta.pagination.total % data.meta.pagination.count === 0) {
-                        maxIndex.current = parseInt(data.meta.pagination.total / data.meta.pagination.count)
-                    } else {
-                        maxIndex.current = parseInt(data.meta.pagination.total / data.meta.pagination.count + 1)
-                    }
-                }
-                if (index.current <= maxIndex.current) {
-                    currentData.current = [...followingUser, ...data.data]
-                    setFollowingUser([...followingUser, ...data.data])
-                }
-            })
     }
 
     useEffect(() => {

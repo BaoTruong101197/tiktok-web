@@ -7,6 +7,7 @@ import Button from '~/components/Button'
 import Avatar from '~/components/Avatar'
 import { BlueTick } from '~/components/Icons'
 import { useLocalStorage } from '~/hooks'
+import { followUser, unFollowUser } from '~/services'
 
 const cx = classNames.bind(styles)
 
@@ -15,23 +16,10 @@ function RecommendAccount({ data }) {
     const userData = useLocalStorage()
 
     const handleFollowUser = () => {
-        // handle in the next time
         if (isFollow) {
-            fetch(`https://tiktok.fullstack.edu.vn/api/users/${data.id}/unfollow`, {
-                method: 'POST',
-                headers: {
-                    Authorization: 'Bearer' + userData.token,
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => setIsFollow(!isFollow))
+            unFollowUser(data.id, userData.token).then(data => setIsFollow(!isFollow))
         } else {
-            fetch(`https://tiktok.fullstack.edu.vn/api/users/${data.id}/follow`, {
-                method: 'POST',
-                headers: {
-                    Authorization: 'Bearer' + userData.token,
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => setIsFollow(!isFollow))
+            followUser(data.id, userData.token).then(data => setIsFollow(!isFollow))
         }
     }
 

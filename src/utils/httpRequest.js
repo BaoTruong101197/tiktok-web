@@ -14,9 +14,4 @@ export const post = async (path, options = {}) => {
     return response.data
 }
 
-export const post2 = async (path, options = {}) => {
-    const response = await httpRequest.post(path, options)
-    return response.data
-}
-
 export default httpRequest

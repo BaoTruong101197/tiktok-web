@@ -5,7 +5,7 @@ import HeadlessTippy from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
 
 import styles from './Header.module.scss'
-import * as searchService from '~/services'
+import { search } from '~/services'
 import { useDebounce } from '~/hooks'
 import { Popper as PopperWrapper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem'
@@ -31,7 +31,7 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true)
 
-            const result = await searchService.search(debounce)
+            const result = await search(debounce)
 
             setSearchResult(result)
             setLoading(false)
