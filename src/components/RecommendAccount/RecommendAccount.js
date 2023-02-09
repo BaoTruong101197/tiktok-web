@@ -8,18 +8,25 @@ import Avatar from '~/components/Avatar'
 import { BlueTick } from '~/components/Icons'
 import { useLocalStorage } from '~/hooks'
 import { followUser, unFollowUser } from '~/services'
+import { actions } from '~/store'
+import { useContextProvider } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
 function RecommendAccount({ data }) {
     const [isFollow, setIsFollow] = useState(false)
     const userData = useLocalStorage()
+    const [, dispatch] = useContextProvider()
 
     const handleFollowUser = () => {
-        if (isFollow) {
-            unFollowUser(data.id, userData.token).then(data => setIsFollow(!isFollow))
+        if (!userData.signIn) {
+            dispatch(actions.setShowModal(true))
         } else {
-            followUser(data.id, userData.token).then(data => setIsFollow(!isFollow))
+            if (isFollow) {
+                unFollowUser(data.id, userData.token).then(data => setIsFollow(!isFollow))
+            } else {
+                followUser(data.id, userData.token).then(data => setIsFollow(!isFollow))
+            }
         }
     }
 
