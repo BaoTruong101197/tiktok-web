@@ -19,6 +19,10 @@
     object-fit: cover;
 }
 
+.full-logo {
+    width: 300px;
+}
+
 .content {
     display: flex;
     align-items: center;
@@ -26,6 +30,11 @@
     width: var(--default-layout-width);
     height: 100%;
     padding: 0 2.4rem 0 2rem;
+}
+
+.full-header {
+    width: 100%;
+    padding: 0 24px 0 16px;
 }
 
 .search-result,

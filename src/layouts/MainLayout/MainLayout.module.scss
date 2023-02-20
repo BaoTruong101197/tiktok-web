@@ -25,3 +25,15 @@
     height: 100%;
     min-height: 60%;
 }
+
+.full-content {
+    width: 100%;
+    justify-content: flex-start;
+
+    > .container {
+        margin: 0 0 0 14px;
+        padding: 32px 24px;
+        max-width: none;
+        flex: 1;
+    }
+}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
+import PropTypes from 'prop-types'
 
 import styles from './Header.module.scss'
 import config from '~/config'
@@ -24,7 +25,7 @@ import { useContextProvider, useLocalStorage } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
-function Header() {
+function Header({ fullScreen }) {
     const [user, setUser] = useState({})
     const [, dispatch] = useContextProvider()
 
@@ -45,8 +46,8 @@ function Header() {
 
     return (
         <header className={cx('wrapper')}>
-            <div className={cx('content')}>
-                <Link to={config.routes.home}>
+            <div className={cx('content', { 'full-header': fullScreen })}>
+                <Link to={config.routes.home} className={cx({ 'full-logo': fullScreen })}>
                     <Image src={images.logo} alt="Logo" className={cx('logo')} />
                 </Link>
                 <Search />
@@ -89,6 +90,10 @@ function Header() {
             </div>
         </header>
     )
+}
+
+Header.prototype = {
+    fullScreen: PropTypes.bool.isRequired
 }
 
 export default Header

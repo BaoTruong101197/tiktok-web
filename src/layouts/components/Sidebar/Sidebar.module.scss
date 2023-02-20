@@ -1,5 +1,6 @@
 .wrapper {
     position: relative;
+    width: 356px;
 }
 
 .sidebar {
@@ -37,4 +38,13 @@
             visibility: visible;
         }
     }
+}
+
+.content {
+    width: 100%;
+    padding: 0;
+}
+
+.full-sidebar {
+    width: 232px;
 }

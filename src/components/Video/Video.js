@@ -6,7 +6,7 @@ import { StartVideoIcon, PauseVideoIcon, VolumeOn, VolumeOff, FlagIcon } from '~
 
 const cx = classNames.bind(styles)
 
-function Video({ className, src, index, length, getMoreVideo }) {
+function Video({ className, src, index, length }) {
     const [playVideo, setPlayVideo] = useState(true)
     const [volumeOn, setVolumeOn] = useState(false)
 
@@ -35,7 +35,6 @@ function Video({ className, src, index, length, getMoreVideo }) {
                     videoRef.current.play()
                     setPlayVideo(true)
                     if (index + 1 === length) {
-                        getMoreVideo()
                     }
                 }
             } else {
@@ -48,9 +47,7 @@ function Video({ className, src, index, length, getMoreVideo }) {
 
         window.addEventListener('scroll', handleScroll)
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
+        return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
     useEffect(() => {

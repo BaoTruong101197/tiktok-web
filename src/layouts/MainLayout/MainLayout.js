@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
 
@@ -11,9 +13,20 @@ import { actions } from '~/store'
 
 const cx = classNames.bind(styles)
 
-function MainLayout({ children }) {
+function MainLayout({ children, path }) {
     const [state, dispatch] = useContextProvider()
+    const [fullScreen, setFullScreen] = useState(false)
+    const params = useParams()
     const { showModal } = state
+
+    useEffect(() => {
+        if (params.nickname) {
+            setFullScreen(true)
+        } else {
+            setFullScreen(false)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [path])
 
     const handleCloseOverlay = () => {
         dispatch(actions.setShowModal(false))
@@ -21,9 +34,9 @@ function MainLayout({ children }) {
 
     return (
         <div className={cx('wrapper')}>
-            <Header />
-            <main className={cx('content')}>
-                <Sidebar />
+            <Header fullScreen={fullScreen} />
+            <main className={cx('content', { 'full-content': fullScreen })}>
+                <Sidebar fullScreen={fullScreen} />
                 <div className={cx('container')}>{children}</div>
             </main>
             <ModalOverlay showModal={showModal} className={cx('modal')}>
@@ -34,7 +47,8 @@ function MainLayout({ children }) {
 }
 
 MainLayout.prototype = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    path: PropTypes.string
 }
 
 export default MainLayout

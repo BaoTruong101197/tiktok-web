@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind'
+import PropTypes from 'prop-types'
 
 import styles from './Sidebar.module.scss'
 import config from '~/config'
@@ -11,29 +12,35 @@ import { useLocalStorage } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
-function Sidebar() {
+function Sidebar({ fullScreen }) {
     return (
-        <div className={cx('wrapper')}>
-            <aside className={cx('sidebar')}>
-                <Menu>
-                    {config.sidebarMenuData.map(menuItem => (
-                        <MenuItem
-                            key={menuItem.id}
-                            to={menuItem.to}
-                            icon={menuItem.icon}
-                            iconActive={menuItem.iconActive}
-                            title={menuItem.title}
-                        />
-                    ))}
-                </Menu>
-                {!useLocalStorage().signIn && <Login />}
-                <SuggestedAccounts title="Suggested accounts" />
-                {useLocalStorage().signIn && <FollowingAccounts title="Following accounts" />}
-                <Discover />
-                <FooterSidebar />
-            </aside>
+        <div className={cx('wrapper', { 'full-sidebar': fullScreen })}>
+            <div className={cx('sidebar', { 'full-sidebar': fullScreen })}>
+                <div className={cx('content')}>
+                    <Menu>
+                        {config.sidebarMenuData.map(menuItem => (
+                            <MenuItem
+                                key={menuItem.id}
+                                to={menuItem.to}
+                                icon={menuItem.icon}
+                                iconActive={menuItem.iconActive}
+                                title={menuItem.title}
+                            />
+                        ))}
+                    </Menu>
+                    {!useLocalStorage().signIn && <Login />}
+                    <SuggestedAccounts title="Suggested accounts" />
+                    {useLocalStorage().signIn && <FollowingAccounts title="Following accounts" />}
+                    <Discover />
+                    <FooterSidebar />
+                </div>
+            </div>
         </div>
     )
+}
+
+Sidebar.prototype = {
+    fullScreen: PropTypes.bool.isRequired
 }
 
 export default Sidebar
