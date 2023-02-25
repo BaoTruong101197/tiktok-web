@@ -9,9 +9,9 @@ import Avatar from '~/components/Avatar'
 
 const cx = classNames.bind(styles)
 
-function AccountItem({ data }) {
+function AccountItem({ data, onClick }) {
     return (
-        <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
+        <Link to={`/@${data.nickname}`} className={cx('wrapper')} onClick={onClick}>
             <Avatar
                 className={cx('avatar')}
                 width="40px"
@@ -36,7 +36,8 @@ function AccountItem({ data }) {
 }
 
 AccountItem.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.object,
+    onClick: PropTypes.func
 }
 
 export default memo(AccountItem)

@@ -1,4 +1,13 @@
 export {
+    SharedIcon as SharedProfileIcon,
+    UserMoreIcon,
+    SendMessageIcon,
+    ReportIcon,
+    BlockIcon,
+    LockLikeIcon
+} from './Profile'
+
+export {
     Clear,
     Loading,
     Search,
@@ -10,7 +19,8 @@ export {
     CommentIcon,
     SharedIcon,
     DownArrow,
-    ClearForm
+    ClearForm,
+    FollowUser
 } from './Common'
 
 export {

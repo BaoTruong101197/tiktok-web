@@ -31,8 +31,8 @@ function Header({ fullScreen }) {
 
     const userData = useLocalStorage()
 
-    const signIn = userData.signIn
-    const nickname = userData.nickname
+    const signIn = userData && userData.signIn
+    const nickname = userData && userData.nickname
 
     useEffect(() => {
         if (signIn) {

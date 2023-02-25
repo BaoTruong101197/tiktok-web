@@ -13,6 +13,8 @@ import { useLocalStorage } from '~/hooks'
 const cx = classNames.bind(styles)
 
 function Sidebar({ fullScreen }) {
+    const userData = useLocalStorage()
+
     return (
         <div className={cx('wrapper', { 'full-sidebar': fullScreen })}>
             <div className={cx('sidebar', { 'full-sidebar': fullScreen })}>
@@ -28,9 +30,9 @@ function Sidebar({ fullScreen }) {
                             />
                         ))}
                     </Menu>
-                    {!useLocalStorage().signIn && <Login />}
+                    {userData && !userData.signIn && <Login />}
                     <SuggestedAccounts title="Suggested accounts" />
-                    {useLocalStorage().signIn && <FollowingAccounts title="Following accounts" />}
+                    {userData && userData.signIn && <FollowingAccounts title="Following accounts" />}
                     <Discover />
                     <FooterSidebar />
                 </div>

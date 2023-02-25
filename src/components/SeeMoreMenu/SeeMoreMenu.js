@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { useSpring, motion } from 'framer-motion'
 import PropTypes from 'prop-types'
-import Tippy from '@tippyjs/react/headless'
 import classNames from 'classnames/bind'
 
 import styles from './Menu.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
+import TippyAnimation from '~/components/TippyAnimation'
 import MenuItem from './MenuItem'
 import Header from './Header'
 import { useLocalStorage } from '~/hooks'
@@ -14,15 +13,10 @@ import { logout } from '~/services'
 const cx = classNames.bind(styles)
 
 function Menu({ children, items = [] }) {
-    const [show, setShow] = useState(false)
     const [history, setHistory] = useState([{ data: items }])
 
     const currentTab = history[history.length - 1]
     const userData = useLocalStorage()
-
-    // Animation
-    const springConfig = { damping: 15, stiffness: 150 }
-    const opacity = useSpring(0, springConfig)
 
     const renderItem = () => {
         return currentTab.data.map((item, index) => {
@@ -57,43 +51,27 @@ function Menu({ children, items = [] }) {
         })
     }
 
+    console.log(userData.nickname)
+
     const onBack = () => {
         setHistory(history.slice(0, history.length - 1))
     }
 
-    function onMount() {
-        setShow(true)
-        opacity.set(1)
-    }
-
-    function onHide({ unmount }) {
-        opacity.set(0)
-        setShow(false)
-        setHistory(history.slice(0, 1))
-    }
-
     return (
-        <Tippy
-            interactive={show}
+        <TippyAnimation
             offset={[13, 8]}
             placement="bottom-end"
-            animation={true}
-            onMount={onMount}
-            onHide={onHide}
-            delay={[0, 800]}
-            hideOnClick={false}
-            zIndex={100}
-            render={attrs => (
-                <motion.div className={cx('menu-list')} tabIndex="-1" style={{ opacity }} {...attrs}>
+            childrenTippy={
+                <PopperWrapper className={cx('menu-wrapper')}>
                     <PopperWrapper className={cx('menu-wrapper')}>
                         {history.length > 1 && <Header onBack={onBack} title={currentTab.title} />}
                         <nav className={cx('menu-content')}>{renderItem()}</nav>
                     </PopperWrapper>
-                </motion.div>
-            )}
+                </PopperWrapper>
+            }
         >
             {children}
-        </Tippy>
+        </TippyAnimation>
     )
 }
 

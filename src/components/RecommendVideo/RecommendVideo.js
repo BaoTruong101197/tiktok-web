@@ -1,51 +1,24 @@
 import { useState } from 'react'
 import classNames from 'classnames/bind'
-import Tippy from '@tippyjs/react/headless'
 import PropTypes from 'prop-types'
-import { useSpring, motion } from 'framer-motion'
 
 import styles from './RecommendVideo.module.scss'
+import { followUser, unFollowUser } from '~/services'
+import { useLocalStorage } from '~/hooks'
 import Avatar from '~/components/Avatar'
 import Video from '~/components/Video'
 import ActionItem from '~/components/ActionItem'
 import Button from '~/components/Button'
-import { useLocalStorage } from '~/hooks'
-import { followUser, unFollowUser } from '~/services'
-import { Popper as PopperWrapper } from '~/components/Popper'
-import {
-    HeartIcon,
-    CommentIcon,
-    SharedIcon,
-    BlueTick,
-    MusicIcon,
-    EmbedIcon,
-    SendIcon,
-    FacebookIcon,
-    WhatsAppIcon,
-    CopyLinkIcon,
-    DownArrow
-} from '~/components/Icons'
+import ShareUser from '~/components/ShareUser'
+import { HeartIcon, CommentIcon, BlueTick, MusicIcon, SharedIcon } from '~/components/Icons'
 
 const cx = classNames.bind(styles)
 
 function RecommendVideo({ data, index, length }) {
-    const [show, setShow] = useState(false)
     const [heartVideo, setHeartVideo] = useState(false)
     const [isFollow, setIsFollow] = useState(data.user.is_followed)
     const userData = useLocalStorage()
 
-    const springConfig = { damping: 15, stiffness: 150 }
-    const opacity = useSpring(0, springConfig)
-
-    function onMount() {
-        setShow(true)
-        opacity.set(1)
-    }
-
-    function onHide({ unmount }) {
-        setShow(false)
-        opacity.set(0)
-    }
     const handleHeartVideo = () => {
         setHeartVideo(!heartVideo)
     }
@@ -118,54 +91,9 @@ function RecommendVideo({ data, index, length }) {
                             onClick={handleHeartVideo}
                         />
                         <ActionItem icon={<CommentIcon />} number={data.comments_count} />
-                        <Tippy
-                            interactive={show}
-                            offset={[-25, 5]}
-                            placement="top-start"
-                            delay={[0, 400]}
-                            animation={true}
-                            onMount={onMount}
-                            onHide={onHide}
-                            render={attrs => (
-                                <motion.div className={cx('menu-list')} tabIndex="-1" style={{ opacity }} {...attrs}>
-                                    <PopperWrapper className={cx('menu-wrapper')}>
-                                        <Button
-                                            className={cx('menu-item')}
-                                            LeftIcon={<EmbedIcon className={cx('item-icon')} />}
-                                        >
-                                            Embed
-                                        </Button>{' '}
-                                        <Button
-                                            className={cx('menu-item')}
-                                            LeftIcon={<SendIcon className={cx('item-icon')} />}
-                                        >
-                                            Send to friends
-                                        </Button>
-                                        <Button
-                                            className={cx('menu-item')}
-                                            LeftIcon={<FacebookIcon className={cx('item-icon')} />}
-                                        >
-                                            Share to Facebook
-                                        </Button>
-                                        <Button
-                                            className={cx('menu-item')}
-                                            LeftIcon={<WhatsAppIcon className={cx('item-icon')} />}
-                                        >
-                                            Share to WhatsApp
-                                        </Button>
-                                        <Button
-                                            className={cx('menu-item')}
-                                            LeftIcon={<CopyLinkIcon className={cx('item-icon')} />}
-                                        >
-                                            Copy link{' '}
-                                        </Button>
-                                        <Button className={cx('down-arrow')} LeftIcon={<DownArrow />}></Button>
-                                    </PopperWrapper>
-                                </motion.div>
-                            )}
-                        >
+                        <ShareUser>
                             <ActionItem icon={<SharedIcon />} number={data.shares_count} />
-                        </Tippy>
+                        </ShareUser>
                     </div>
                 </div>
             </div>

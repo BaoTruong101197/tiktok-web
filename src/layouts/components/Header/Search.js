@@ -65,7 +65,9 @@ function Search() {
                         <PopperWrapper className={cx('scrollable')}>
                             <label className={cx('search-title')}>Accounts</label>
                             {searchResult &&
-                                searchResult.map(account => <AccountItem key={account.id} data={account} />)}
+                                searchResult.map(account => (
+                                    <AccountItem key={account.id} data={account} onClick={() => setShowTippy(false)} />
+                                ))}
                             <Link className={cx('view-all')}>{`View all results for "${debounce}"`}</Link>
                         </PopperWrapper>
                     </div>

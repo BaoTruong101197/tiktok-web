@@ -16,7 +16,11 @@ function Home({ title }) {
 
     useEffect(() => {
         setVideoData([])
-        getVideoList(title, 1).then(data => setVideoData(data.data.filter(video => video.user_id !== userData.id)))
+        if (userData) {
+            getVideoList(title, 1).then(data => setVideoData(data.data.filter(video => video.user_id !== userData.id)))
+        } else {
+            getVideoList(title, 1).then(data => setVideoData(data.data))
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [title])
 
