@@ -9,14 +9,18 @@ import { Popper as PopperWrapper } from '~/components/Popper'
 import { BlueTick } from '~/components/Icons'
 import RecommendAccount from '~/components/RecommendAccount'
 import Avatar from '~/components/Avatar'
+import { useContext } from 'react'
+import { Context } from '~/layouts/MainLayout/MainLayout'
 
 const cx = classNames.bind(styles)
 
 function AccountItem({ suggested, data }) {
+    const { fullScreen } = useContext(Context)
+
     return (
         <div>
             <Tippy
-                disabled={!suggested}
+                disabled={!suggested || fullScreen}
                 interactive
                 offset={[-100, 5]}
                 placement="bottom-start"

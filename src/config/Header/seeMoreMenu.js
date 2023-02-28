@@ -92,7 +92,8 @@ export const USER_MENU_ITEMS = [
     {
         name: 'View profile',
         icon: ProfileIcon,
-        to: '/profile'
+        to: '/profile',
+        profile: true
     },
     {
         name: 'Get Coins',

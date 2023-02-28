@@ -5,14 +5,19 @@ import classNames from 'classnames/bind'
 import styles from './Menu.module.scss'
 import Button from '~/components/Button'
 import SwitchButton from '~/components/SwitchButton'
+import { useLocalStorage } from '~/hooks'
 
 const cx = classNames.bind(styles)
 
 function MenuItem({ data, level, onClick }) {
+    const userData = useLocalStorage()
     let Icon = Fragment
     if (data.icon) {
         Icon = data.icon
-    } 
+    }
+    if (data.profile) {
+        data.to = `/@${userData.nickname}`
+    }
 
     return (
         <Button

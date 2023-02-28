@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
@@ -8,18 +8,21 @@ import Button from '~/components/Button'
 import ShareUser from '~/components/ShareUser'
 import ProfileAction from './ProfileAction'
 import TippyAnimation from '~/components/TippyAnimation'
-import HeaderVideo from './HeaderVideo'
 import {
     FollowUser as FollowUserIcon,
     SharedProfileIcon,
     UserMoreIcon,
     SendMessageIcon,
     ReportIcon,
-    BlockIcon
+    BlockIcon,
+    LockLikeIcon,
+    LockProfileIcon
 } from '~/components/Icons'
 import { Popper as PopperWrapper } from '~/components/Popper'
 import { getUser, followUser, unFollowUser } from '~/services'
 import { useLocalStorage } from '~/hooks'
+
+import VideoProfile from './VideoProfile'
 
 const cx = classNames.bind(styles)
 
@@ -28,8 +31,11 @@ function Profile() {
     const [isFollow, setIsFollow] = useState(false)
     const params = useParams()
     const userData = useLocalStorage()
+    const [likedTab, setLikedTab] = useState(false)
+    const tabActiveRef = useRef()
 
     useEffect(() => {
+        localStorage.removeItem('profile-video-running')
         if (params) {
             getUser(params.nickname)
                 .then(data => {
@@ -38,6 +44,8 @@ function Profile() {
                 })
                 .catch(error => console.log(error))
         }
+
+        return () => setLikedTab(false)
     }, [params])
 
     const handleFollowUser = () => {
@@ -112,8 +120,43 @@ function Profile() {
                     <UserMoreIcon className={cx('user-more')} />
                 </TippyAnimation>
             </div>
-            <div className={cx('video-container')}>
-                <HeaderVideo />
+            <div className={cx('video-wrapper')}>
+                <header className={cx('video-header')}>
+                    <div
+                        className={cx('videos-tab')}
+                        onMouseEnter={() => (tabActiveRef.current.style.left = 0)}
+                        onMouseLeave={() => (tabActiveRef.current.style.left = likedTab ? '50%' : 0)}
+                        onClick={() => {
+                            setLikedTab(false)
+                        }}
+                    >
+                        <h2 className={cx('header-text', { 'unActive-text': likedTab })}>Videos</h2>
+                    </div>
+                    <div
+                        className={cx('liked-tab')}
+                        onMouseEnter={() => (tabActiveRef.current.style.left = '50%')}
+                        onMouseLeave={() => (tabActiveRef.current.style.left = !likedTab ? 0 : '50%')}
+                        onClick={() => {
+                            setLikedTab(true)
+                        }}
+                    >
+                        <LockLikeIcon className={cx('lock-icon', { 'unActive-text': !likedTab })} />
+                        <h2 className={cx('header-text', { 'unActive-text': !likedTab })}>Liked</h2>
+                    </div>
+                    <div className={cx('tab-active')} ref={tabActiveRef} style={{ left: likedTab ? '50%' : 0 }}></div>
+                </header>
+                {likedTab ? (
+                    <div className={cx('liked-container')}>
+                        <LockProfileIcon className={cx('lock-profile')} />
+                        <strong className={cx('lock-header')}>This user's liked videos are private</strong>
+                        <p className={cx('lock-desc')}>Videos liked by {userInfo.nickname} are currently hidden</p>
+                    </div>
+                ) : (
+                    <div className={cx('video-container')}>
+                        {userInfo.videos &&
+                            userInfo.videos.map(dataItem => <VideoProfile key={dataItem.id} data={dataItem} />)}
+                    </div>
+                )}
             </div>
         </div>
     )

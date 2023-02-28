@@ -10,6 +10,9 @@ import ModalOverlay from '~/components/Modal'
 import Sidebar from '~/layouts/components/Sidebar'
 import { useContextProvider } from '~/hooks'
 import { actions } from '~/store'
+import { createContext } from 'react'
+
+export const Context = createContext()
 
 const cx = classNames.bind(styles)
 
@@ -33,16 +36,18 @@ function MainLayout({ children, path }) {
     }
 
     return (
-        <div className={cx('wrapper')}>
-            <Header fullScreen={fullScreen} />
-            <main className={cx('content', { 'full-content': fullScreen })}>
-                <Sidebar fullScreen={fullScreen} />
-                <div className={cx('container')}>{children}</div>
-            </main>
-            <ModalOverlay showModal={showModal} className={cx('modal')}>
-                <LoginForm handleCloseOverlay={handleCloseOverlay} />
-            </ModalOverlay>
-        </div>
+        <Context.Provider value={{ fullScreen }}>
+            <div className={cx('wrapper')}>
+                <Header fullScreen={fullScreen} />
+                <main className={cx('content', { 'full-content': fullScreen })}>
+                    <Sidebar />
+                    <div className={cx('container')}>{children}</div>
+                </main>
+                <ModalOverlay showModal={showModal} className={cx('modal')}>
+                    <LoginForm handleCloseOverlay={handleCloseOverlay} />
+                </ModalOverlay>
+            </div>
+        </Context.Provider>
     )
 }
 

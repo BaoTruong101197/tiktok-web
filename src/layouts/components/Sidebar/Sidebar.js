@@ -9,11 +9,14 @@ import { SuggestedAccounts, FollowingAccounts } from '~/components/SuggestedAcco
 import Discover from './Discover'
 import FooterSidebar from '~/layouts/components/Sidebar/FooterSidebar'
 import { useLocalStorage } from '~/hooks'
+import { useContext } from 'react'
+import { Context } from '~/layouts/MainLayout/MainLayout'
 
 const cx = classNames.bind(styles)
 
-function Sidebar({ fullScreen }) {
+function Sidebar() {
     const userData = useLocalStorage()
+    const { fullScreen } = useContext(Context)
 
     return (
         <div className={cx('wrapper', { 'full-sidebar': fullScreen })}>

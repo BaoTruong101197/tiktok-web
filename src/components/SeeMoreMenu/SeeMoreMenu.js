@@ -51,8 +51,6 @@ function Menu({ children, items = [] }) {
         })
     }
 
-    console.log(userData.nickname)
-
     const onBack = () => {
         setHistory(history.slice(0, history.length - 1))
     }

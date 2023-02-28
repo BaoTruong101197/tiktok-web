@@ -4,7 +4,9 @@ export {
     SendMessageIcon,
     ReportIcon,
     BlockIcon,
-    LockLikeIcon
+    LockLikeIcon,
+    VideoProfileIcon,
+    LockProfileIcon
 } from './Profile'
 
 export {
