@@ -52,7 +52,7 @@ function Header({ fullScreen }) {
                 </Link>
                 <Search />
                 <div className={cx('header-right')}>
-                    <Button className={cx('upload-btn')} LeftIcon={<PlusIcon />}>
+                    <Button className={cx('upload-btn')} to="/upload" LeftIcon={<PlusIcon />}>
                         Upload
                     </Button>
                     {signIn ? (

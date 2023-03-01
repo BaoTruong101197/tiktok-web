@@ -54,4 +54,6 @@ export {
     CopyLinkIcon
 } from './Video'
 
+export { CheckIcon, DropDownIcon } from './Upload'
+
 export { HomeIcon, HomeActiveIcon, PeopleGroupIcon, PeopleGroupActiveIcon, LiveIcon, LiveActiveIcon } from './Sidebar'
