@@ -1,5 +1,7 @@
+import { useEffect, useRef, useState } from 'react'
 import classNames from 'classnames/bind'
-import { useState } from 'react'
+import HeadlessTippy from '@tippyjs/react/headless'
+
 import styles from './Upload.module.scss'
 import Button from '~/components/Button'
 import { CheckIcon } from '~/components/Icons'
@@ -7,8 +9,34 @@ import SwitchButton from '~/components/SwitchButton'
 
 const cx = classNames.bind(styles)
 
+const allowString = ['Comment', 'Duet', 'Stitch']
+
 function Upload() {
     const [showSelect, setShowSelect] = useState(false)
+    const [captionValue, setCaptionValue] = useState('')
+    const [thumbnailValue, setThumbnailValue] = useState(0)
+    const [optionValue, setOptionValue] = useState('Public')
+    const [allowValue, setAllowValue] = useState([])
+    const inputFileRef = useRef()
+
+    useEffect(() => {
+        console.log(captionValue, thumbnailValue, optionValue)
+    }, [captionValue, thumbnailValue, optionValue])
+
+    const handleSelectVideo = () => {
+        inputFileRef.current.click()
+    }
+
+    const handleAllowUsers = index => {
+        if (allowValue.includes(index)) {
+            setAllowValue(allowValue.filter(item => item !== index))
+        } else {
+            setAllowValue([...allowValue, index])
+        }
+    }
+
+    console.log('AAA')
+
     return (
         <div className={cx('upload-wrapper')}>
             <div className={cx('upload-container')}>
@@ -17,7 +45,8 @@ function Upload() {
                     <p className={cx('upload-desc')}>Post a video to your account</p>
                     <div className={cx('upload-body')}>
                         <div className={cx('uploader')}>
-                            <div className={cx('uploader-card')}>
+                            <input type="file" accept="video/*" style={{ display: 'none' }} ref={inputFileRef} />
+                            <div className={cx('uploader-card')} onClick={handleSelectVideo}>
                                 <img
                                     src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/cloud-icon1.ecf0bf2b.svg"
                                     className={cx('upload-img')}
@@ -58,59 +87,92 @@ function Upload() {
                             </div>
                             <div className={cx('form-wrap')}>
                                 <label className={cx('form-label')}>Caption</label>
-                                <input className={cx('caption-input')} />
+                                <input
+                                    className={cx('caption-input')}
+                                    value={captionValue}
+                                    onChange={e => setCaptionValue(e.target.value)}
+                                />
                             </div>
                             <div className={cx('form-wrap')}>
                                 <label className={cx('form-label')}>Thumbnail Time</label>
-                                <input className={cx('caption-input')} style={{ width: '20%' }} />
-                            </div>
-                            <div className={cx('select-wrap')}>
-                                <label className={cx('auth-label')}>Who can watch this video</label>
                                 <input
-                                    className={cx('select-input')}
-                                    onClick={() => setShowSelect(true)}
-                                    onBlur={() => setShowSelect(false)}
-                                    readOnly={true}
+                                    className={cx('caption-input')}
+                                    style={{ width: '20%' }}
+                                    value={`${thumbnailValue}s`}
+                                    onChange={e => setThumbnailValue(e.target.value)}
                                 />
-                                <span className={cx('select-text')}>Public</span>
-                                {showSelect && (
-                                    <div className={cx('option-wrap')}>
-                                        <div className={cx('option-item')} value="0">
-                                            Public
+                            </div>
+                            <div className={cx('select-container')}>
+                                <HeadlessTippy
+                                    visible={showSelect}
+                                    interactive
+                                    offset={[0, 0]}
+                                    placement="bottom-start"
+                                    render={attrs => (
+                                        <div className={cx('option-wrap')} tabIndex="-1" {...attrs}>
+                                            <div
+                                                className={cx('option-item')}
+                                                onClick={() => {
+                                                    setOptionValue('Public')
+                                                    setShowSelect(false)
+                                                }}
+                                            >
+                                                Public
+                                            </div>
+                                            <div
+                                                className={cx('option-item')}
+                                                onClick={() => {
+                                                    setOptionValue('Friends')
+                                                    setShowSelect(false)
+                                                }}
+                                            >
+                                                Friends
+                                            </div>
+                                            <div
+                                                className={cx('option-item')}
+                                                onClick={() => {
+                                                    setOptionValue('Private')
+                                                    setShowSelect(false)
+                                                }}
+                                            >
+                                                Private
+                                            </div>
                                         </div>
-                                        <div className={cx('option-item')} value="1">
-                                            Friends
-                                        </div>
-                                        <div className={cx('option-item')} value="2">
-                                            Private
-                                        </div>
+                                    )}
+                                    onClickOutside={() => setShowSelect(false)}
+                                >
+                                    <div className={cx('select-wrap')}>
+                                        <label className={cx('auth-label')}>Who can watch this video</label>
+                                        <input
+                                            className={cx('select-input')}
+                                            onClick={() => setShowSelect(true)}
+                                            readOnly={true}
+                                        />
+                                        <span className={cx('select-text')}>{optionValue}</span>
                                     </div>
-                                )}
+                                </HeadlessTippy>
                             </div>
                             <div className={cx('allow-wrap')}>
                                 <label className={cx('allow-label')}>Allow users to:</label>
                                 <div className={cx('allow-content')}>
-                                    <div className={cx('allow-option')}>
-                                        <input type="checkbox" className={cx('allow-checkbox')} />
-                                        <div className={cx('custom-checkbox')}>
-                                            <CheckIcon />
-                                        </div>
-                                        <span className={cx('allow-text')}>Comment</span>
-                                    </div>
-                                    <div className={cx('allow-option')}>
-                                        <input type="checkbox" className={cx('allow-checkbox')} />
-                                        <div className={cx('custom-checkbox')}>
-                                            <CheckIcon />
-                                        </div>
-                                        <span className={cx('allow-text')}>Duet</span>
-                                    </div>
-                                    <div className={cx('allow-option')}>
-                                        <input type="checkbox" className={cx('allow-checkbox')} />
-                                        <div className={cx('custom-checkbox')}>
-                                            <CheckIcon />
-                                        </div>
-                                        <span className={cx('allow-text')}>Stitch</span>
-                                    </div>
+                                    {allowString.map((item, index) => {
+                                        return (
+                                            <div
+                                                className={cx('allow-option')}
+                                                key={index}
+                                                onClick={() => handleAllowUsers(index)}
+                                            >
+                                                <div
+                                                    className={cx('custom-checkbox', {
+                                                        'checkbox-checked': allowValue.includes(index)
+                                                    })}
+                                                >
+                                                    {allowValue.includes(index) && <CheckIcon />}
+                                                </div>
+                                                <span className={cx('allow-text')}>{item}</span>
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
                             <div className={cx('switch-wrap')}>

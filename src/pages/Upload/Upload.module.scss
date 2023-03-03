@@ -1,40 +1,59 @@
+:root {
+    --text-color: rgba(22, 24, 35, 1);
+    --text-lighter-color: var(--text-lighter-color);
+    --text-lightest-color: rgba(22, 24, 35, 0.5);
+
+    --white-color: rgb(255, 255, 255);
+    --bg-color: rgb(248, 248, 248);
+
+    --line-height: 1.5;
+    --font-size-heading: 24px;
+    --font-size-title: 18px;
+    --font-size-text: 16px;
+    --font-size-small-text: 14px;
+    --font-size-smallest-text: 12px;
+    --font-weight-bold: 700;
+    --font-weight-semiBold: 600;
+    --font-weight-regular: 400;
+}
+
 .upload-wrapper {
-    background-color: rgb(248, 248, 248);
     width: 100%;
     min-height: 80vh;
+    background-color: var(--bg-color);
 }
 
 .upload-container {
-    margin: 0 auto;
     width: 1100px;
     height: 100%;
+    margin: 0 auto;
     padding: 16px 0px;
 }
 
 .upload-content {
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgb(0 0 0 / 6%) 0px 2px 8px;
-    width: 1100px;
+    width: 100%;
     height: 100%;
     border-radius: 8px;
     padding: 24px 40px;
+    background-color: var(--white-color);
+    box-shadow: rgb(0 0 0 / 6%) 0px 2px 8px;
 }
 
 .upload-header {
-    line-height: 1.5;
-    color: rgba(22, 24, 35, 1);
-    font-weight: 700;
-    font-size: 24px;
     margin-left: -5px;
+    font-size: var(--font-size-heading);
+    line-height: var(--line-height);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color);
 }
 
 .upload-desc {
     margin-left: -5px;
     margin-top: 2px;
-    font-size: 18px;
-    line-height: 1.5;
+    font-size: var(--font-size-title);
+    line-height: var(--line-height);
     color: rgba(22, 24, 35, 0.5);
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
 }
 
 .upload-body {
@@ -47,18 +66,17 @@
 }
 
 .uploader-card {
-    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    cursor: pointer;
     height: 458px;
     width: 260px;
+    padding: 0 35px;
+    border-radius: 8px;
     border: 2px dashed rgba(22, 24, 35, 0.2);
     transition: background 0.15s ease-in-out 0s;
-    padding-left: 35px;
-    padding-right: 35px;
+    cursor: pointer;
 
     &:hover {
         background: rgba(22, 24, 35, 0.03);
@@ -68,28 +86,27 @@
 .uploader-heading {
     text-align: center;
     margin-top: 24px;
-    font-size: 18px;
-    line-height: 1.5;
-    font-weight: 600;
-    color: rgba(22, 24, 35, 1);
+    font-size: var(--font-size-title);
+    line-height: var(--line-height);
+    font-weight: var(--font-weight-semiBold);
+    color: var(--text-color);
 }
 
 .uploader-text {
-    margin-top: 4px;
-    margin-bottom: 24px;
-    line-height: 1.5;
-    color: rgba(22, 24, 35, 0.75);
-    font-size: 14px;
-    font-weight: 400;
+    margin: 4px 0 24px 0;
+    font-size: var(--font-size-small-text);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height);
+    color: var(--text-lighter-color);
 }
 
 .uploader-subtext {
     margin-bottom: 6px;
     text-align: center;
-    line-height: 1.5;
-    font-size: 14px;
-    font-weight: 400;
-    color: rgba(22, 24, 35, 0.5);
+    line-height: var(--line-height);
+    font-size: var(--font-size-small-text);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-lighter-color);
 }
 
 .uploader-btn {
@@ -104,18 +121,18 @@
 }
 
 .divide-video {
-    background-color: rgba(22, 24, 35, 0.03);
     position: relative;
-    border-radius: 2px;
     height: 104px;
     margin-bottom: 24px;
+    border-radius: 2px;
+    background-color: rgba(22, 24, 35, 0.03);
 }
 
 .editor-introduction-wrap {
+    position: absolute;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    position: absolute;
     top: 16px;
     left: 24px;
     padding: 0px;
@@ -130,26 +147,25 @@
 }
 
 .editor-introduction {
-    width: 496px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 496px;
     gap: 4px;
 }
 
 .editor-title {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: var(--font-size-text);
+    font-weight: var(--font-weight-semiBold);
+    line-height: var(--line-height);
 }
 
 .editor-subtitle {
-    font-weight: 400;
-    color: rgba(22, 24, 35, 0.75);
     opacity: 0.75;
-    font-size: 14px;
-    line-height: 22px;
-    font-style: normal;
+    font-size: var(--font-size-small-text);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-lighter-color);
+    line-height: var(--line-height);
 }
 
 .editor-btn {
@@ -159,59 +175,62 @@
 }
 
 .form-wrap {
-    margin-bottom: 24px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 24px;
 }
 
 .auth-label {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: var(--font-size-text);
+    font-weight: var(--font-weight-semiBold);
+    line-height: var(--line-height);
 }
 
 .form-label {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-text);
+    line-height: var(--line-height);
 }
 
 .caption-input {
-    margin-top: 4px;
-    min-height: 46px;
     position: relative;
+    width: 100%;
+    min-height: 46px;
+    margin-top: 4px;
+    padding: 0px 80px 0px 16px;
     border: 1px solid rgba(22, 24, 35, 0.12);
     border-radius: 4px;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-text);
+    line-height: var(--line-height) x;
     cursor: text;
-    width: 100%;
-    padding: 0px 80px 0px 16px;
 }
 
 // Custom Select Option
+.select-container {
+    position: relative;
+}
+
 .select-wrap {
-    width: 300px;
-    min-width: 36px;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    width: 300px;
+    min-width: 36px;
 }
 
 .select-input {
+    position: relative;
     margin-top: 4px;
     width: 100%;
     height: 36px;
-    border: 1px solid rgba(22, 24, 35, 0.12);
-    background: rgb(255, 255, 255);
-    border-radius: 4px;
     padding: 7px 12px;
-    cursor: pointer;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    border-radius: 4px;
+    background: var(--white-color);
     outline: none;
-
-    position: relative;
+    cursor: pointer;
 }
 
 .select-text {
@@ -219,44 +238,43 @@
     top: 53%;
     left: 4%;
     font-family: ProximaNova;
-    font-size: 16px;
-    font-weight: 400;
-    color: rgb(22, 24, 35);
+    font-size: var(--font-size-text);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-color);
 }
 
 .option-wrap {
     position: absolute;
-    top: 100%;
+    top: 300%;
     left: 0;
-    width: 100%;
+    z-index: 9;
     display: flex;
     flex-direction: column;
-    max-height: 1000px;
+    width: 300px;
     margin-top: 4px;
-    border-radius: 4px;
     padding: 4px 0px;
-    background: rgb(255, 255, 255);
+    border-radius: 4px;
+    background: var(--white-color);
     box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
     transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
-    overflow: overlay;
 }
 
 .option-item {
     width: 100%;
     display: flex;
-    background: rgb(255, 255, 255);
+    background: var(--white-color);
     padding: 10px 12px;
     font-family: ProximaNova;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-text);
+    line-height: var(--line-height);
+    color: var(--text-color);
     box-sizing: border-box;
-    color: rgb(22, 24, 35);
     cursor: pointer;
-}
 
-.option-item:hover {
-    background: rgba(22, 24, 35, 0.06);
+    &:hover {
+        background: rgba(22, 24, 35, 0.06);
+    }
 }
 
 .allow-wrap {
@@ -265,10 +283,10 @@
 
 .allow-label {
     margin-bottom: 4px;
-    color: rgba(22, 24, 35, 1);
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: var(--font-size-text);
+    font-weight: var(--font-weight-semiBold);
+    line-height: var(--line-height);
+    color: var(--text-color);
 }
 
 .allow-content {
@@ -280,75 +298,71 @@
 .allow-option {
     height: 100%;
     padding: 0;
-    line-height: 24px;
+    line-height: var(--line-height) x;
     margin-right: 32px;
     position: relative;
     display: flex;
     align-items: center;
-}
+    cursor: pointer;
 
-.allow-checkbox {
-    position: absolute;
-    height: 16px;
-    width: 16px;
-    border-radius: 2px;
-    appearance: none;
+    &:hover > .custom-checkbox {
+        border: 1px solid var(--primary);
+    }
 }
-
 .custom-checkbox {
-    box-sizing: border-box;
     position: relative;
-    height: 16px;
-    width: 16px;
     display: flex;
-    -webkit-box-align: center;
     align-items: center;
-    -webkit-box-pack: center;
     justify-content: center;
+    width: 16px;
+    height: 16px;
     border-radius: 2px;
     pointer-events: none;
-    color: var(--white);
-    border: none;
+    border: 1px solid rgb(227, 227, 228);
+}
+
+.checkbox-checked {
     background: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--primary);
 }
 
 .allow-text {
     margin-left: 12px;
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 400;
+    font-size: var(--font-size-text);
+    line-height: var(--line-height);
+    font-weight: var(--font-weight-regular);
 }
 
 .switch-wrap {
+    display: flex;
+    align-items: center;
     margin-top: 24px;
     margin-bottom: 6px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
 }
 
 .switch-text {
-    line-height: 1.5;
-    font-size: 16px;
-    font-weight: 600;
-    color: rgba(22, 24, 35, 1);
+    line-height: var(--line-height);
+    font-size: var(--font-size-text);
+    font-weight: var(--font-weight-semiBold);
+    color: var(--text-color);
     margin-right: 14px;
 }
 
 .form-desc {
-    line-height: 1.5;
-    color: rgba(22, 24, 35, 0.75);
-    font-weight: 400;
-    font-size: 12px;
+    line-height: var(--line-height);
+    color: var(--text-lighter-color);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-smallest-text);
 }
 
 .learn-more {
-    color: rgba(22, 24, 35, 1);
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 1.5;
-    cursor: pointer;
     margin-left: 5px;
+    font-weight: var(--font-weight-semiBold);
+    font-size: var(--font-size-smallest-text);
+    line-height: var(--line-height);
+    color: var(--text-color);
+    cursor: pointer;
 }
 
 .btn-wrap {
@@ -360,7 +374,7 @@
         border-width: 1px;
         border-radius: 2px;
         border-color: rgba(22, 24, 35, 0.12);
-        background-color: rgba(255, 255, 255, 1);
+        background-color: var(--white-color);
         width: 164px;
 
         &:hover {

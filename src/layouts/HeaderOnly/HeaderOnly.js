@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
 import Header from '~/layouts/components/Header'
 import styles from './HeaderOnly.module.scss'
-import Footer from '~/components/Footer/Footer'
+import Footer from '~/components/Footer'
 
 const cx = classNames.bind(styles)
 
