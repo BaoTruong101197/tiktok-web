@@ -6,6 +6,9 @@ import styles from './Upload.module.scss'
 import Button from '~/components/Button'
 import { CheckIcon } from '~/components/Icons'
 import SwitchButton from '~/components/SwitchButton'
+import { useLocalStorage } from '~/hooks'
+import { getUser } from '~/services'
+import VideoUpload from './VideoUpload'
 
 const cx = classNames.bind(styles)
 
@@ -17,14 +20,32 @@ function Upload() {
     const [thumbnailValue, setThumbnailValue] = useState(0)
     const [optionValue, setOptionValue] = useState('Public')
     const [allowValue, setAllowValue] = useState([])
+    const [video, setVideo] = useState()
     const inputFileRef = useRef()
 
+    const user = useLocalStorage()
+    const nickname = user && user.nickname
+    const [userData, setUserData] = useState()
+
     useEffect(() => {
-        console.log(captionValue, thumbnailValue, optionValue)
+        // console.log(captionValue, thumbnailValue, optionValue)
     }, [captionValue, thumbnailValue, optionValue])
 
-    const handleSelectVideo = () => {
-        inputFileRef.current.click()
+    useEffect(() => {
+        if (video) {
+            getUser(nickname)
+                .then(data => {
+                    setUserData(data)
+                })
+                .catch(error => console.log(error))
+        }
+    }, [nickname, video])
+
+    const handleSelectVideo = e => {
+        const file = e.target.files[0]
+
+        file.preview = URL.createObjectURL(file)
+        setVideo(file)
     }
 
     const handleAllowUsers = index => {
@@ -35,8 +56,6 @@ function Upload() {
         }
     }
 
-    console.log('AAA')
-
     return (
         <div className={cx('upload-wrapper')}>
             <div className={cx('upload-container')}>
@@ -44,27 +63,38 @@ function Upload() {
                     <header className={cx('upload-header')}>Upload video</header>
                     <p className={cx('upload-desc')}>Post a video to your account</p>
                     <div className={cx('upload-body')}>
-                        <div className={cx('uploader')}>
-                            <input type="file" accept="video/*" style={{ display: 'none' }} ref={inputFileRef} />
-                            <div className={cx('uploader-card')} onClick={handleSelectVideo}>
-                                <img
-                                    src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/cloud-icon1.ecf0bf2b.svg"
-                                    className={cx('upload-img')}
-                                    alt="upload"
+                        {video && userData && video.preview ? (
+                            <VideoUpload video={video} userData={userData} />
+                        ) : (
+                            <div className={cx('uploader')}>
+                                <input
+                                    type="file"
+                                    accept="video/*"
+                                    style={{ display: 'none' }}
+                                    ref={inputFileRef}
+                                    onChange={handleSelectVideo}
                                 />
-                                <h3 className={cx('uploader-heading')}>Select video to upload</h3>
-                                <p className={cx('uploader-text')}>Or drag and drop a file</p>
-                                <div className={cx('uploader-info')}>
-                                    <p className={cx('uploader-subtext')}>MP4 or WebM</p>
-                                    <p className={cx('uploader-subtext')}>720x1280 resolution or higher</p>
-                                    <p className={cx('uploader-subtext')}>Up to 30 minutes</p>
-                                    <p className={cx('uploader-subtext')}>Less than 2 GB</p>
+                                <div className={cx('uploader-card')} onClick={() => inputFileRef.current.click()}>
+                                    <img
+                                        src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/cloud-icon1.ecf0bf2b.svg"
+                                        className={cx('upload-img')}
+                                        alt="upload"
+                                    />
+                                    <h3 className={cx('uploader-heading')}>Select video to upload</h3>
+                                    <p className={cx('uploader-text')}>Or drag and drop a file</p>
+                                    <div className={cx('uploader-info')}>
+                                        <p className={cx('uploader-subtext')}>MP4 or WebM</p>
+                                        <p className={cx('uploader-subtext')}>720x1280 resolution or higher</p>
+                                        <p className={cx('uploader-subtext')}>Up to 30 minutes</p>
+                                        <p className={cx('uploader-subtext')}>Less than 2 GB</p>
+                                    </div>
+                                    <Button className={cx('uploader-btn')} primary>
+                                        Select file
+                                    </Button>
                                 </div>
-                                <Button className={cx('uploader-btn')} primary>
-                                    Select file
-                                </Button>
                             </div>
-                        </div>
+                        )}
+
                         <form className={cx('form')}>
                             <div className={cx('divide-video')}>
                                 <div className={cx('editor-introduction-wrap')}>
