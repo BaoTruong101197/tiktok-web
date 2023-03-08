@@ -16,3 +16,19 @@ export const getVideoList = async (title, page, token = '') => {
         console.error('Error: ', error)
     }
 }
+
+export const createVideo = async (formData, token) => {
+    try {
+        const response = await axios
+            .post('https://tiktok.fullstack.edu.vn/api/videos', formData, {
+                headers: { 'content-type': 'multipart/form-data', Authorization: `Bearer ${token}` }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+        return response.data
+    } catch (error) {
+        console.log('Error', error)
+    }
+}

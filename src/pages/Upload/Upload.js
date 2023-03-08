@@ -1,14 +1,18 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames/bind'
 import HeadlessTippy from '@tippyjs/react/headless'
 
 import styles from './Upload.module.scss'
 import Button from '~/components/Button'
-import { CheckIcon } from '~/components/Icons'
 import SwitchButton from '~/components/SwitchButton'
 import { useLocalStorage } from '~/hooks'
 import { getUser } from '~/services'
 import VideoUpload from './VideoUpload'
+import DivideVideo from './DivideVideo'
+import AllowUser from './AllowUser'
+import { createVideo } from '~/services'
+
+// import { postVideo } from '~/services'
 
 const cx = classNames.bind(styles)
 
@@ -17,19 +21,15 @@ const allowString = ['Comment', 'Duet', 'Stitch']
 function Upload() {
     const [showSelect, setShowSelect] = useState(false)
     const [captionValue, setCaptionValue] = useState('')
-    const [thumbnailValue, setThumbnailValue] = useState(0)
+    const [thumbnailValue, setThumbnailValue] = useState()
     const [optionValue, setOptionValue] = useState('Public')
-    const [allowValue, setAllowValue] = useState([])
+    const [allowValue, setAllowValue] = useState([0, 1, 2])
     const [video, setVideo] = useState()
     const inputFileRef = useRef()
 
     const user = useLocalStorage()
     const nickname = user && user.nickname
     const [userData, setUserData] = useState()
-
-    useEffect(() => {
-        // console.log(captionValue, thumbnailValue, optionValue)
-    }, [captionValue, thumbnailValue, optionValue])
 
     useEffect(() => {
         if (video) {
@@ -46,13 +46,44 @@ function Upload() {
 
         file.preview = URL.createObjectURL(file)
         setVideo(file)
+        if (!captionValue) setCaptionValue(file.name.split('.')[0])
     }
 
-    const handleAllowUsers = index => {
-        if (allowValue.includes(index)) {
-            setAllowValue(allowValue.filter(item => item !== index))
-        } else {
-            setAllowValue([...allowValue, index])
+    const handleAllowUsers = useCallback(
+        index => {
+            if (allowValue.includes(index)) {
+                setAllowValue(allowValue.filter(item => item !== index))
+            } else {
+                setAllowValue([...allowValue, index])
+            }
+        },
+        [allowValue]
+    )
+
+    const getFormDataForVideo = () => {
+        let formData = new FormData()
+
+        formData.append('description', captionValue)
+        formData.append('upload_file', video)
+        formData.append('thumbnail_time', thumbnailValue)
+        formData.append('viewable', optionValue.toLowerCase())
+        for (let index of allowValue) {
+            formData.append('allows[]', allowString[index].toLowerCase())
+        }
+
+        return formData
+    }
+
+    const handleSetThumbnail = e => {
+        if (isNaN(e.target.value)) return
+        setThumbnailValue(e.target.value)
+    }
+
+    const handlePostVideo = e => {
+        e.preventDefault()
+
+        if (video) {
+            createVideo(getFormDataForVideo(), user.token).then(data => console.log(data))
         }
     }
 
@@ -96,25 +127,7 @@ function Upload() {
                         )}
 
                         <form className={cx('form')}>
-                            <div className={cx('divide-video')}>
-                                <div className={cx('editor-introduction-wrap')}>
-                                    <img
-                                        className={cx('editor-img')}
-                                        src="https://lf16-tiktok-common.ttwstatic.com/obj/tiktok-web-common-sg/ies/creator_center/svgs/divide_black.e1e40d5b.svg"
-                                        alt="editor-img"
-                                    />
-                                    <div className={cx('editor-introduction')}>
-                                        <strong className={cx('editor-title')}>Divide videos and edit</strong>
-                                        <p className={cx('editor-subtitle')}>
-                                            You can quickly divide videos into multiple parts, remove redundant parts
-                                            and turn landscape videos into portrait videos
-                                        </p>
-                                    </div>
-                                </div>
-                                <Button className={cx('editor-btn')} primary>
-                                    Edit
-                                </Button>
-                            </div>
+                            <DivideVideo />
                             <div className={cx('form-wrap')}>
                                 <label className={cx('form-label')}>Caption</label>
                                 <input
@@ -124,12 +137,12 @@ function Upload() {
                                 />
                             </div>
                             <div className={cx('form-wrap')}>
-                                <label className={cx('form-label')}>Thumbnail Time</label>
+                                <label className={cx('form-label')}>Thumbnail Time (s)</label>
                                 <input
                                     className={cx('caption-input')}
-                                    style={{ width: '20%' }}
-                                    value={`${thumbnailValue}s`}
-                                    onChange={e => setThumbnailValue(e.target.value)}
+                                    style={{ width: '20%', paddingRight: '0' }}
+                                    value={thumbnailValue ? `${thumbnailValue}` : ''}
+                                    onChange={handleSetThumbnail}
                                 />
                             </div>
                             <div className={cx('select-container')}>
@@ -175,36 +188,18 @@ function Upload() {
                                         <label className={cx('auth-label')}>Who can watch this video</label>
                                         <input
                                             className={cx('select-input')}
-                                            onClick={() => setShowSelect(true)}
+                                            onClick={() => setShowSelect(!showSelect)}
                                             readOnly={true}
                                         />
                                         <span className={cx('select-text')}>{optionValue}</span>
                                     </div>
                                 </HeadlessTippy>
                             </div>
-                            <div className={cx('allow-wrap')}>
-                                <label className={cx('allow-label')}>Allow users to:</label>
-                                <div className={cx('allow-content')}>
-                                    {allowString.map((item, index) => {
-                                        return (
-                                            <div
-                                                className={cx('allow-option')}
-                                                key={index}
-                                                onClick={() => handleAllowUsers(index)}
-                                            >
-                                                <div
-                                                    className={cx('custom-checkbox', {
-                                                        'checkbox-checked': allowValue.includes(index)
-                                                    })}
-                                                >
-                                                    {allowValue.includes(index) && <CheckIcon />}
-                                                </div>
-                                                <span className={cx('allow-text')}>{item}</span>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                            </div>
+                            <AllowUser
+                                allowValue={allowValue}
+                                allowString={allowString}
+                                handleAllowUsers={handleAllowUsers}
+                            />
                             <div className={cx('switch-wrap')}>
                                 <span className={cx('switch-text')}>Run a copyright check</span>
                                 <SwitchButton className={cx('switch-btn')} />
@@ -218,7 +213,14 @@ function Upload() {
                                 <Button className={cx('btn-cancel')} type="large">
                                     Discard
                                 </Button>
-                                <Button className={cx('btn-post')} type="large">
+                                <Button
+                                    className={cx({
+                                        'btn-disabled': !video
+                                    })}
+                                    type="large"
+                                    primary={video}
+                                    onClick={handlePostVideo}
+                                >
                                     Post
                                 </Button>
                             </div>

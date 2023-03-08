@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { memo, useRef, useState } from 'react'
 import classNames from 'classnames/bind'
 
 import styles from './Upload.module.scss'
@@ -7,14 +7,23 @@ import Avatar from '~/components/Avatar'
 const cx = classNames.bind(styles)
 
 function VideoUpload({ video, userData }) {
+    const [videoControlShow, setVideoControlShow] = useState(false)
     const videoRef = useRef()
+    const progressRef = useRef()
+    const currentPosition = useRef()
 
     const handlePlayVideo = () => {
         videoRef.current.play()
     }
 
+    const handleSeeked = () => {}
+
     return (
-        <div className={cx('video-wrap')}>
+        <div
+            className={cx('video-wrap')}
+            onMouseEnter={() => setVideoControlShow(true)}
+            onMouseLeave={() => setVideoControlShow(false)}
+        >
             <div className={cx('video-content')}>
                 <header className={cx('video-header')}>
                     <img
@@ -53,9 +62,24 @@ function VideoUpload({ video, userData }) {
                     <div className={cx('album')}></div>
                     <Avatar className={cx('album-avatar')} src={userData.avatar} width="24px" height="24px" />
                 </div>
-                <div className={cx('control-container')}>
+                <div
+                    className={cx('control-container', {
+                        'show-control': videoControlShow
+                    })}
+                >
                     <div className={cx('control-operation')}>
-                        <div className={cx('play-video')} onClick={handlePlayVideo}></div>
+                        <div className={cx('control-wrap')}>
+                            <div className={cx('play-video')} onClick={handlePlayVideo}></div>
+                            <span className={cx('time-video')}>00:00:00 / 00:00:00</span>
+                        </div>
+                        <div className={cx('setting-video')}>
+                            <div className={cx('volume-video')}></div>
+                            <div className={cx('zoom-video')}></div>
+                        </div>
+                    </div>
+                    <div className={cx('progress-wrapper')} onClick={handleSeeked}>
+                        <progress className={cx('progress')} max={100} ref={progressRef}></progress>
+                        <div className={cx('current-position')} ref={currentPosition}></div>
                     </div>
                 </div>
                 <div className={cx('video-user')}>
@@ -68,4 +92,4 @@ function VideoUpload({ video, userData }) {
     )
 }
 
-export default VideoUpload
+export default memo(VideoUpload)

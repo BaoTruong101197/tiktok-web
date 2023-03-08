@@ -56,6 +56,8 @@ function Profile() {
         }
     }
 
+    console.log(userInfo)
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('user-info')}>
