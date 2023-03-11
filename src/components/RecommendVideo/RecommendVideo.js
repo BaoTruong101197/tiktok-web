@@ -10,7 +10,8 @@ import Video from '~/components/Video'
 import ActionItem from '~/components/ActionItem'
 import Button from '~/components/Button'
 import ShareUser from '~/components/ShareUser'
-import { HeartIcon, CommentIcon, BlueTick, MusicIcon, SharedIcon } from '~/components/Icons'
+import { HeartIcon, CommentIcon, SharedIcon } from '~/components/Icons'
+import HeaderVideo from './HeaderVideo'
 
 const cx = classNames.bind(styles)
 
@@ -21,10 +22,6 @@ function RecommendVideo({ data, index, length }) {
 
     const handleHeartVideo = () => {
         setHeartVideo(!heartVideo)
-    }
-
-    const getTime = () => {
-        return data.created_at.split(' ')[0]
     }
 
     const handleFollowUser = () => {
@@ -46,21 +43,7 @@ function RecommendVideo({ data, index, length }) {
                 loading="lazy"
             />
             <div className={cx('content')}>
-                <div className={cx('wrapper-header')}>
-                    <header className={cx('header')}>
-                        <h3 className={cx('username')}>
-                            {data.user.nickname}
-                            {data.tick && (
-                                <span className={cx('blue-tick')}>
-                                    <BlueTick />
-                                </span>
-                            )}
-                        </h3>
-                        <h4 className={cx('name')}>{`${data.user.first_name} ${data.user.last_name}`} </h4>
-                        <span className={cx('point')}>.</span>
-                        <p className={cx('time')}>{getTime()}</p>
-                    </header>
-                </div>
+                <HeaderVideo data={data} />
                 {isFollow ? (
                     <Button className={cx('following-btn')} outline type="small" onClick={handleFollowUser}>
                         Following
@@ -70,15 +53,14 @@ function RecommendVideo({ data, index, length }) {
                         Follow
                     </Button>
                 )}
-                <p className={cx('description')}>{data.description}</p>
-                <div className={cx('music-wrapper')}>
-                    <div className={cx('music')}>
-                        <MusicIcon />
-                        <p className={cx('music-name')}>{!data.music ? `Nhạc nền` : data.music}</p>
-                    </div>
-                </div>
                 <div className={cx('video-wrapper')}>
-                    <Video className={cx('video')} src={data.file_url} index={index} length={length} />
+                    <Video
+                        className={cx('video')}
+                        src={data.file_url}
+                        img={data.thumb_url}
+                        index={index}
+                        length={length}
+                    />
                     <div className={cx('action')}>
                         <ActionItem
                             icon={

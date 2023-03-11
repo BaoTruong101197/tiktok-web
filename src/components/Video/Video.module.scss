@@ -14,10 +14,21 @@
     }
 }
 
-.video {
+.thumb-img {
     border-radius: 8px;
     object-fit: cover;
     cursor: pointer;
+}
+
+.video {
+    position: absolute;
+    z-index: 5;
+    border-radius: 8px;
+    object-fit: cover;
+    cursor: pointer;
+    width: 336px;
+    max-width: 336px;
+    height: 600px;
 }
 
 .flag-video {
@@ -43,6 +54,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
+    z-index: 7;
     width: 40px;
     padding: 10px;
     opacity: 0;
@@ -77,6 +89,7 @@
 
 .volume-input {
     position: absolute;
+    z-index: 6;
     bottom: 80px;
     border-radius: 32px;
     width: 24px;
@@ -87,7 +100,7 @@
 }
 
 .volume-bar {
-    -webkit-appearance: none;
+    appearance: none;
     position: absolute;
     right: -111%;
     top: 50%;
@@ -98,7 +111,7 @@
     background-color: #ffffff57;
 
     &::-webkit-slider-thumb {
-        -webkit-appearance: none;
+        appearance: none;
         height: 12px;
         width: 12px;
         border-radius: 50%;
@@ -110,6 +123,7 @@
 
 .progress-wrapper {
     position: absolute;
+    z-index: 7;
     left: 0px;
     bottom: 20px;
     width: 312px;
