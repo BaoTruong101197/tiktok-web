@@ -60,6 +60,7 @@
 .wrapper-header {
     display: flex;
     align-items: flex-start;
+    width: 510px;
 }
 
 .header {
@@ -103,12 +104,14 @@
     font-size: 1.6rem;
     line-height: 22px;
     font-weight: 400;
+    width: 510px;
 }
 
 .music-wrapper {
     display: flex;
     align-items: center;
     margin: 4px 0 12px;
+    width: 510px;
 }
 
 .music {

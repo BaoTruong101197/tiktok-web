@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
-import styles from './Video.module.scss'
+import styles from './HomeVideo.module.scss'
 import Image from '~/components/Image'
 import { StartVideoIcon, PauseVideoIcon, VolumeOn, VolumeOff, FlagIcon } from '~/components/Icons'
 
 const cx = classNames.bind(styles)
 
-function Video({ className, src, img, index, length }) {
+function HomeVideo({ className, src, img, index, length }) {
     const [playVideo, setPlayVideo] = useState(index === 0 ? true : false)
     const [playIcon, setPlayIcon] = useState(index === 0 ? true : false)
     const [volumeOn, setVolumeOn] = useState(false)
@@ -176,9 +176,9 @@ function Video({ className, src, img, index, length }) {
     )
 }
 
-Video.propTypes = {
+HomeVideo.propTypes = {
     className: PropTypes.string,
     src: PropTypes.string.isRequired
 }
 
-export default Video
+export default HomeVideo

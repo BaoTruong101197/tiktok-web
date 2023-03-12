@@ -29,7 +29,13 @@ function Home({ title }) {
     return (
         <nav className={cx('video-list')} ref={navRef}>
             {videoData.map((video, index) => (
-                <RecommendVideo key={video.id} data={video} index={index} length={videoData.length} />
+                <RecommendVideo
+                    key={video.id}
+                    data={video}
+                    index={index}
+                    length={videoData.length}
+                    followingFeature={title === 'following' ? true : false}
+                />
             ))}
         </nav>
     )

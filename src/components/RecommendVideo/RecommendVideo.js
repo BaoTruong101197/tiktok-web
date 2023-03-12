@@ -6,7 +6,7 @@ import styles from './RecommendVideo.module.scss'
 import { followUser, unFollowUser } from '~/services'
 import { useLocalStorage } from '~/hooks'
 import Avatar from '~/components/Avatar'
-import Video from '~/components/Video'
+import HomeVideo from '~/components/Video'
 import ActionItem from '~/components/ActionItem'
 import Button from '~/components/Button'
 import ShareUser from '~/components/ShareUser'
@@ -15,7 +15,7 @@ import HeaderVideo from './HeaderVideo'
 
 const cx = classNames.bind(styles)
 
-function RecommendVideo({ data, index, length }) {
+function RecommendVideo({ data, index, length, followingFeature }) {
     const [heartVideo, setHeartVideo] = useState(false)
     const [isFollow, setIsFollow] = useState(data.user.is_followed)
     const userData = useLocalStorage()
@@ -44,17 +44,21 @@ function RecommendVideo({ data, index, length }) {
             />
             <div className={cx('content')}>
                 <HeaderVideo data={data} />
-                {isFollow ? (
-                    <Button className={cx('following-btn')} outline type="small" onClick={handleFollowUser}>
-                        Following
-                    </Button>
+                {!followingFeature ? (
+                    isFollow ? (
+                        <Button className={cx('following-btn')} outline type="small" onClick={handleFollowUser}>
+                            Following
+                        </Button>
+                    ) : (
+                        <Button className={cx('follow-btn')} primary outline type="small" onClick={handleFollowUser}>
+                            Follow
+                        </Button>
+                    )
                 ) : (
-                    <Button className={cx('follow-btn')} primary outline type="small" onClick={handleFollowUser}>
-                        Follow
-                    </Button>
+                    <></>
                 )}
                 <div className={cx('video-wrapper')}>
-                    <Video
+                    <HomeVideo
                         className={cx('video')}
                         src={data.file_url}
                         img={data.thumb_url}

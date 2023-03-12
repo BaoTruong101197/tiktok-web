@@ -71,56 +71,6 @@
     bottom: 38px;
 }
 
-.volume-wrapper {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    right: 12px;
-    bottom: 0;
-
-    &:hover {
-        .volume-input {
-            opacity: 1;
-        }
-    }
-}
-
-.volume-input {
-    position: absolute;
-    z-index: 6;
-    bottom: 80px;
-    border-radius: 32px;
-    width: 24px;
-    height: 64px;
-    background-color: #16182357;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.volume-bar {
-    appearance: none;
-    position: absolute;
-    right: -111%;
-    top: 50%;
-    width: 48px;
-    height: 2px;
-    margin-right: 15px;
-    transform: rotate(-90deg);
-    background-color: #ffffff57;
-
-    &::-webkit-slider-thumb {
-        appearance: none;
-        height: 12px;
-        width: 12px;
-        border-radius: 50%;
-        background-color: var(--white);
-        cursor: initial;
-        transition: background-color 0.3s ease-in-out;
-    }
-}
-
 .progress-wrapper {
     position: absolute;
     z-index: 7;
@@ -171,6 +121,57 @@
     background-color: var(--white);
     cursor: pointer;
     z-index: 1;
+}
+
+.volume-wrapper {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 12px;
+    bottom: 0;
+
+    &:hover {
+        .volume-input {
+            opacity: 1;
+        }
+    }
+}
+
+.volume-input {
+    position: absolute;
+    z-index: 6;
+    bottom: 80px;
+    border-radius: 32px;
+    width: 24px;
+    height: 64px;
+    background-color: #16182357;
+    opacity: 0;
+    transition: opacity 0.3s;
+    cursor: pointer;
+}
+
+.volume-bar {
+    appearance: none;
+    position: absolute;
+    right: -111%;
+    top: 50%;
+    width: 48px;
+    height: 2px;
+    margin-right: 15px;
+    transform: rotate(-90deg);
+    background-color: #ffffff57;
+
+    &::-webkit-slider-thumb {
+        appearance: none;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background-color: var(--white);
+        cursor: initial;
+        transition: background-color 0.3s ease-in-out;
+    }
 }
 
 .no-focus {
