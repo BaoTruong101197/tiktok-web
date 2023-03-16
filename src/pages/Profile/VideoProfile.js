@@ -33,7 +33,7 @@ function VideoProfile({ data }) {
                 setVideoRunningId(true)
             }
         })
-    }, [])
+    }, [data.id])
 
     return (
         <div
