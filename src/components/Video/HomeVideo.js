@@ -63,6 +63,8 @@ function HomeVideo({ className, src, img, index, length }) {
     }, [defaultVolume, playVideo])
 
     const handlePlay = () => {
+        if (!videoRef) return
+
         setPlayIcon(!playIcon)
         if (!playIcon) {
             videoRef.current.play()
