@@ -11,20 +11,31 @@ function Home({ title }) {
     const [videoData, setVideoData] = useState([])
     const navRef = useRef()
     const userData = useLocalStorage()
+    const [indexAPI, setIndexAPI] = useState(1)
+    const navHeight = useRef(0)
 
     localStorage.removeItem('volume')
 
     useEffect(() => {
-        setVideoData([])
         if (userData) {
-            getVideoList(title, 1, userData.token).then(data => {
-                setVideoData(data.data.filter(video => video.user_id !== userData.id))
+            getVideoList(title, indexAPI, userData.token).then(data => {
+                setVideoData([...videoData, ...data.data.filter(video => video.user_id !== userData.id)])
             })
-        } else {
-            getVideoList(title, 1, userData.token).then(data => setVideoData(data.data))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [title])
+    }, [indexAPI])
+
+    useEffect(() => {
+        navHeight.current = navRef.current.clientHeight
+    }, [videoData])
+
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY + 1000 > navRef.current.clientHeight) {
+                setIndexAPI(prev => prev + 1)
+            }
+        })
+    }, [])
 
     return (
         <nav className={cx('video-list')} ref={navRef}>
