@@ -9,7 +9,7 @@ import ShareUser from '~/components/ShareUser'
 import ProfileAction from './ProfileAction'
 import TippyAnimation from '~/components/TippyAnimation'
 import {
-    FollowUser as FollowUserIcon,
+    FollowUserIcon,
     SharedProfileIcon,
     UserMoreIcon,
     SendMessageIcon,

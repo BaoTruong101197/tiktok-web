@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
 import styles from './LoginForm.module.scss'
 import Button from '~/components/Button'
-import { ClearForm as ClearFormIcon, BackButton as BackButtonIcon, Loading as LoadingIcon } from '~/components/Icons'
+import { ClearFormIcon, BackButtonIcon, LoadingIcon } from '~/components/Icons'
 import * as authService from '~/services'
 
 const cx = classNames.bind(styles)
@@ -96,7 +96,7 @@ function LoginForm({ handleCloseOverlay }) {
                     type="large"
                     onClick={handleLogin}
                 >
-                    {loading ? <LoadingIcon className={cx('loading')} color="#fff" /> : 'Log in'}
+                    {loading ? <LoadingIcon className={cx('loading')} /> : 'Log in'}
                 </Button>
             </div>
             <div className={cx('login-footer')}>

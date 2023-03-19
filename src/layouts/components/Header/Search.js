@@ -9,7 +9,7 @@ import { search } from '~/services'
 import { useDebounce } from '~/hooks'
 import { Popper as PopperWrapper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem'
-import { Clear as ClearIcon, Loading as LoadingIcon, Search as SearchIcon } from '~/components/Icons'
+import { ClearIcon, LoadingIcon, SearchIcon } from '~/components/Icons'
 
 const cx = classNames.bind(styles)
 

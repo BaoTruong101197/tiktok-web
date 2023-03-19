@@ -2,7 +2,7 @@ import { memo } from 'react'
 import classNames from 'classnames/bind'
 
 import styles from './RecommendVideo.module.scss'
-import { BlueTick, MusicIcon } from '~/components/Icons'
+import { BlueTickIcon, MusicIcon } from '~/components/Icons'
 
 const cx = classNames.bind(styles)
 
@@ -18,7 +18,7 @@ function HeaderVideo({ data }) {
                         {data.user.nickname}
                         {data.tick && (
                             <span className={cx('blue-tick')}>
-                                <BlueTick />
+                                <BlueTickIcon />
                             </span>
                         )}
                     </h3>

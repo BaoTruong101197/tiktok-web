@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
 
 import styles from './AccountItem.module.scss'
-import { BlueTick } from '~/components/Icons'
+import { BlueTickIcon } from '~/components/Icons'
 import Avatar from '~/components/Avatar'
 
 const cx = classNames.bind(styles)
@@ -25,7 +25,7 @@ function AccountItem({ data, onClick }) {
                     {data.nickname}
                     {data.tick && (
                         <span className={cx('blue-tick')}>
-                            <BlueTick />
+                            <BlueTickIcon />
                         </span>
                     )}
                 </h4>

@@ -5,7 +5,7 @@ import config from '~/config'
 import styles from './ShareUser.module.scss'
 import Button from '~/components/Button'
 import { Popper as PopperWrapper } from '~/components/Popper'
-import { DownArrow } from '~/components/Icons'
+import { DownArrowIcon } from '~/components/Icons'
 import TippyAnimation from '~/components/TippyAnimation'
 
 const cx = classNames.bind(styles)
@@ -29,7 +29,7 @@ function ShareUser({ children, offset = [-25, 5], placement = 'top-start' }) {
                             </Button>
                         )
                     })}
-                    <Button className={cx('down-arrow')} LeftIcon={<DownArrow />}></Button>
+                    <Button className={cx('down-arrow')} LeftIcon={<DownArrowIcon />}></Button>
                 </PopperWrapper>
             }
         >

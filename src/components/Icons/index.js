@@ -10,19 +10,19 @@ export {
 } from './Profile'
 
 export {
-    Clear,
-    Loading,
-    Search,
-    BlueTick,
-    BackButton,
+    ClearIcon,
+    LoadingIcon,
+    SearchIcon,
+    BlueTickIcon,
+    BackButtonIcon,
     HashTagIcon,
     MusicIcon,
     HeartIcon,
     CommentIcon,
     SharedIcon,
-    DownArrow,
-    ClearForm,
-    FollowUser
+    DownArrowIcon,
+    ClearFormIcon,
+    FollowUserIcon
 } from './Common'
 
 export {

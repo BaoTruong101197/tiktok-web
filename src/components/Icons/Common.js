@@ -1,13 +1,13 @@
 import { memo } from 'react'
 
-export const Clear = memo(({ className, width = '16px', height = '16px', color = 'rgba(22, 24, 35, 0.34)' }) => {
+export const ClearIcon = memo(({ className }) => {
     return (
         <svg
             viewBox="0 0 48 48"
             className={className}
-            width={width}
-            height={height}
-            fill={color}
+            width="16px"
+            height="16px"
+            fill="rgba(22, 24, 35, 0.34)"
             xmlns="http://www.w3.org/2000/svg"
         >
             <path
@@ -19,13 +19,13 @@ export const Clear = memo(({ className, width = '16px', height = '16px', color =
     )
 })
 
-export const Loading = memo(({ className, width = '16px', height = '16px', color = 'rgba(22, 24, 35, 0.34)' }) => {
+export const LoadingIcon = memo(({ className }) => {
     return (
         <svg
             className={className}
-            width={width}
-            height={height}
-            fill={color}
+            width="16px"
+            height="16px"
+            fill="rgba(22, 24, 35, 0.34)"
             viewBox="0 0 48 48"
             xmlns="http://www.w3.org/2000/svg"
         >
@@ -38,13 +38,13 @@ export const Loading = memo(({ className, width = '16px', height = '16px', color
     )
 })
 
-export const Search = memo(({ className, width = '24px', height = '24px', color = 'currentColor' }) => {
+export const SearchIcon = memo(({ className }) => {
     return (
         <svg
             className={className}
-            width={width}
-            height={height}
-            fill={color}
+            width="24px"
+            height="24px"
+            fill="currentColor"
             viewBox="0 0 48 48"
             xmlns="http://www.w3.org/2000/svg"
         >
@@ -57,16 +57,16 @@ export const Search = memo(({ className, width = '24px', height = '24px', color 
     )
 })
 
-export const BlueTick = memo(({ className, width = '14px', height = '14px', color = '#20D5EC' }) => (
+export const BlueTickIcon = memo(({ className }) => (
     <svg
         className={className}
-        width={width}
-        height={height}
+        width="14px"
+        height="14px"
         fill="none"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
     >
-        <circle cx="24" cy="24" r="24" fill={color}></circle>
+        <circle cx="24" cy="24" r="24" fill="#20D5EC"></circle>
         <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -76,13 +76,13 @@ export const BlueTick = memo(({ className, width = '14px', height = '14px', colo
     </svg>
 ))
 
-export const BackButton = memo(({ className, width = '20px', height = '20px', color = 'currentColor' }) => {
+export const BackButtonIcon = memo(({ className }) => {
     return (
         <svg
             className={className}
-            width={width}
-            height={height}
-            fill={color}
+            width="20px"
+            height="20px"
+            fill="currentColor"
             viewBox="0 0 48 48"
             xmlns="http://www.w3.org/2000/svg"
         >
@@ -95,13 +95,13 @@ export const BackButton = memo(({ className, width = '20px', height = '20px', co
     )
 })
 
-export const HashTagIcon = ({ className, width = '16px', height = '16px', color = 'currentColor' }) => {
+export const HashTagIcon = memo(({ className }) => {
     return (
         <svg
             className={className}
-            width={width}
-            height={height}
-            fill={color}
+            width="16px"
+            height="16px"
+            fill="currentColor"
             viewBox="0 0 48 48"
             xmlns="http://www.w3.org/2000/svg"
         >
@@ -112,15 +112,15 @@ export const HashTagIcon = ({ className, width = '16px', height = '16px', color 
             ></path>
         </svg>
     )
-}
+})
 
-export const MusicIcon = ({ className, width = '16px', height = '16px', color = 'currentColor' }) => {
+export const MusicIcon = memo(({ className }) => {
     return (
         <svg
             className={className}
-            width={width}
-            height={height}
-            fill={color}
+            width="16px"
+            height="16px"
+            fill="currentColor"
             viewBox="0 0 48 48"
             xmlns="http://www.w3.org/2000/svg"
         >
@@ -131,14 +131,14 @@ export const MusicIcon = ({ className, width = '16px', height = '16px', color = 
             ></path>
         </svg>
     )
-}
+})
 
-export const SharedIcon = ({ className, width = '24px', height = '24px', color = 'currentColor' }) => (
+export const SharedIcon = memo(({ className }) => (
     <svg
         className={className}
-        width={width}
-        height={height}
-        fill={color}
+        width="24px"
+        height="24px"
+        fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
     >
@@ -163,14 +163,14 @@ export const SharedIcon = ({ className, width = '24px', height = '24px', color =
             fill="url(#paint0_radial)"
         ></path>
     </svg>
-)
+))
 
-export const CommentIcon = ({ className, width = '24px', height = '24px', color = 'currentColor' }) => (
+export const CommentIcon = memo(({ className }) => (
     <svg
         className={className}
-        width={width}
-        height={height}
-        fill={color}
+        width="24px"
+        height="24px"
+        fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
     >
@@ -187,13 +187,13 @@ export const CommentIcon = ({ className, width = '24px', height = '24px', color 
             fill="url(#BubbleEllipsisRightFill_paint0_linear)"
         ></path>
     </svg>
-)
+))
 
-export const HeartIcon = ({ className, width = '24px', height = '24px', color = 'currentColor' }) => (
+export const HeartIcon = memo(({ className, color = 'currentColor' }) => (
     <svg
         className={className}
-        width={width}
-        height={height}
+        width="24px"
+        height="24px"
         fill={color}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -212,14 +212,14 @@ export const HeartIcon = ({ className, width = '24px', height = '24px', color = 
             fillOpacity="0.03"
         ></path>
     </svg>
-)
+))
 
-export const DownArrow = ({ className, width = '24px', height = '24px', color = 'currentColor' }) => (
+export const DownArrowIcon = memo(({ className }) => (
     <svg
         className={className}
-        width={width}
-        height={height}
-        fill={color}
+        width="24px"
+        height="24px"
+        fill="currentColor"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
     >
@@ -229,14 +229,14 @@ export const DownArrow = ({ className, width = '24px', height = '24px', color = 
             d="M21.8788 33.1213L7.58586 18.8284C7.19534 18.4379 7.19534 17.8047 7.58586 17.4142L10.4143 14.5858C10.8048 14.1953 11.438 14.1953 11.8285 14.5858L24.0001 26.7574L36.1716 14.5858C36.5622 14.1953 37.1953 14.1953 37.5859 14.5858L40.4143 17.4142C40.8048 17.8047 40.8048 18.4379 40.4143 18.8284L26.1214 33.1213C24.9498 34.2929 23.0503 34.2929 21.8788 33.1213Z"
         ></path>
     </svg>
-)
+))
 
-export const ClearForm = ({ className, width = '26px', height = '26px', color = 'currentColor' }) => (
+export const ClearFormIcon = memo(({ className }) => (
     <svg
         className={className}
-        width={width}
-        height={height}
-        fill={color}
+        width="26px"
+        height="26px"
+        fill="currentColor"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
     >
@@ -246,14 +246,14 @@ export const ClearForm = ({ className, width = '26px', height = '26px', color = 
             d="M21.1718 23.9999L10.2931 13.1212C9.90261 12.7307 9.90261 12.0975 10.2931 11.707L11.7074 10.2928C12.0979 9.90228 12.731 9.90228 13.1216 10.2928L24.0002 21.1715L34.8789 10.2928C35.2694 9.90228 35.9026 9.90228 36.2931 10.2928L37.7073 11.707C38.0979 12.0975 38.0979 12.7307 37.7073 13.1212L26.8287 23.9999L37.7073 34.8786C38.0979 35.2691 38.0979 35.9023 37.7073 36.2928L36.2931 37.707C35.9026 38.0975 35.2694 38.0975 34.8789 37.707L24.0002 26.8283L13.1216 37.707C12.731 38.0975 12.0979 38.0975 11.7074 37.707L10.2931 36.2928C9.90261 35.9023 9.90261 35.2691 10.2931 34.8786L21.1718 23.9999Z"
         ></path>
     </svg>
-)
+))
 
-export const FollowUser = ({ className, width = '20px', height = '20px', color = 'currentColor' }) => (
+export const FollowUserIcon = memo(({ className }) => (
     <svg
         className={className}
-        width={width}
-        height={height}
-        fill={color}
+        width="20px"
+        height="20px"
+        fill="currentColor"
         viewBox="0 0 48 48"
         xmlns="http://www.w3.org/2000/svg"
     >
@@ -263,4 +263,4 @@ export const FollowUser = ({ className, width = '20px', height = '20px', color =
             d="M13.0001 13C13.0001 9.68629 15.6864 7 19.0001 7C22.3139 7 25.0001 9.68629 25.0001 13C25.0001 16.3137 22.3139 19 19.0001 19C15.6864 19 13.0001 16.3137 13.0001 13ZM19.0001 3C13.4773 3 9.00015 7.47715 9.00015 13C9.00015 18.5228 13.4773 23 19.0001 23C24.523 23 29.0001 18.5228 29.0001 13C29.0001 7.47715 24.523 3 19.0001 3ZM5.19435 40.9681C6.70152 35.5144 10.0886 32.2352 13.9162 30.738C17.7125 29.2531 22.0358 29.4832 25.6064 31.2486C26.1015 31.4934 26.7131 31.338 26.9931 30.8619L28.0072 29.1381C28.2872 28.662 28.1294 28.0465 27.6384 27.7937C23.0156 25.4139 17.4034 25.0789 12.4591 27.0129C7.37426 29.0018 3.09339 33.3505 1.2883 40.0887C1.14539 40.6222 1.48573 41.1592 2.02454 41.2805L3.97575 41.7195C4.51457 41.8408 5.04724 41.5004 5.19435 40.9681ZM44.7074 30.1212C45.0979 29.7307 45.0979 29.0975 44.7074 28.707L43.2932 27.2928C42.9026 26.9023 42.2695 26.9023 41.8789 27.2928L30.0003 39.1715L25.1216 34.2928C24.7311 33.9023 24.0979 33.9023 23.7074 34.2928L22.2932 35.707C21.9026 36.0975 21.9026 36.7307 22.2932 37.1212L28.586 43.4141C29.3671 44.1952 30.6334 44.1952 31.4145 43.4141L44.7074 30.1212Z"
         ></path>
     </svg>
-)
+))

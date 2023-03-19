@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import styles from './RecommendAccount.module.scss'
 import Button from '~/components/Button'
 import Avatar from '~/components/Avatar'
-import { BlueTick } from '~/components/Icons'
+import { BlueTickIcon } from '~/components/Icons'
 import { useLocalStorage } from '~/hooks'
 import { followUser, unFollowUser } from '~/services'
 import { actions } from '~/store'
@@ -46,7 +46,7 @@ function RecommendAccount({ data }) {
             </div>
             <h4 className={cx('username')}>
                 {data.nickname}
-                <span className={cx('blue-tick')}>{data.tick && <BlueTick />}</span>
+                <span className={cx('blue-tick')}>{data.tick && <BlueTickIcon />}</span>
             </h4>
             <p className={cx('name')}>{`${data.first_name} ${data.last_name}`}</p>
             <div className={cx('account-status')}>

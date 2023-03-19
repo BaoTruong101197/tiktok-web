@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 import styles from './SuggestedAccounts.module.scss'
 import { Popper as PopperWrapper } from '~/components/Popper'
-import { BlueTick } from '~/components/Icons'
+import { BlueTickIcon } from '~/components/Icons'
 import RecommendAccount from '~/components/RecommendAccount'
 import Avatar from '~/components/Avatar'
 import { useContext } from 'react'
@@ -38,7 +38,7 @@ function AccountItem({ suggested, data }) {
                     <div className={cx('content')}>
                         <h4 className={cx('username')}>
                             {data.nickname}
-                            <span className={cx('blue-tick')}>{data.tick && <BlueTick />}</span>
+                            <span className={cx('blue-tick')}>{data.tick && <BlueTickIcon />}</span>
                         </h4>
                         <p className={cx('name')}>{`${data.first_name} ${data.last_name}`}</p>
                     </div>
