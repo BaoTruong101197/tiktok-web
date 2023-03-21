@@ -9,8 +9,6 @@ function VideoProfile({ data }) {
     const [videoRunningId, setVideoRunningId] = useState(false)
     const videoRef = useRef()
 
-    console.log(data)
-
     useEffect(() => {
         if (videoRef.current) {
             if (videoRunningId) {

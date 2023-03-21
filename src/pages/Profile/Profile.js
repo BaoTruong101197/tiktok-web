@@ -8,6 +8,7 @@ import Button from '~/components/Button'
 import ShareUser from '~/components/ShareUser'
 import ProfileAction from './ProfileAction'
 import TippyAnimation from '~/components/TippyAnimation'
+import { Popper as PopperWrapper } from '~/components/Popper'
 import {
     FollowUserIcon,
     SharedProfileIcon,
@@ -18,7 +19,6 @@ import {
     LockLikeIcon,
     LockProfileIcon
 } from '~/components/Icons'
-import { Popper as PopperWrapper } from '~/components/Popper'
 import { getUser, followUser, unFollowUser } from '~/services'
 import { useLocalStorage } from '~/hooks'
 
@@ -55,8 +55,6 @@ function Profile() {
             followUser(userInfo.id, userData.token).then(data => setIsFollow(!isFollow))
         }
     }
-
-    console.log(userInfo)
 
     return (
         <div className={cx('wrapper')}>
