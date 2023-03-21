@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
 import styles from './HomeVideo.module.scss'
 import Image from '~/components/Image'
-import { StartVideoIcon, PauseVideoIcon, VolumeOn, VolumeOff, FlagIcon } from '~/components/Icons'
+import { StartVideoIcon, PauseVideoIcon, VolumeOnIcon, VolumeOffIcon, FlagIcon } from '~/components/Icons'
 
 const cx = classNames.bind(styles)
 
@@ -154,7 +154,7 @@ function HomeVideo({ className, src, img, index, length }) {
             </button>
             <div className={cx('volume-wrapper')}>
                 <button className={cx('toggle-volume')} onClick={handleTurnVolume}>
-                    {volumeOn ? <VolumeOn /> : <VolumeOff />}
+                    {volumeOn ? <VolumeOnIcon /> : <VolumeOffIcon />}
                 </button>
                 <div className={cx('volume-input')} ref={volumeInput}>
                     <input

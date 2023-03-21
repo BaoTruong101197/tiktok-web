@@ -1,13 +1,13 @@
 import {
-    Language as LanguageIcon,
-    Question as QuestionIcon,
-    Keyboard as KeyboardIcon,
-    Theme as ThemeIcon,
-    Profile as ProfileIcon,
-    Coins as GetCoinsIcon,
-    Live as LiveIcon,
-    Settings as SettingsIcon,
-    LogOut as LogOutIcon
+    LanguageIcon,
+    QuestionIcon,
+    KeyboardIcon,
+    ThemeIcon,
+    ProfileIcon,
+    CoinsIcon,
+    LiveIcon,
+    SettingsIcon,
+    LogOutIcon
 } from '~/components/Icons'
 
 export const MENU_ITEMS = [
@@ -97,7 +97,7 @@ export const USER_MENU_ITEMS = [
     },
     {
         name: 'Get Coins',
-        icon: GetCoinsIcon,
+        icon: CoinsIcon,
         to: '/coins'
     },
     {

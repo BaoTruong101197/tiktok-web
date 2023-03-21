@@ -3,7 +3,7 @@ import {
     HomeActiveIcon,
     PeopleGroupIcon,
     PeopleGroupActiveIcon,
-    LiveIcon,
+    LiveMenuIcon,
     LiveActiveIcon
 } from '~/components/Icons'
 
@@ -25,7 +25,7 @@ export const menu = [
     {
         id: 3,
         to: '/live',
-        icon: <LiveIcon />,
+        icon: <LiveMenuIcon />,
         iconActive: <LiveActiveIcon />,
         title: 'LIVE'
     }

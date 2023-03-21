@@ -26,26 +26,26 @@ export {
 } from './Common'
 
 export {
-    SeeMore,
-    Plus,
-    Language,
-    Question,
-    Keyboard,
-    Theme,
-    Message,
-    Inbox,
-    Profile,
-    Coins,
-    Live,
-    Settings,
-    LogOut
+    SeeMoreIcon,
+    PlusIcon,
+    LanguageIcon,
+    QuestionIcon,
+    KeyboardIcon,
+    ThemeIcon,
+    MessageIcon,
+    InboxIcon,
+    ProfileIcon,
+    CoinsIcon,
+    LiveMenuIcon,
+    SettingsIcon,
+    LogOutIcon
 } from './Menu'
 
 export {
     StartVideoIcon,
     PauseVideoIcon,
-    VolumeOn,
-    VolumeOff,
+    VolumeOnIcon,
+    VolumeOffIcon,
     FlagIcon,
     EmbedIcon,
     SendIcon,

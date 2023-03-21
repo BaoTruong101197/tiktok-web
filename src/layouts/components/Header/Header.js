@@ -11,14 +11,9 @@ import images from '~/assets/images'
 import Button from '~/components/Button'
 import Image from '~/components/Image'
 import Avatar from '~/components/Avatar'
-import {
-    Message as MessageIcon,
-    Inbox as InboxIcon,
-    SeeMore as SeeMoreIcon,
-    Plus as PlusIcon
-} from '~/components/Icons'
 import SeeMoreMenu from '~/components/SeeMoreMenu'
 import Search from './Search'
+import { MessageIcon, InboxIcon, SeeMoreIcon, PlusIcon } from '~/components/Icons'
 import { getUser } from '~/services'
 import { actions } from '~/store'
 import { useContextProvider, useLocalStorage } from '~/hooks'
