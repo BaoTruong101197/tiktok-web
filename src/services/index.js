@@ -1,5 +1,5 @@
 export { search } from './searchService'
 export { getSuggested, getUser } from './userService'
-export { login, logout } from './authService'
+export { login, logout, register } from './authService'
 export { followUser, unFollowUser } from './followService'
 export { getVideoList, createVideo } from './videosService'

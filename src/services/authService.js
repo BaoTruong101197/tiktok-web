@@ -33,3 +33,18 @@ export const logout = async token => {
         console.error('Error: ', error)
     }
 }
+
+export const register = async data => {
+    try {
+        const response = await httpRequest.post('auth/register', {
+            params: { data },
+            method: 'post', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        return response
+    } catch (error) {
+        console.error('Error: ', error)
+    }
+}

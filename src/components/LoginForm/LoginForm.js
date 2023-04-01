@@ -14,6 +14,7 @@ function LoginForm({ handleCloseOverlay }) {
     const [readyLogin, setReadyLogin] = useState(false)
     const [loading, setLoading] = useState(false)
     const [loginError, setLoginError] = useState(false)
+    const [hasAccount, setHasAccount] = useState(true)
 
     useEffect(() => {
         if (!nameValue || !pwValue) {
@@ -24,12 +25,17 @@ function LoginForm({ handleCloseOverlay }) {
     }, [nameValue, pwValue])
 
     const handleLogin = useCallback(() => {
+        setLoading(true)
         const data = { email: nameValue, password: pwValue }
 
-        setLoading(true)
-
         const fetchApi = async () => {
-            const result = await authService.login(data)
+            let result
+            if (hasAccount) {
+                result = await authService.login(data)
+            } else {
+                data.type = 'email'
+                result = await authService.register(data)
+            }
             if (result) {
                 setLoginError(false)
                 const userData = {
@@ -48,7 +54,7 @@ function LoginForm({ handleCloseOverlay }) {
         }
 
         fetchApi()
-    }, [nameValue, pwValue])
+    }, [nameValue, pwValue, hasAccount])
 
     const handleKeyPass = e => {
         if (e.keyCode === 13) {
@@ -56,15 +62,25 @@ function LoginForm({ handleCloseOverlay }) {
         }
     }
 
+    const changeToSignUp = e => {
+        e.preventDefault()
+        setHasAccount(false)
+        setLoginError(false)
+    }
+
+    console.log(hasAccount)
+
     return (
         <div className={cx('login-form')}>
             <div className={cx('login-content')}>
-                <h2 className={cx('login-title')}>Log in</h2>
+                <h2 className={cx('login-title')}>{hasAccount ? 'Log in' : 'Sign up'}</h2>
                 <div className={cx('login-desc')}>
                     <p className={cx('email-username')}>Email or username</p>
-                    <a href="#!" className={cx('login-link')}>
-                        Log in with phone
-                    </a>
+                    {hasAccount && (
+                        <a href="#!" className={cx('login-link')}>
+                            Log in with phone
+                        </a>
+                    )}
                 </div>
                 <input
                     className={cx('login-input')}
@@ -81,9 +97,11 @@ function LoginForm({ handleCloseOverlay }) {
                     onKeyDown={handleKeyPass}
                     onChange={e => setPwValue(e.target.value)}
                 />
-                <a href="#!" className={cx('login-link')}>
-                    Forgot password
-                </a>
+                {hasAccount && (
+                    <a href="#!" className={cx('login-link')}>
+                        Forgot password
+                    </a>
+                )}
                 {loginError ? (
                     <p className={cx('error-text')}>The username or password you entered is incorrect</p>
                 ) : (
@@ -96,18 +114,20 @@ function LoginForm({ handleCloseOverlay }) {
                     type="large"
                     onClick={handleLogin}
                 >
-                    {loading ? <LoadingIcon className={cx('loading')} /> : 'Log in'}
+                    {loading ? <LoadingIcon className={cx('loading')} /> : hasAccount ? 'Log in' : 'Sign up'}
                 </Button>
             </div>
-            <div className={cx('login-footer')}>
-                <p className="login-sign-up">
-                    Don’t have an account?{' '}
-                    <a href="#!" className={cx('sign-up')}>
-                        Sign up
-                    </a>
-                </p>
-            </div>
-            <div className={cx('back-btn-login')}>
+            {hasAccount && (
+                <div className={cx('login-footer')}>
+                    <p className="login-sign-up">
+                        Don’t have an account?{' '}
+                        <span onClick={changeToSignUp} className={cx('sign-up')}>
+                            Sign up
+                        </span>
+                    </p>
+                </div>
+            )}
+            <div className={cx('back-btn-login')} onClick={() => setHasAccount(true)}>
                 <BackButtonIcon width="24px" height="24px" />
             </div>
             <div className={cx('clear-login')} onClick={handleCloseOverlay}>
