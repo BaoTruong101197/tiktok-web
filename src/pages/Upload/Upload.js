@@ -25,11 +25,11 @@ function Upload() {
     const [optionValue, setOptionValue] = useState('Public')
     const [allowValue, setAllowValue] = useState([0, 1, 2])
     const [video, setVideo] = useState()
-    const inputFileRef = useRef()
+    const [userData, setUserData] = useState()
 
+    const inputFileRef = useRef()
     const user = useLocalStorage()
     const nickname = user && user.nickname
-    const [userData, setUserData] = useState()
 
     useEffect(() => {
         if (video) {

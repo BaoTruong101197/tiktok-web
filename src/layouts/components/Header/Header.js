@@ -28,15 +28,20 @@ function Header({ fullScreen }) {
 
     const signIn = userData && userData.signIn
     const nickname = userData && userData.nickname
+    const uploadProps = {}
 
     useEffect(() => {
         if (signIn) {
+            uploadProps.to = '/upload'
             getUser(nickname)
                 .then(data => {
                     setUser(data)
                 })
                 .catch(error => console.log(error))
+        } else {
+            uploadProps.onClick = () => dispatch(actions.setShowModal(true))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [nickname, signIn])
 
     return (
@@ -47,7 +52,7 @@ function Header({ fullScreen }) {
                 </Link>
                 <Search />
                 <div className={cx('header-right')}>
-                    <Button className={cx('upload-btn')} to="/upload" LeftIcon={<PlusIcon />}>
+                    <Button className={cx('upload-btn')} LeftIcon={<PlusIcon />} {...uploadProps}>
                         Upload
                     </Button>
                     {signIn ? (
