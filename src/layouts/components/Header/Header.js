@@ -30,18 +30,20 @@ function Header({ fullScreen }) {
     const nickname = userData && userData.nickname
     const uploadProps = {}
 
+    if (signIn) {
+        uploadProps.to = '/upload'
+    } else {
+        uploadProps.onClick = () => dispatch(actions.setShowModal(true))
+    }
+
     useEffect(() => {
         if (signIn) {
-            uploadProps.to = '/upload'
             getUser(nickname)
                 .then(data => {
                     setUser(data)
                 })
                 .catch(error => console.log(error))
-        } else {
-            uploadProps.onClick = () => dispatch(actions.setShowModal(true))
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [nickname, signIn])
 
     return (

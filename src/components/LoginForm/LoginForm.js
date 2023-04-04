@@ -68,8 +68,6 @@ function LoginForm({ handleCloseOverlay }) {
         setLoginError(false)
     }
 
-    console.log(hasAccount)
-
     return (
         <div className={cx('login-form')}>
             <div className={cx('login-content')}>

@@ -42,6 +42,8 @@ function Button({
                 delete props[key]
             }
         })
+    } else {
+        Comp = 'div'
     }
 
     const classes = cx('wrapper', {

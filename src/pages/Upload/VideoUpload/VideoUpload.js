@@ -6,7 +6,7 @@ import Content from './Content'
 
 const cx = classNames.bind(styles)
 
-function VideoUpload({ video, userData }) {
+function VideoUpload({ video, userData, handleChangeVideo }) {
     const [videoControlShow, setVideoControlShow] = useState(false)
     const [soundVolume, setSoundVolume] = useState(true)
     const [playVideo, setPlayVideo] = useState(false)
@@ -29,8 +29,20 @@ function VideoUpload({ video, userData }) {
         videoRef.current.pause()
     }, [playVideo])
 
-    useEffect(() => {
-        const time = videoRef.current.duration
+    const updateProgressBar = () => {
+        updateVideoTime(videoRef.current.currentTime)
+        let percentage = (100 / videoRef.current.duration) * videoRef.current.currentTime
+        progressRef.current.value = percentage
+        currentPosition.current.style.left = `${percentage}%`
+    }
+
+    const handleSeeked = e => {
+        var percent = e.nativeEvent.offsetX / progressRef.current.offsetWidth
+        videoRef.current.currentTime = percent * videoRef.current.duration
+        setPlayVideo(false)
+    }
+
+    const getVideoTime = time => {
         if (time / 60 >= 10) {
             if (time % 60 >= 10) {
                 setTotalTimeText(`00:${Math.floor(time / 60)}:${Math.floor(time % 60)}`)
@@ -44,19 +56,6 @@ function VideoUpload({ video, userData }) {
                 setTotalTimeText(`00:0${Math.floor(time / 60)}:0${Math.floor(time % 60)}`)
             }
         }
-    }, [])
-
-    const updateProgressBar = () => {
-        updateVideoTime(videoRef.current.currentTime)
-        let percentage = (100 / videoRef.current.duration) * videoRef.current.currentTime
-        progressRef.current.value = percentage
-        currentPosition.current.style.left = `${percentage}%`
-    }
-
-    const handleSeeked = e => {
-        var percent = e.nativeEvent.offsetX / progressRef.current.offsetWidth
-        videoRef.current.currentTime = percent * videoRef.current.duration
-        setPlayVideo(false)
     }
 
     const updateVideoTime = time => {
@@ -76,12 +75,12 @@ function VideoUpload({ video, userData }) {
     }
 
     return (
-        <div
-            className={cx('video-wrap')}
-            onMouseEnter={() => setVideoControlShow(true)}
-            onMouseLeave={() => setVideoControlShow(false)}
-        >
-            <div className={cx('video-content')}>
+        <div className={cx('video-wrap')}>
+            <div
+                className={cx('video-content')}
+                onMouseEnter={() => setVideoControlShow(true)}
+                onMouseLeave={() => setVideoControlShow(false)}
+            >
                 <Content video={video} userData={userData} />
                 <div
                     className={cx('control-container', {
@@ -119,17 +118,27 @@ function VideoUpload({ video, userData }) {
                         src={video.preview}
                         onTimeUpdate={updateProgressBar}
                         onEnded={() => setPlayVideo(false)}
+                        onCanPlay={() => getVideoTime(videoRef.current.duration)}
                     />
                 </div>
             </div>
             <footer className={cx('video-footer')}></footer>
+            <div className={cx('change-video')}>
+                <div className={cx('change-video-content')}>
+                    <p className={cx('change-video-text')}>{video.name}</p>
+                </div>
+                <span className={cx('change-video-button')} onClick={handleChangeVideo}>
+                    Change video
+                </span>
+            </div>
         </div>
     )
 }
 
 VideoUpload.propTypes = {
     video: PropTypes.object,
-    userData: PropTypes.object
+    userData: PropTypes.object,
+    handleChangeVideo: PropTypes.func
 }
 
 export default memo(VideoUpload)

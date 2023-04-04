@@ -10,9 +10,9 @@ import { getUser } from '~/services'
 import VideoUpload from './VideoUpload'
 import DivideVideo from './DivideVideo'
 import AllowUser from './AllowUser'
+import ModalOverlay from '~/components/Modal'
+import { LoadingIcon } from '~/components/Icons'
 import { createVideo } from '~/services'
-
-// import { postVideo } from '~/services'
 
 const cx = classNames.bind(styles)
 
@@ -24,8 +24,12 @@ function Upload() {
     const [thumbnailValue, setThumbnailValue] = useState()
     const [optionValue, setOptionValue] = useState('Public')
     const [allowValue, setAllowValue] = useState([0, 1, 2])
+    const [showChangeVidModal, setShowChangeVidModal] = useState(false)
+    const [showDiscardModal, setShowDiscardModal] = useState(false)
+    const [showPostModal, setShowPostModal] = useState(false)
     const [video, setVideo] = useState()
     const [userData, setUserData] = useState()
+    const [loading, setLoading] = useState(false)
 
     const inputFileRef = useRef()
     const user = useLocalStorage()
@@ -38,6 +42,8 @@ function Upload() {
                     setUserData(data)
                 })
                 .catch(error => console.log(error))
+        } else {
+            setCaptionValue('')
         }
     }, [nickname, video])
 
@@ -83,8 +89,22 @@ function Upload() {
         e.preventDefault()
 
         if (video) {
-            createVideo(getFormDataForVideo(), user.token).then(data => console.log(data))
+            setLoading(true)
+            const fetchApi = async () => {
+                let result = await createVideo(getFormDataForVideo(), user.token)
+                console.log(result)
+                if (result) {
+                    setShowPostModal(true)
+                }
+                setLoading(false)
+            }
+
+            fetchApi()
         }
+    }
+
+    const handleChangeVideo = () => {
+        setShowChangeVidModal(true)
     }
 
     return (
@@ -95,7 +115,7 @@ function Upload() {
                     <p className={cx('upload-desc')}>Post a video to your account</p>
                     <div className={cx('upload-body')}>
                         {video && userData && video.preview ? (
-                            <VideoUpload video={video} userData={userData} />
+                            <VideoUpload video={video} userData={userData} handleChangeVideo={handleChangeVideo} />
                         ) : (
                             <div className={cx('uploader')}>
                                 <input
@@ -210,7 +230,11 @@ function Upload() {
                                 <span className={cx('learn-more')}>Learn more</span>
                             </p>
                             <div className={cx('btn-wrap')}>
-                                <Button className={cx('btn-cancel')} type="large">
+                                <Button
+                                    className={cx('btn-cancel')}
+                                    type="large"
+                                    onClick={() => setShowDiscardModal(true)}
+                                >
                                     Discard
                                 </Button>
                                 <Button
@@ -221,13 +245,70 @@ function Upload() {
                                     primary={video}
                                     onClick={handlePostVideo}
                                 >
-                                    Post
+                                    {loading ? <LoadingIcon className={cx('loading')} /> : 'Post'}
                                 </Button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            <ModalOverlay showModal={showChangeVidModal} className={cx('modal-change')}>
+                <header className={cx('modal-header')}>
+                    <h2 className={cx('modal-title')}>Replace this video</h2>
+                    <p className={cx('modal-desc')}>Caption and video settings will still be saved</p>
+                </header>
+                <button
+                    className={cx('replace-btn')}
+                    onClick={() => {
+                        setVideo()
+                        setShowChangeVidModal(false)
+                    }}
+                >
+                    Replace
+                </button>
+                <button className={cx('continue-btn')} onClick={() => setShowChangeVidModal(false)}>
+                    Continue editing
+                </button>
+            </ModalOverlay>
+            <ModalOverlay showModal={showDiscardModal} className={cx('modal-action')}>
+                <h2 className={cx('modal-title')}>Discard this post?</h2>
+                <p className={cx('modal-desc')}>The video and all edits will be discarded.</p>
+                <div className={cx('modal-btn-wrapper')}>
+                    <Button
+                        primary
+                        className={cx('another-video')}
+                        type="large"
+                        onClick={() => {
+                            setVideo()
+                            setShowDiscardModal(false)
+                        }}
+                    >
+                        Discard
+                    </Button>
+                    <Button className={cx('view-profile')} type="large" onClick={() => setShowDiscardModal(false)}>
+                        Continue editing
+                    </Button>
+                </div>
+            </ModalOverlay>
+            <ModalOverlay showModal={showPostModal} className={cx('modal-action')}>
+                <h2 className={cx('modal-title')}>Your videos are being uploaded to TikTok!</h2>
+                <div className={cx('modal-btn-wrapper')}>
+                    <Button
+                        primary
+                        className={cx('another-video')}
+                        type="large"
+                        onClick={() => {
+                            setVideo()
+                            setShowPostModal(false)
+                        }}
+                    >
+                        Upload another video
+                    </Button>
+                    <Button className={cx('view-profile')} type="large" to={`/@${user.nickname}`}>
+                        View profile
+                    </Button>
+                </div>
+            </ModalOverlay>
         </div>
     )
 }
